@@ -145,7 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hero mark tilts gently toward the cursor
   const heroMark = document.querySelector('.hero-mark-wrap');
   const heroRight = document.querySelector('.hero-right');
-  if (heroMark && heroRight && !reduced) {
+  const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (heroMark && heroRight && !reduced && fineHover) {
     heroRight.addEventListener('mousemove', (e) => {
       const rect = heroRight.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -154,6 +155,130 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     heroRight.addEventListener('mouseleave', () => {
       heroMark.style.transform = '';
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // Generic scroll-reveal: any [class*="reveal"] element gets .in-view
+  // the first time it crosses the viewport, then is left alone.
+  // ---------------------------------------------------------------
+  const revealEls = document.querySelectorAll('[class*="reveal"]');
+  if (revealEls.length) {
+    if (reduced || !('IntersectionObserver' in window)) {
+      revealEls.forEach((el) => el.classList.add('in-view'));
+    } else {
+      const revealIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+      revealEls.forEach((el) => revealIo.observe(el));
+    }
+  }
+
+  // Stats: scale the number in and rise the label alongside the existing
+  // count-up (extends the observer already driving animateStat above).
+  document.querySelectorAll('.stat-row > div').forEach((cell) => {
+    const value = cell.querySelector('.stat-value');
+    if (!value || reduced || !('IntersectionObserver' in window)) {
+      cell.classList.add('in-view');
+      return;
+    }
+    const cellIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.parentElement.classList.add('in-view');
+          entry.target.classList.add('in-view');
+          cellIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    cellIo.observe(value);
+  });
+
+  // ---------------------------------------------------------------
+  // Parallax: [data-parallax] (vertical) / [data-parallax-x] (horizontal)
+  // elements drift based on distance from viewport center — at rest when
+  // centered, shifting as they scroll away. Desktop, motion-safe only;
+  // a single rAF-throttled scroll/resize loop drives every tracked element.
+  // ---------------------------------------------------------------
+  if (!reduced && fineHover && window.innerWidth > 767) {
+    const parallaxEls = Array.from(document.querySelectorAll('[data-parallax], [data-parallax-x]'));
+    if (parallaxEls.length) {
+      let ticking = false;
+      const updateParallax = () => {
+        const viewportCenter = window.innerHeight / 2;
+        parallaxEls.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const elCenter = rect.top + rect.height / 2;
+          const distance = viewportCenter - elCenter;
+          const rateY = parseFloat(el.dataset.parallax || '0');
+          const rateX = parseFloat(el.dataset.parallaxX || '0');
+          const y = rateY ? distance * rateY : 0;
+          const x = rateX ? distance * rateX : 0;
+          const scaleAttr = el.dataset.parallaxScale;
+          let extra = '';
+          if (scaleAttr) {
+            // Scales down slightly the further the element drifts above center
+            // (used for the hero mark's "scale toward the next section" moment).
+            const maxScale = parseFloat(scaleAttr);
+            const progress = Math.min(Math.max(-distance / (window.innerHeight * 0.9), 0), 1);
+            const scale = 1 - progress * (1 - maxScale);
+            extra = ` scale(${scale})`;
+          }
+          // Compose with a static base transform (e.g. translateX(-50%) for a
+          // centered element) rather than overwriting it every frame.
+          const base = el.dataset.parallaxBase ? el.dataset.parallaxBase + ' ' : '';
+          el.style.transform = `${base}translate(${x}px, ${y}px)${extra}`;
+        });
+        ticking = false;
+      };
+      const requestTick = () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      };
+      window.addEventListener('scroll', requestTick, { passive: true });
+      window.addEventListener('resize', requestTick);
+      updateParallax();
+    }
+
+    // Blueprint grid: shifts its background-position slightly as the hero
+    // scrolls past, independent of the parallax elements above.
+    const blueprintHero = document.querySelector('.hero-grid')?.closest('.blueprint');
+    if (blueprintHero) {
+      let bpTicking = false;
+      const updateGrid = () => {
+        const rect = blueprintHero.getBoundingClientRect();
+        const shift = -rect.top * 0.15;
+        blueprintHero.style.backgroundPosition = `50% ${shift}px, 50% ${shift}px`;
+        bpTicking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!bpTicking) { requestAnimationFrame(updateGrid); bpTicking = true; }
+      }, { passive: true });
+      updateGrid();
+    }
+  }
+
+  // Product cards: a very subtle cursor-follow on the icon inside each cell.
+  // Bakes in the same lift + scale the CSS :hover rule would apply, since
+  // this inline transform takes over from (and would otherwise hide) it.
+  if (!reduced && fineHover) {
+    document.querySelectorAll('.cell-magnetic').forEach((cell) => {
+      const icon = cell.querySelector('.cell-icon');
+      if (!icon) return;
+      cell.addEventListener('mousemove', (e) => {
+        const rect = cell.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        icon.style.transform = `translate(${x * 6}px, ${y * 6 - 2}px) scale(1.06)`;
+      });
+      cell.addEventListener('mouseleave', () => { icon.style.transform = ''; });
     });
   }
 });

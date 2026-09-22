@@ -30,11 +30,12 @@ quieter option, but let the illustrations carry warmth and personality.
 ## Illustration system
 - Style: loose, sketchy hand-drawn ink linework — not clean/geometric vector icons. 2–2.5px ink stroke, rounded joins/caps, lime fill accents only — original artwork (not copied from any reference site's mascot/marks).
 - Wobble: every large illustration carries `.illus-sketchy`, which applies an SVG turbulence filter (`#sketchy-anim` in each page's sprite defs) to the whole rendered shape — uneven line weight and a gentle "boiling ink" redraw, rather than hand-plotting irregular bezier points per path. `#sketchy-still` (a frozen, unanimated version) swaps in under `prefers-reduced-motion`. Don't apply `.illus-sketchy` to small functional UI icons (cell-icon, nav toggle) — the wobble is for decorative illustration only, not interface icons, which stay crisp.
-- Character faces: figures (illus-empower, illus-people-cta) get simple dot eyes (`r="1.8" fill="var(--ink)"`, no other features) — minimal, not cartoonish.
+- Character faces: figures (illus-empower, illus-people-cta) get dot eyes (`r="1.8" fill="var(--ink)"`) plus a simple curved-line mouth (`stroke-width:1.6`, no fill) — minimal, not cartoonish. No eyebrows, no detailed features.
 - Sprite: the full symbol set (plus both sketchy filters) is duplicated in every page's hidden `<svg>` block near the top of `<body>` (no build step, so no cross-file `<use>` — CSS custom properties, animation classes, and filters need same-document scope).
-- Hero mark: `mark-compass`, a 4-point astroid star (DXD's own geometric motif) inside a blueprint grid, slowly rotating.
+- Hero mark: `mark-compass`, a 4-point astroid star (DXD's own geometric motif) inside a blueprint grid, slowly rotating. On the homepage it's joined by three small "hero-badge" doodles (pencil/spark/speech-bubble in lime circles) that pop in around it, staggered — a lightweight nod to Build/Innovate/Empower without turning the brand mark itself into a character.
 - Scene illustrations: `illus-build`, `illus-ai`, `illus-empower`, `illus-people-cta`, `illus-story-featured`, `illus-photo-generic` — used in split-row features, CTA, and story/article placeholders.
-- Animation classes (base.css): `.draw-line` (stroke draw-in), `.float-slow`/`.float-slower` (gentle bob), `.spin-slow`/`.spin-slower` (slow rotation), `.pulse-soft` (opacity breathe), `.illus-sketchy` (hand-drawn wobble). All respect `prefers-reduced-motion`.
+- **Draw → react → rest model**: `.draw-line` (stroke draw-in, staggered via `--delay`) is the DRAW phase. `.doodle-pop` (accent dots/highlights — overshoots on scale-in: 0 → 1.22 → 0.93 → 1 — then settles into the existing opacity-breathe loop; stagger multiple instances with `--pop-delay`) and `.doodle-react` (one small asymmetric rotate on a character's gesture arm, fired once via `--react-delay` ≈ the draw duration, `--react-origin` sets the pivot point) are the REACT moment. Ambient `.float-slow`/`.float-slower` (gentle bob) and `.spin-slow`/`.spin-slower` (slow rotation) are REST. `.illus-sketchy` (hand-drawn wobble, via SVG turbulence filter) runs underneath all of it. All respect `prefers-reduced-motion`.
+- **Hover redraw**: opt a small icon into `.icon-redraw` (needs `pathLength="1"` on each shape inside it) to replay its stroke draw-in on hover — used on the three Featured Products icons on the homepage as their "tiny action." Don't apply broadly; it's for icons that are worth a second look, not a default.
 
 ## Layout system
 - columns: 12, maxContentWidth: 1280px
@@ -51,6 +52,25 @@ quieter option, but let the illustrations carry warmth and personality.
 - entrance: fade + 6px rise, 200ms, standard ease-out
 - illustration draw-in: stroke-dashoffset animation, ~1.4s, staggered via --delay
 - ambient: float/spin/pulse on illustration accents, 3–34s loops, subtle — never distracting from content
+- **scroll-reveal utilities** (base.css, triggered once by a shared IntersectionObserver
+  in main.js): `.reveal`/`.reveal-up`/`.reveal-left`/`.reveal-right`/`.reveal-scale` (opacity
+  + transform), `.reveal-mask` (clipped upward text reveal — wrap the text in a `<span>`,
+  the mask goes on the parent). `.stagger` on a parent sequences its direct children via an
+  inherited `--stagger-i` custom property × `--stagger-step` (default 90ms, override inline).
+  transform/opacity only — never layout properties.
+- **hero entrance** (page load, not scroll-triggered): eyebrow → masked headline → lede →
+  CTAs stagger in over ~900ms via `.hero-enter-*` classes + `.hero-headline`.
+- **parallax** (`[data-parallax]`/`[data-parallax-x]`, main.js): elements drift based on
+  distance from viewport-center, at rest when centered. Desktop + `(hover:hover) and
+  (pointer:fine)` only — fully off on touch/mobile and `prefers-reduced-motion`. A static
+  base transform (e.g. centering) survives via `data-parallax-base`, composed with the
+  dynamic offset rather than overwritten.
+- **background type** (`.bg-word`, needs a `.watermark-host` ancestor): oversized, ~3.5%
+  opacity Red Hat Display words sitting behind a section's content — atmospheric only,
+  never load-bearing. Hidden below 900px.
+- currently applied on index.html's Hero/Mission/Functions/Featured Products/Team sections
+  only; the utilities in base.css are reusable and can be adopted by the other pages the
+  same way.
 
 ## Voice & Tone
 Neutral, steady, quietly confident. Second person, plain language, Singapore
