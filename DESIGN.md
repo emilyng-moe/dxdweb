@@ -7,16 +7,16 @@ do the work that boxes and shadows usually do. When unsure, choose the
 quieter option, but let the illustrations carry warmth and personality.
 
 ## Colour
-- background: --cream #F6F5F0 (dark mode: #121309)
+- background: --cream #FFFFFF (dark mode: #121309)
 - ink (foreground): --ink #16170F
 - accent: --lime #C6E84E, hover --lime-dark #A9CC2E
 - line/olive accent (tags, labels, dashed guides): --olive #7C8B4A / --olive-line #A8B57A
-- surface: #FFFFFF, surface-2 (on-cream panels): --cream-1 #F1F0EA
+- surface: #FFFFFF, surface-2 (on-cream panels): --cream-1 #FFFFF2
 - border: #E1DFD3, hairline throughout — grid lines, card dividers, section rules
 - pairs: [["--foreground", "--background"], ["--muted-foreground", "--background"]]
 
 ## Typography
-- display (headings, buttons): Space Grotesk 700 — geometric, bold, tight tracking (-0.02em)
+- display (headings, buttons): Red Hat Display 700 — geometric, bold, tight tracking (-0.02em)
 - body: Inter 400/500/600
 - mono (eyebrows, tags, pills, stat labels' badges): IBM Plex Mono 500/600, uppercase, tracked
 - base: 16/24
@@ -28,11 +28,13 @@ quieter option, but let the illustrations carry warmth and personality.
 - dark-mode: class strategy, `.dark` on <html>
 
 ## Illustration system
-- Style: hand-drawn line art, 2–2.5px ink stroke, rounded joins/caps, lime fill accents only — original artwork (not copied from any reference site's mascot/marks).
-- Sprite: img/illustrations.svg holds all <symbol> definitions; inlined into each page's <body> (no build step, so no cross-file <use> — CSS custom properties and animation classes need same-document scope).
+- Style: loose, sketchy hand-drawn ink linework — not clean/geometric vector icons. 2–2.5px ink stroke, rounded joins/caps, lime fill accents only — original artwork (not copied from any reference site's mascot/marks).
+- Wobble: every large illustration carries `.illus-sketchy`, which applies an SVG turbulence filter (`#sketchy-anim` in each page's sprite defs) to the whole rendered shape — uneven line weight and a gentle "boiling ink" redraw, rather than hand-plotting irregular bezier points per path. `#sketchy-still` (a frozen, unanimated version) swaps in under `prefers-reduced-motion`. Don't apply `.illus-sketchy` to small functional UI icons (cell-icon, nav toggle) — the wobble is for decorative illustration only, not interface icons, which stay crisp.
+- Character faces: figures (illus-empower, illus-people-cta) get simple dot eyes (`r="1.8" fill="var(--ink)"`, no other features) — minimal, not cartoonish.
+- Sprite: the full symbol set (plus both sketchy filters) is duplicated in every page's hidden `<svg>` block near the top of `<body>` (no build step, so no cross-file `<use>` — CSS custom properties, animation classes, and filters need same-document scope).
 - Hero mark: `mark-compass`, a 4-point astroid star (DXD's own geometric motif) inside a blueprint grid, slowly rotating.
-- Scene illustrations: `illus-build`, `illus-ai`, `illus-empower`, `illus-people-cta`, `illus-story-featured`, `illus-photo-generic` — used in split-row features, CTA, and story placeholders.
-- Animation classes (base.css): `.draw-line` (stroke draw-in), `.float-slow`/`.float-slower` (gentle bob), `.spin-slow`/`.spin-slower` (slow rotation), `.pulse-soft` (opacity breathe). All respect `prefers-reduced-motion`.
+- Scene illustrations: `illus-build`, `illus-ai`, `illus-empower`, `illus-people-cta`, `illus-story-featured`, `illus-photo-generic` — used in split-row features, CTA, and story/article placeholders.
+- Animation classes (base.css): `.draw-line` (stroke draw-in), `.float-slow`/`.float-slower` (gentle bob), `.spin-slow`/`.spin-slower` (slow rotation), `.pulse-soft` (opacity breathe), `.illus-sketchy` (hand-drawn wobble). All respect `prefers-reduced-motion`.
 
 ## Layout system
 - columns: 12, maxContentWidth: 1280px

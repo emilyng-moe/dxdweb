@@ -3,16 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>People — DXD</title>
-<meta name="description" content="Meet the product managers, engineers, designers, data and AI scientists, education officers, and operations specialists behind DXD." />
+<title>Perspectives — DXD</title>
+<meta name="description" content="Articles from the people building DXD's products — across Product, Design, and AI." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
 <style>
-  .discipline-band { display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:0; }
-  .person-cell { display:flex; flex-direction:column; }
+  .featured-perspective {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: stretch;
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: var(--space-16);
+  }
+  .featured-perspective .fp-text { padding: var(--space-10); display:flex; flex-direction:column; justify-content:center; }
+  @media (max-width: 900px) { .featured-perspective { grid-template-columns: 1fr; } }
+  .perspective-cell { display:flex; flex-direction:column; gap:var(--space-4); }
+  .segment-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
+  .segment-head .cell-icon { margin-bottom: 0; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -130,7 +137,7 @@
     </g>
   </symbol>
 
-  <!-- ============ Story featured scene: results board ============ -->
+  <!-- ============ Featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
     <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
@@ -147,7 +154,7 @@
     <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
   </symbol>
 
-  <!-- ============ Generic photo placeholder (story grid) ============ -->
+  <!-- ============ Generic photo placeholder (article grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
     <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
@@ -177,8 +184,8 @@
     <ul class="nav-links">
       <li><a href="index.html">Purpose</a></li>
       <li><a href="products.html">Products</a></li>
-      <li><a href="people.html" aria-current="page">People</a></li>
-      <li><a href="perspectives.html">Perspectives</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="perspectives.html" aria-current="page">Perspectives</a></li>
       <li><a href="careers.html">Careers</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -190,83 +197,61 @@
 <main>
   <section class="blueprint" style="padding:var(--space-16) 0">
     <div class="container" style="max-width:720px">
-      <p class="eyebrow">People</p>
-      <h1 style="font-size:var(--text-3xl)">A diverse team, one mission.</h1>
-      <p class="lede">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference. <span class="placeholder-badge">All profiles on this page are placeholder content</span></p>
+      <p class="eyebrow">Perspectives</p>
+      <h1 style="font-size:var(--text-3xl)">Ideas from the people building DXD.</h1>
+      <p class="lede">Articles from across the division — Product, Design, and AI. <span class="placeholder-badge">All articles on this page are placeholder content</span></p>
     </div>
   </section>
 
   <div class="rule-major" aria-hidden="true"></div>
 
-  <section class="tight" style="padding-bottom:0">
+  <section class="tight">
     <div class="container">
-      <div class="discipline-band">
-        <span class="pill-mono">Product</span>
-        <span class="pill-mono">Engineering</span>
-        <span class="pill-mono">Design</span>
-        <span class="pill-mono">Data &amp; AI</span>
-        <span class="pill-mono">Education</span>
-        <span class="pill-mono">Operations</span>
+
+      <div class="featured-perspective fade-up">
+        <div class="story-media" style="aspect-ratio:auto; border-radius:0; border:none">
+          <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260" style="width:100%; height:100%"><use href="#illus-story-featured"/></svg>
+        </div>
+        <div class="fp-text">
+          <span class="tag">Product</span>
+          <span class="placeholder-badge" style="margin-left:var(--space-2)">placeholder</span>
+          <h2 style="font-size:var(--text-2xl); margin-top:var(--space-3)">Why we killed a feature two weeks before launch</h2>
+          <p style="margin-top:var(--space-4)">Sometimes the right product call is the one nobody wants to hear — notes from a late call on the OnePlacement launch.</p>
+          <a href="#" class="btn btn-ghost" style="margin-top:var(--space-6); width:fit-content">Read the article →</a>
+        </div>
       </div>
+
     </div>
+  </section>
 
-    <div class="container" style="padding:0; margin-top:var(--space-10)">
-      <div class="divider-grid cols-4">
+  <!-- ============ Segment 1: Product ============ -->
+  <section class="tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 1 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">Product</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
 
-        <div class="person-cell">
-          <div class="avatar">JT</div>
-          <div class="person-name">Jasmine Tan</div>
-          <div class="person-role">Head of Product</div>
-          <p class="person-bio">Leads product strategy across DXD's school- and officer-facing platforms.</p>
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Product</span>
+          <h3>Designing OnePlacement's registration flow around parents' worst week of the year</h3>
+          <p class="desc" style="font-size:var(--text-sm)">What we learned building a placement system for a process that's stressful no matter how good the UI is.</p>
+          <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
-        <div class="person-cell">
-          <div class="avatar">RK</div>
-          <div class="person-name">Rajesh Kumar</div>
-          <div class="person-role">Engineering Lead</div>
-          <p class="person-bio">Owns the shared identity and infrastructure platform underpinning DXD products.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">SW</div>
-          <div class="person-name">Siti Wulandari</div>
-          <div class="person-role">Product Designer</div>
-          <p class="person-bio">Designs classroom and officer experiences, from research through to shipped UI.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">DL</div>
-          <div class="person-name">David Lim</div>
-          <div class="person-role">Data &amp; AI Scientist</div>
-          <p class="person-bio">Builds the AI capabilities behind the Toolbox and officer analytics work.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">NA</div>
-          <div class="person-name">Nur Aisyah</div>
-          <div class="person-role">Education Officer</div>
-          <p class="person-bio">Bridges classroom realities and product decisions, grounded in teaching experience.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">MC</div>
-          <div class="person-name">Marcus Chen</div>
-          <div class="person-role">Software Engineer</div>
-          <p class="person-bio">Ships and maintains the Teacher Workspace's core scheduling and marks features.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">PL</div>
-          <div class="person-name">Priya Letchumi</div>
-          <div class="person-role">Operations Specialist</div>
-          <p class="person-bio">Keeps DXD's programmes and vendor partnerships running smoothly day to day.</p>
-        </div>
-
-        <div class="person-cell">
-          <div class="avatar">WH</div>
-          <div class="person-name">Wei Han</div>
-          <div class="person-role">Software Engineer</div>
-          <p class="person-bio">Works on the Student Learning Space's content delivery and assignment systems.</p>
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Product</span>
+          <h3>How we prioritise a 30-product roadmap with one team</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Inside DXD's approach to sequencing work across schools, officers, and parents.</p>
+          <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
       </div>
@@ -275,13 +260,72 @@
 
   <div class="rule-major" aria-hidden="true"></div>
 
-  <section class="on-surface">
-    <div class="container" style="text-align:center; max-width:560px">
-      <svg class="illus-trigger illus-sketchy" viewBox="0 0 200 160" style="width:180px; margin:0 auto var(--space-6)"><use href="#illus-people-cta"/></svg>
-      <h2 style="font-size:var(--text-2xl)">Want to join us?</h2>
-      <p style="margin-top:var(--space-4)">We're always looking for people who care about building useful, reliable technology for Singapore's education system.</p>
-      <div class="hero-actions" style="justify-content:center; margin-top:var(--space-6)">
-        <a href="careers.html" class="btn btn-primary">See open roles</a>
+  <!-- ============ Segment 2: Design ============ -->
+  <section class="tight on-surface">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 2 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">Design</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Design</span>
+          <h3>A design system for 30+ products, one team</h3>
+          <p class="desc" style="font-size:var(--text-sm)">How DXD's design system keeps school and officer-facing products feeling like one family, not thirty.</p>
+          <div class="story-meta"><span>6 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Design</span>
+          <h3>Designing for teachers who are already stretched thin</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Every extra click is a tax on someone's Friday afternoon — notes from redesigning Teacher Workspace.</p>
+          <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-major" aria-hidden="true"></div>
+
+  <!-- ============ Segment 3: AI ============ -->
+  <section class="tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 3 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">AI</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">AI</span>
+          <h3>What Mark.ly got wrong before it got useful</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Early lessons from building an AI marking assistant teachers actually trust.</p>
+          <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">AI</span>
+          <h3>AI adoption isn't a training problem</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Why DXD's AI Adoption Working Team spends more time on workflows than workshops.</p>
+          <div class="story-meta"><span>3 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
       </div>
     </div>
   </section>
