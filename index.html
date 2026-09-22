@@ -7,16 +7,147 @@
 <meta name="description" content="DXD builds and delivers digital products for schools, educators, students, parents, and MOE officers, and drives AI adoption across the Ministry of Education." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
+  <symbol id="mark-compass" viewBox="0 0 240 240">
+    <circle cx="120" cy="120" r="108" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+    <circle class="spin-slower" cx="120" cy="120" r="80" fill="none" stroke="var(--olive-line)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <!-- four-point astroid star -->
+      <path d="M120 24 Q146,94 216,120 Q146,146 120,216 Q94,146 24,120 Q94,94 120,24 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- node circles at tips -->
+      <circle cx="120" cy="24" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="216" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="120" cy="216" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="24" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+
+    <circle cx="120" cy="120" r="9" fill="var(--ink)"/>
+
+    <!-- orbiting satellite dot -->
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <circle cx="120" cy="46" r="4.5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
+  <symbol id="illus-build" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="20" y="46" width="100" height="72" rx="8" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <path class="draw-line" style="--len:120" d="M40 66 L74 66" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:90; --delay:120ms" d="M40 80 L92 80" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:70" d="M40 94 L70 94" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="56" y="118" width="28" height="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="46" y1="130" x2="94" y2="130" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <g class="float-slow">
+      <rect x="146" y="98" width="46" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="152" y="70" width="34" height="24" rx="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="158" y="42" width="22" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+    <circle cx="34" cy="36" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+  </symbol>
+
+  <!-- ============ Accelerate AI adoption: lightbulb + sparks ============ -->
+  <symbol id="illus-ai" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <g class="float-slow" style="transform-origin:110px 90px">
+      <circle cx="110" cy="80" r="38" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M96 112 L124 112 L120 130 L100 130 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <line x1="101" y1="140" x2="119" y2="140" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M96 78 Q102 60 118 62" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g class="spin-slow" style="transform-origin:110px 80px">
+      <path class="draw-line" style="--len:24" d="M110 16 L110 30" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:150ms" d="M174 80 L160 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:300ms" d="M46 80 L60 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <path d="M162 40 L167 50 L177 55 L167 60 L162 70 L157 60 L147 55 L157 50 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" class="pulse-soft"/>
+    <circle cx="50" cy="46" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Empower users: handing a tool up a small step ============ -->
+  <symbol id="illus-empower" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="128" y="132" width="30" height="28" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="158" y="110" width="30" height="50" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+
+    <!-- figure A (shorter, giving) -->
+    <g class="float-slow">
+      <circle cx="58" cy="88" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M42 160 L44 122 Q44 112 58 112 Q72 112 72 122 L74 160 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 118 L96 104" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- tool being passed -->
+    <rect x="92" y="92" width="18" height="18" rx="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="pulse-soft"/>
+
+    <!-- figure B (taller, receiving, standing on step) -->
+    <g class="float-slower">
+      <circle cx="150" cy="66" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M134 132 L136 100 Q136 90 150 90 Q164 90 164 100 L166 132 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M136 96 L112 100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <circle cx="30" cy="40" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ People CTA: high five ============ -->
+  <symbol id="illus-people-cta" viewBox="0 0 200 160">
+    <line x1="10" y1="146" x2="190" y2="146" stroke="var(--border)" stroke-width="1.5"/>
+    <g>
+      <circle cx="58" cy="70" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M42 146 L44 108 Q44 98 58 98 Q72 98 72 108 L74 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 104 L98 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <circle cx="142" cy="70" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M126 146 L128 108 Q128 98 142 98 Q156 98 156 108 L158 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M130 104 L102 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g class="pulse-soft">
+      <path class="draw-line" style="--len:14" d="M100 58 L100 46" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:100ms" d="M88 66 L78 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:200ms" d="M112 66 L122 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Story featured scene: results board ============ -->
+  <symbol id="illus-story-featured" viewBox="0 0 400 260">
+    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
+    <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
+    <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
+    <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="94" y1="100" x2="200" y2="100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="94" y1="116" x2="170" y2="116" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="float-slower">
+      <rect x="94" y="150" width="20" height="46" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="122" y="130" width="20" height="66" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="150" y="160" width="20" height="36" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="178" y="112" width="20" height="84" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    </g>
+    <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Generic photo placeholder (story grid) ============ -->
+  <symbol id="illus-photo-generic" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
+    <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+  </symbol>
+
+</svg>
 
 <header class="site-header">
   <nav class="container nav">
     <a href="index.html" class="nav-logo">
-      <span class="mark">DX</span>
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3 L18 14 L29 16 L18 18 L16 29 L14 18 L3 16 L14 14 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/></svg>
       <span>DXD</span>
     </a>
     <ul class="nav-links">
@@ -34,21 +165,26 @@
 
 <main>
 
-  <section class="hero">
-    <div class="container hero-inner fade-up">
-      <p class="eyebrow">Digital Excellence &amp; Products Division · MOE</p>
-      <h1>Moulding our nation's future through technology.</h1>
-      <p class="lede">DXD builds and delivers the digital products, services, and AI capabilities that empower schools, educators, students, parents, and MOE officers — enabling MOE's digital transformation from the ground up.</p>
-      <div class="hero-actions">
-        <a href="products.html" class="btn btn-primary">See our products</a>
-        <a href="index.html#careers" class="btn btn-ghost">Join the team</a>
+  <section class="blueprint section-border-b">
+    <div class="container hero-grid">
+      <div class="hero-left fade-up">
+        <p class="eyebrow">Digital Excellence &amp; Products Division · MOE</p>
+        <h1>Moulding our nation's future through technology.</h1>
+        <p class="lede">DXD builds and delivers the digital products, services, and AI capabilities that empower schools, educators, students, parents, and MOE officers — enabling MOE's digital transformation from the ground up.</p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary">See our products</a>
+          <a href="index.html#careers" class="btn btn-ghost">Join the team</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <svg viewBox="0 0 240 240" style="width:min(360px, 80%)"><use href="#mark-compass"/></svg>
       </div>
     </div>
   </section>
 
-  <section class="tight" style="border-bottom:1px solid var(--border)">
-    <div class="container">
-      <div class="grid grid-4">
+  <section class="tight section-border-b" style="padding:0">
+    <div class="container" style="padding:0">
+      <div class="stat-row">
         <div>
           <div class="stat-value">30+</div>
           <div class="stat-label">Digital products &amp; services <span class="placeholder-badge">placeholder</span></div>
@@ -69,7 +205,7 @@
     </div>
   </section>
 
-  <section id="mission">
+  <section id="mission" class="tight">
     <div class="container">
       <div class="section-head">
         <div>
@@ -78,34 +214,48 @@
         </div>
         <p>We work closely with stakeholders to create better experiences for schools, educators, students, parents, and MOE officers through technology.</p>
       </div>
-
-      <div class="grid grid-3">
-        <div class="card fade-up">
-          <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z"/><path d="M12 12v8"/><path d="M12 12L3 7.5"/><path d="M12 12l9-4.5"/></svg>
-          </div>
-          <h3>Build &amp; deliver impactful digital solutions</h3>
-          <p style="margin-top:var(--space-3)">We develop and maintain digital products, systems, and infrastructure that create value for MOE and schools — secure, reliable, and easy to use.</p>
-        </div>
-        <div class="card fade-up">
-          <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <h3>Accelerate digital innovation &amp; AI adoption</h3>
-          <p style="margin-top:var(--space-3)">We co-create solutions with users to meet evolving needs, and drive AI adoption across MOE — partnering teams to experiment, build skills, and apply AI meaningfully.</p>
-        </div>
-        <div class="card fade-up">
-          <div class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-          </div>
-          <h3>Empower users &amp; grow digital capabilities</h3>
-          <p style="margin-top:var(--space-3)">We provide responsive, user-focused support, and build digital awareness and skills so people can understand and apply emerging technologies in their work.</p>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+  <div class="container" style="padding:0">
+    <div class="split-row">
+      <div class="split-media">
+        <svg viewBox="0 0 220 180" style="width:min(260px, 90%)"><use href="#illus-build"/></svg>
+      </div>
+      <div>
+        <p class="split-tag">Function 01</p>
+        <h3>Build &amp; deliver impactful digital solutions</h3>
+        <p>We develop and maintain digital products, systems, and infrastructure that create value for MOE and schools.</p>
+        <p class="why"><b>Why it matters</b> — Secure, reliable, easy-to-use services are the foundation everything else stands on.</p>
+      </div>
+    </div>
+
+    <div class="split-row reverse">
+      <div class="split-media">
+        <svg viewBox="0 0 220 180" style="width:min(260px, 90%)"><use href="#illus-ai"/></svg>
+      </div>
+      <div>
+        <p class="split-tag">Function 02</p>
+        <h3>Accelerate digital innovation &amp; AI adoption</h3>
+        <p>We co-create solutions with users to meet evolving needs, and drive AI adoption across MOE.</p>
+        <p class="why"><b>Why it matters</b> — Partnering teams to experiment, build skills, and apply AI meaningfully to teaching, learning, and work.</p>
+      </div>
+    </div>
+
+    <div class="split-row" style="border-bottom:none">
+      <div class="split-media">
+        <svg viewBox="0 0 220 180" style="width:min(260px, 90%)"><use href="#illus-empower"/></svg>
+      </div>
+      <div>
+        <p class="split-tag">Function 03</p>
+        <h3>Empower users &amp; grow digital capabilities</h3>
+        <p>We provide responsive, user-focused support to ensure smooth and effective use of technology.</p>
+        <p class="why"><b>Why it matters</b> — Building digital awareness and skills so people can apply emerging technologies in their work.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="on-surface section-border-t section-border-b">
     <div class="container">
       <div class="section-head">
         <div>
@@ -114,24 +264,26 @@
         </div>
         <a href="products.html" class="btn btn-ghost">View all products →</a>
       </div>
-      <div class="grid grid-3">
-        <div class="card">
-          <span class="tag">Toolbox</span>
-          <span class="placeholder-badge" style="float:right">placeholder</span>
+    </div>
+    <div class="container" style="padding:0">
+      <div class="divider-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div>
+          <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
           <h3>MOE AI Toolbox</h3>
-          <p style="margin-top:var(--space-3)">A curated hub of AI tools for officers, with guided spotlights and use-case breakdowns.</p>
+          <p class="desc">A curated hub of AI tools for officers, with guided spotlights and use-case breakdowns.</p>
+          <div class="cell-bottom"><span class="pill-mono">/products/ai-toolbox</span> <span class="placeholder-badge">placeholder</span></div>
         </div>
-        <div class="card">
-          <span class="tag">Newsletter</span>
-          <span class="placeholder-badge" style="float:right">placeholder</span>
+        <div>
+          <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/></svg></div>
           <h3>ctrl+shift</h3>
-          <p style="margin-top:var(--space-3)">A monthly AI newsletter for MOE officers, tracking what's changing and what to try.</p>
+          <p class="desc">A monthly AI newsletter for MOE officers, tracking what's changing and what to try.</p>
+          <div class="cell-bottom"><span class="pill-mono">/products/ctrl-shift</span> <span class="placeholder-badge">placeholder</span></div>
         </div>
-        <div class="card">
-          <span class="tag">Workspace</span>
-          <span class="placeholder-badge" style="float:right">placeholder</span>
+        <div>
+          <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg></div>
           <h3>Teacher Workspace</h3>
-          <p style="margin-top:var(--space-3)">Calm, reliable tools that give teachers back time — built for the realities of the classroom.</p>
+          <p class="desc">Calm, reliable tools that give teachers back time — built for the realities of the classroom.</p>
+          <div class="cell-bottom"><span class="pill-mono">/products/workspace</span> <span class="placeholder-badge">placeholder</span></div>
         </div>
       </div>
     </div>
@@ -139,17 +291,19 @@
 
   <section id="careers">
     <div class="container">
-      <div class="section-head">
+      <div class="split-row" style="border:1px solid var(--border); border-radius:var(--radius)">
         <div>
           <p class="eyebrow">Our team</p>
-          <h2>A diverse team, one mission.</h2>
+          <h2 style="font-size:var(--text-2xl)">A diverse team, one mission.</h2>
+          <p style="margin-top:var(--space-4)">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference.</p>
+          <div class="hero-actions">
+            <a href="people.html" class="btn btn-primary">Meet our people</a>
+            <a href="stories.html" class="btn btn-ghost">Read our stories</a>
+          </div>
         </div>
-        <a href="people.html" class="btn btn-ghost">Meet the team →</a>
-      </div>
-      <p style="max-width:640px; font-size:var(--text-base)">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists. We work closely with MOE stakeholders and schools to design, build, and sustain digital products and services that make a meaningful difference.</p>
-      <div class="hero-actions">
-        <a href="people.html" class="btn btn-primary">Meet our people</a>
-        <a href="stories.html" class="btn btn-ghost">Read our stories</a>
+        <div class="split-media" style="border:none; border-left:1px solid var(--border)">
+          <svg viewBox="0 0 200 160" style="width:min(240px, 85%)"><use href="#illus-people-cta"/></svg>
+        </div>
       </div>
     </div>
   </section>
@@ -161,7 +315,8 @@
     <div class="footer-grid">
       <div>
         <a href="index.html" class="nav-logo" style="margin-bottom:var(--space-3)">
-          <span class="mark">DX</span><span>DXD</span>
+          <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3 L18 14 L29 16 L18 18 L16 29 L14 18 L3 16 L14 14 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span>DXD</span>
         </a>
         <p style="max-width:320px; font-size:var(--text-sm)">Digital Excellence &amp; Products Division, Ministry of Education, Singapore.</p>
       </div>
