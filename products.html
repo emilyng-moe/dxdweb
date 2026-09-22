@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Products — DXD</title>
+<meta name="description" content="Digital products and services built by DXD, grouped by mission space — Students, Schools &amp; Teachers, Parents, HQ, and Platforms &amp; Infrastructure." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<style>
+  .space-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
+  .space-head .cell-icon { margin-bottom: 0; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
+  <symbol id="mark-compass" viewBox="0 0 240 240">
+    <circle cx="120" cy="120" r="108" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+    <circle class="spin-slower" cx="120" cy="120" r="80" fill="none" stroke="var(--olive-line)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <!-- four-point astroid star -->
+      <path d="M120 24 Q146,94 216,120 Q146,146 120,216 Q94,146 24,120 Q94,94 120,24 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- node circles at tips -->
+      <circle cx="120" cy="24" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="216" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="120" cy="216" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="24" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+
+    <circle cx="120" cy="120" r="9" fill="var(--ink)"/>
+
+    <!-- orbiting satellite dot -->
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <circle cx="120" cy="46" r="4.5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
+  <symbol id="illus-build" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="20" y="46" width="100" height="72" rx="8" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <path class="draw-line" style="--len:120" d="M40 66 L74 66" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:90; --delay:120ms" d="M40 80 L92 80" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:70" d="M40 94 L70 94" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="56" y="118" width="28" height="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="46" y1="130" x2="94" y2="130" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <g class="float-slow">
+      <rect x="146" y="98" width="46" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="152" y="70" width="34" height="24" rx="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="158" y="42" width="22" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+    <circle cx="34" cy="36" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+  </symbol>
+
+  <!-- ============ Accelerate AI adoption: lightbulb + sparks ============ -->
+  <symbol id="illus-ai" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <g class="float-slow" style="transform-origin:110px 90px">
+      <circle cx="110" cy="80" r="38" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M96 112 L124 112 L120 130 L100 130 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <line x1="101" y1="140" x2="119" y2="140" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M96 78 Q102 60 118 62" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g class="spin-slow" style="transform-origin:110px 80px">
+      <path class="draw-line" style="--len:24" d="M110 16 L110 30" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:150ms" d="M174 80 L160 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:300ms" d="M46 80 L60 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <path d="M162 40 L167 50 L177 55 L167 60 L162 70 L157 60 L147 55 L157 50 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" class="pulse-soft"/>
+    <circle cx="50" cy="46" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Empower users: handing a tool up a small step ============ -->
+  <symbol id="illus-empower" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="128" y="132" width="30" height="28" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="158" y="110" width="30" height="50" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+
+    <!-- figure A (shorter, giving) -->
+    <g class="float-slow">
+      <circle cx="58" cy="88" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="53" cy="86" r="1.8" fill="var(--ink)"/>
+      <circle cx="63" cy="86" r="1.8" fill="var(--ink)"/>
+      <path d="M42 160 L44 122 Q44 112 58 112 Q72 112 72 122 L74 160 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 118 L96 104" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- tool being passed -->
+    <rect x="92" y="92" width="18" height="18" rx="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="pulse-soft"/>
+
+    <!-- figure B (taller, receiving, standing on step) -->
+    <g class="float-slower">
+      <circle cx="150" cy="66" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="145" cy="64" r="1.8" fill="var(--ink)"/>
+      <circle cx="155" cy="64" r="1.8" fill="var(--ink)"/>
+      <path d="M134 132 L136 100 Q136 90 150 90 Q164 90 164 100 L166 132 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M136 96 L112 100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <circle cx="30" cy="40" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ People CTA: high five ============ -->
+  <symbol id="illus-people-cta" viewBox="0 0 200 160">
+    <line x1="10" y1="146" x2="190" y2="146" stroke="var(--border)" stroke-width="1.5"/>
+    <g>
+      <circle cx="58" cy="70" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="53" cy="68" r="1.8" fill="var(--ink)"/>
+      <circle cx="63" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M42 146 L44 108 Q44 98 58 98 Q72 98 72 108 L74 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 104 L98 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <circle cx="142" cy="70" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="137" cy="68" r="1.8" fill="var(--ink)"/>
+      <circle cx="147" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M126 146 L128 108 Q128 98 142 98 Q156 98 156 108 L158 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M130 104 L102 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g class="pulse-soft">
+      <path class="draw-line" style="--len:14" d="M100 58 L100 46" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:100ms" d="M88 66 L78 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:200ms" d="M112 66 L122 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Story featured scene: results board ============ -->
+  <symbol id="illus-story-featured" viewBox="0 0 400 260">
+    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
+    <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
+    <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
+    <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="94" y1="100" x2="200" y2="100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="94" y1="116" x2="170" y2="116" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="float-slower">
+      <rect x="94" y="150" width="20" height="46" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="122" y="130" width="20" height="66" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="150" y="160" width="20" height="36" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="178" y="112" width="20" height="84" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    </g>
+    <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Generic photo placeholder (story grid) ============ -->
+  <symbol id="illus-photo-generic" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
+    <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- ============ Sketchy filters: loose hand-drawn wobble ============ -->
+  <filter id="sketchy-anim" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="4" result="noise">
+      <animate attributeName="seed" values="2;5;9;3;7;2" dur="1.8s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="sketchy-still" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="4" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+
+</svg>
+
+<header class="site-header">
+  <nav class="container nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3.2 Q19.5,12.5 28.8,16 Q19.5,19.5 16,28.8 Q12.5,19.5 3.2,16 Q12.5,12.5 16,3.2 Z" fill="var(--lime)"/></svg>
+      <span>DXD</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Purpose</a></li>
+      <li><a href="products.html" aria-current="page">Products</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="perspectives.html">Perspectives</a></li>
+      <li><a href="careers.html">Careers</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="blueprint" style="padding:var(--space-16) 0">
+    <div class="container" style="max-width:720px">
+      <p class="eyebrow">Products</p>
+      <h1 style="font-size:var(--text-3xl)">Digital products, built for the people who use them.</h1>
+      <p class="lede">Every product DXD builds sits within one of five mission spaces — from tools students use directly, to the platforms everything else runs on. <span class="placeholder-badge">A sample of each space; not the full catalogue, and descriptions are placeholder</span></p>
+    </div>
+  </section>
+
+  <div class="rule-major" aria-hidden="true"></div>
+
+  <section class="tight">
+    <div class="container">
+      <div class="tab-list" role="tablist" aria-label="Mission spaces">
+        <button type="button" class="tab-chip active" role="tab" aria-selected="true" aria-controls="panel-students" id="tab-students" data-target="students" tabindex="0">Students</button>
+        <button type="button" class="tab-chip" role="tab" aria-selected="false" aria-controls="panel-schools-teachers" id="tab-schools-teachers" data-target="schools-teachers" tabindex="-1">Schools &amp; Teachers</button>
+        <button type="button" class="tab-chip" role="tab" aria-selected="false" aria-controls="panel-parents" id="tab-parents" data-target="parents" tabindex="-1">Parents</button>
+        <button type="button" class="tab-chip" role="tab" aria-selected="false" aria-controls="panel-hq" id="tab-hq" data-target="hq" tabindex="-1">HQ</button>
+        <button type="button" class="tab-chip" role="tab" aria-selected="false" aria-controls="panel-platforms" id="tab-platforms" data-target="platforms" tabindex="-1">Platforms &amp; Infrastructure</button>
+      </div>
+
+      <!-- ============ Panel: Students ============ -->
+      <div id="panel-students" class="tab-panel active" role="tabpanel" aria-labelledby="tab-students" tabindex="0">
+        <div class="space-head" style="margin-top:var(--space-10)">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6c3-1.5 6-1.5 8 0v13c-2-1.5-5-1.5-8 0V6z"/><path d="M20 6c-3-1.5-6-1.5-8 0v13c2-1.5 5-1.5 8 0V6z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Mission space</p>
+            <h2 style="font-size:var(--text-2xl)">Students</h2>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-3); max-width:560px">Tools students use directly — for learning, revision, and everyday school life.</p>
+        <div class="divider-grid" style="margin-top:var(--space-8)">
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <h3>SLS</h3>
+            <p class="desc">The Student Learning Space — where students access curriculum resources, assignments, and track their own learning.</p>
+            <div class="cell-bottom"><span class="pill-mono">students</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></div>
+            <h3>Interactive Digital Textbooks (IDT)</h3>
+            <p class="desc">Digital textbooks that adapt to how each student reads, annotates, and revisits material.</p>
+            <div class="cell-bottom"><span class="pill-mono">students</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+            <h3>Econ Study Buddy</h3>
+            <p class="desc">A subject-specific study companion that helps students work through economics concepts at their own pace.</p>
+            <div class="cell-bottom"><span class="pill-mono">students</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ Panel: Schools & Teachers ============ -->
+      <div id="panel-schools-teachers" class="tab-panel" role="tabpanel" aria-labelledby="tab-schools-teachers" tabindex="0">
+        <div class="space-head" style="margin-top:var(--space-10)">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Mission space</p>
+            <h2 style="font-size:var(--text-2xl)">Schools &amp; Teachers</h2>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-3); max-width:560px">Systems that run the school day — from lesson planning to student wellbeing.</p>
+        <div class="divider-grid" style="margin-top:var(--space-8)">
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg></div>
+            <h3>Teacher Workspace</h3>
+            <p class="desc">Calm, reliable tools that give teachers back time — marks, attendance, and lesson planning.</p>
+            <div class="cell-bottom"><span class="pill-mono">schools</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+            <h3>School Cockpit+</h3>
+            <p class="desc">A single dashboard for school leaders to see attendance, performance, and operational data at a glance.</p>
+            <div class="cell-bottom"><span class="pill-mono">schools</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+            <h3>Social Emotional (SE) Connect</h3>
+            <p class="desc">Helps teachers track and respond to students' social-emotional wellbeing over time.</p>
+            <div class="cell-bottom"><span class="pill-mono">schools</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ Panel: Parents ============ -->
+      <div id="panel-parents" class="tab-panel" role="tabpanel" aria-labelledby="tab-parents" tabindex="0">
+        <div class="space-head" style="margin-top:var(--space-10)">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 21v-2a5 5 0 015-5h2M14 21v-2a5 5 0 015-5h1"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Mission space</p>
+            <h2 style="font-size:var(--text-2xl)">Parents</h2>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-3); max-width:560px">How parents stay connected — communication, registration, and support.</p>
+        <div class="divider-grid" style="margin-top:var(--space-8)">
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div>
+            <h3>Parents Gateway</h3>
+            <p class="desc">The main channel for parents to receive school notices, give consent, and stay informed.</p>
+            <div class="cell-bottom"><span class="pill-mono">parents</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/></svg></div>
+            <h3>Schoolbag.sg</h3>
+            <p class="desc">A public portal where parents and the community can browse school and programme information.</p>
+            <div class="cell-bottom"><span class="pill-mono">parents</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
+            <h3>OnePlacement</h3>
+            <p class="desc">Where parents register and track school placement and posting exercises.</p>
+            <div class="cell-bottom"><span class="pill-mono">parents</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ Panel: HQ ============ -->
+      <div id="panel-hq" class="tab-panel" role="tabpanel" aria-labelledby="tab-hq" tabindex="0">
+        <div class="space-head" style="margin-top:var(--space-10)">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Mission space</p>
+            <h2 style="font-size:var(--text-2xl)">HQ</h2>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-3); max-width:560px">The systems that keep MOE running — HR, finance, and records.</p>
+        <div class="divider-grid" style="margin-top:var(--space-8)">
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg></div>
+            <h3>HROnline</h3>
+            <p class="desc">MOE's internal system for staff records, leave, and HR transactions.</p>
+            <div class="cell-bottom"><span class="pill-mono">hq</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <h3>Integrated Student Finance Systems (ISFS)</h3>
+            <p class="desc">Manages student-related financial schemes, grants, and disbursements across schools.</p>
+            <div class="cell-bottom"><span class="pill-mono">hq</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
+            <h3>Integrated Record Mgmt System (IRMS)</h3>
+            <p class="desc">The record-keeping backbone for official documentation across the Ministry.</p>
+            <div class="cell-bottom"><span class="pill-mono">hq</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ Panel: Platforms & Infrastructure ============ -->
+      <div id="panel-platforms" class="tab-panel" role="tabpanel" aria-labelledby="tab-platforms" tabindex="0">
+        <div class="space-head" style="margin-top:var(--space-10)">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Mission space</p>
+            <h2 style="font-size:var(--text-2xl)">Platforms &amp; Infrastructure</h2>
+          </div>
+        </div>
+        <p style="margin-top:var(--space-3); max-width:560px">The shared foundations other products are built on — data, AI, identity, and platform engineering.</p>
+        <div class="divider-grid" style="margin-top:var(--space-8)">
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M8 19V9M13 19V5M18 19v-7"/></svg></div>
+            <h3>Data Visualisation Platform (DVP)</h3>
+            <p class="desc">Turns MOE's data programmes into dashboards and visual reports teams can actually use.</p>
+            <div class="cell-bottom"><span class="pill-mono">platforms</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Mark.ly</h3>
+            <p class="desc">An AI-assisted marking tool that helps teachers grade faster and more consistently.</p>
+            <div class="cell-bottom"><span class="pill-mono">platforms</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+          <div>
+            <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="7" cy="15" r="1"/></svg></div>
+            <h3>EduPass</h3>
+            <p class="desc">The shared identity layer behind sign-in across MOE's digital products.</p>
+            <div class="cell-bottom"><span class="pill-mono">platforms</span> <span class="placeholder-badge">placeholder</span></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="nav-logo" style="margin-bottom:var(--space-3)">
+          <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3.2 Q19.5,12.5 28.8,16 Q19.5,19.5 16,28.8 Q12.5,19.5 3.2,16 Q12.5,12.5 16,3.2 Z" fill="var(--lime)"/></svg>
+          <span>DXD</span>
+        </a>
+        <p style="max-width:320px; font-size:var(--text-sm)">Digital Excellence &amp; Products Division, Ministry of Education, Singapore.</p>
+      </div>
+      <div>
+        <p class="footer-cols-title">Explore</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Purpose</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="perspectives.html">Perspectives</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-cols-title">MOE</p>
+        <ul class="footer-links">
+          <li><a href="https://www.moe.gov.sg/about-us/organisation-structure/dxd" target="_blank" rel="noopener">DXD on moe.gov.sg</a></li>
+          <li><a href="https://www.moe.gov.sg" target="_blank" rel="noopener">moe.gov.sg</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Digital Excellence &amp; Products Division, MOE.</span>
+      <span>A Singapore Government Agency Website</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

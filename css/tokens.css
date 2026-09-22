@@ -1,0 +1,74 @@
+:root {
+  /* Colour — cream / ink / lime, per DXD visual identity */
+  --cream: #FFFFFF;
+  --cream-1: #FFFFF2;
+  --cream-2: #EBEAE2;
+  --ink: #16170F;
+  --ink-soft: #33342A;
+  --olive: #7C8B4A;
+  --olive-line: #A8B57A;
+  --lime: #C6E84E;
+  --lime-dark: #A9CC2E;
+  --lime-tint: #F0F7D8;
+
+  --foreground: var(--ink);
+  --muted-foreground: #62634F;
+  --background: var(--cream);
+  --surface: #FFFFFF;
+  --surface-2: var(--cream-1);
+  --border: #E1DFD3;
+  --border-strong: var(--ink);
+
+  --warning: #B45309;
+
+  /* Typography */
+  --font-display: 'Red Hat Display', 'Inter', -apple-system, sans-serif;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+  --text-4xl: 68px;
+  --leading-base: 24px;
+
+  /* Spacing (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Layout */
+  --max-content-width: 1280px;
+  --gutter: var(--space-4);
+  --margin: var(--space-6);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-entrance: 200ms;
+  --duration-state: 140ms;
+}
+
+html.dark {
+  --foreground: #F1F0EA;
+  --muted-foreground: #B7B6A6;
+  --background: #121309;
+  --surface: #191A10;
+  --surface-2: #1F2014;
+  --border: #2C2D1D;
+  --lime-tint: #232B0E;
+}

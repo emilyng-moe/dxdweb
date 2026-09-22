@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perspectives — DXD</title>
+<meta name="description" content="Articles from the people building DXD's products — across Product, Design, and AI." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<style>
+  .featured-perspective {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: stretch;
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: var(--space-16);
+  }
+  .featured-perspective .fp-text { padding: var(--space-10); display:flex; flex-direction:column; justify-content:center; }
+  @media (max-width: 900px) { .featured-perspective { grid-template-columns: 1fr; } }
+  .perspective-cell { display:flex; flex-direction:column; gap:var(--space-4); }
+  .segment-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
+  .segment-head .cell-icon { margin-bottom: 0; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
+  <symbol id="mark-compass" viewBox="0 0 240 240">
+    <circle cx="120" cy="120" r="108" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+    <circle class="spin-slower" cx="120" cy="120" r="80" fill="none" stroke="var(--olive-line)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <!-- four-point astroid star -->
+      <path d="M120 24 Q146,94 216,120 Q146,146 120,216 Q94,146 24,120 Q94,94 120,24 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- node circles at tips -->
+      <circle cx="120" cy="24" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="216" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="120" cy="216" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="24" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+
+    <circle cx="120" cy="120" r="9" fill="var(--ink)"/>
+
+    <!-- orbiting satellite dot -->
+    <g class="spin-slow" style="transform-origin:120px 120px">
+      <circle cx="120" cy="46" r="4.5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
+  <symbol id="illus-build" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="20" y="46" width="100" height="72" rx="8" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <path class="draw-line" style="--len:120" d="M40 66 L74 66" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:90; --delay:120ms" d="M40 80 L92 80" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="draw-line" style="--len:70" d="M40 94 L70 94" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="56" y="118" width="28" height="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="46" y1="130" x2="94" y2="130" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <g class="float-slow">
+      <rect x="146" y="98" width="46" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="152" y="70" width="34" height="24" rx="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect x="158" y="42" width="22" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    </g>
+    <circle cx="34" cy="36" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+  </symbol>
+
+  <!-- ============ Accelerate AI adoption: lightbulb + sparks ============ -->
+  <symbol id="illus-ai" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <g class="float-slow" style="transform-origin:110px 90px">
+      <circle cx="110" cy="80" r="38" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <path d="M96 112 L124 112 L120 130 L100 130 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <line x1="101" y1="140" x2="119" y2="140" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M96 78 Q102 60 118 62" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g class="spin-slow" style="transform-origin:110px 80px">
+      <path class="draw-line" style="--len:24" d="M110 16 L110 30" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:150ms" d="M174 80 L160 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:24;--delay:300ms" d="M46 80 L60 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <path d="M162 40 L167 50 L177 55 L167 60 L162 70 L157 60 L147 55 L157 50 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" class="pulse-soft"/>
+    <circle cx="50" cy="46" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Empower users: handing a tool up a small step ============ -->
+  <symbol id="illus-empower" viewBox="0 0 220 180">
+    <line x1="10" y1="160" x2="210" y2="160" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="128" y="132" width="30" height="28" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+    <rect x="158" y="110" width="30" height="50" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+
+    <!-- figure A (shorter, giving) -->
+    <g class="float-slow">
+      <circle cx="58" cy="88" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="53" cy="86" r="1.8" fill="var(--ink)"/>
+      <circle cx="63" cy="86" r="1.8" fill="var(--ink)"/>
+      <path d="M42 160 L44 122 Q44 112 58 112 Q72 112 72 122 L74 160 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 118 L96 104" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- tool being passed -->
+    <rect x="92" y="92" width="18" height="18" rx="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="pulse-soft"/>
+
+    <!-- figure B (taller, receiving, standing on step) -->
+    <g class="float-slower">
+      <circle cx="150" cy="66" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="145" cy="64" r="1.8" fill="var(--ink)"/>
+      <circle cx="155" cy="64" r="1.8" fill="var(--ink)"/>
+      <path d="M134 132 L136 100 Q136 90 150 90 Q164 90 164 100 L166 132 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M136 96 L112 100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <circle cx="30" cy="40" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ People CTA: high five ============ -->
+  <symbol id="illus-people-cta" viewBox="0 0 200 160">
+    <line x1="10" y1="146" x2="190" y2="146" stroke="var(--border)" stroke-width="1.5"/>
+    <g>
+      <circle cx="58" cy="70" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="53" cy="68" r="1.8" fill="var(--ink)"/>
+      <circle cx="63" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M42 146 L44 108 Q44 98 58 98 Q72 98 72 108 L74 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M70 104 L98 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <circle cx="142" cy="70" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
+      <circle cx="137" cy="68" r="1.8" fill="var(--ink)"/>
+      <circle cx="147" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M126 146 L128 108 Q128 98 142 98 Q156 98 156 108 L158 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M130 104 L102 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g class="pulse-soft">
+      <path class="draw-line" style="--len:14" d="M100 58 L100 46" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:100ms" d="M88 66 L78 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw-line" style="--len:14;--delay:200ms" d="M112 66 L122 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </symbol>
+
+  <!-- ============ Featured scene: results board ============ -->
+  <symbol id="illus-story-featured" viewBox="0 0 400 260">
+    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
+    <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
+    <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
+    <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
+    <line x1="94" y1="100" x2="200" y2="100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="94" y1="116" x2="170" y2="116" stroke="var(--olive-line)" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="float-slower">
+      <rect x="94" y="150" width="20" height="46" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="122" y="130" width="20" height="66" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="150" y="160" width="20" height="36" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="178" y="112" width="20" height="84" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    </g>
+    <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+  </symbol>
+
+  <!-- ============ Generic photo placeholder (article grid) ============ -->
+  <symbol id="illus-photo-generic" viewBox="0 0 200 130">
+    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
+    <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- ============ Sketchy filters: loose hand-drawn wobble ============ -->
+  <filter id="sketchy-anim" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="4" result="noise">
+      <animate attributeName="seed" values="2;5;9;3;7;2" dur="1.8s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="sketchy-still" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="4" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+
+</svg>
+
+<header class="site-header">
+  <nav class="container nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3.2 Q19.5,12.5 28.8,16 Q19.5,19.5 16,28.8 Q12.5,19.5 3.2,16 Q12.5,12.5 16,3.2 Z" fill="var(--lime)"/></svg>
+      <span>DXD</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Purpose</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="perspectives.html" aria-current="page">Perspectives</a></li>
+      <li><a href="careers.html">Careers</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="blueprint" style="padding:var(--space-16) 0">
+    <div class="container" style="max-width:720px">
+      <p class="eyebrow">Perspectives</p>
+      <h1 style="font-size:var(--text-3xl)">Ideas from the people building DXD.</h1>
+      <p class="lede">Articles from across the division — Product, Design, and AI. <span class="placeholder-badge">All articles on this page are placeholder content</span></p>
+    </div>
+  </section>
+
+  <div class="rule-major" aria-hidden="true"></div>
+
+  <section class="tight">
+    <div class="container">
+
+      <div class="featured-perspective fade-up">
+        <div class="story-media" style="aspect-ratio:auto; border-radius:0; border:none">
+          <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260" style="width:100%; height:100%"><use href="#illus-story-featured"/></svg>
+        </div>
+        <div class="fp-text">
+          <span class="tag">Product</span>
+          <span class="placeholder-badge" style="margin-left:var(--space-2)">placeholder</span>
+          <h2 style="font-size:var(--text-2xl); margin-top:var(--space-3)">Why we killed a feature two weeks before launch</h2>
+          <p style="margin-top:var(--space-4)">Sometimes the right product call is the one nobody wants to hear — notes from a late call on the OnePlacement launch.</p>
+          <a href="#" class="btn btn-ghost" style="margin-top:var(--space-6); width:fit-content">Read the article →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ Segment 1: Product ============ -->
+  <section class="tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 1 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">Product</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Product</span>
+          <h3>Designing OnePlacement's registration flow around parents' worst week of the year</h3>
+          <p class="desc" style="font-size:var(--text-sm)">What we learned building a placement system for a process that's stressful no matter how good the UI is.</p>
+          <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Product</span>
+          <h3>How we prioritise a 30-product roadmap with one team</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Inside DXD's approach to sequencing work across schools, officers, and parents.</p>
+          <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-major" aria-hidden="true"></div>
+
+  <!-- ============ Segment 2: Design ============ -->
+  <section class="tight on-surface">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 2 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">Design</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Design</span>
+          <h3>A design system for 30+ products, one team</h3>
+          <p class="desc" style="font-size:var(--text-sm)">How DXD's design system keeps school and officer-facing products feeling like one family, not thirty.</p>
+          <div class="story-meta"><span>6 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">Design</span>
+          <h3>Designing for teachers who are already stretched thin</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Every extra click is a tax on someone's Friday afternoon — notes from redesigning Teacher Workspace.</p>
+          <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-major" aria-hidden="true"></div>
+
+  <!-- ============ Segment 3: AI ============ -->
+  <section class="tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="segment-head">
+          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></div>
+          <div>
+            <p class="eyebrow" style="margin:0">Segment 3 of 3</p>
+            <h2 style="font-size:var(--text-2xl)">AI</h2>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">AI</span>
+          <h3>What Mark.ly got wrong before it got useful</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Early lessons from building an AI marking assistant teachers actually trust.</p>
+          <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+        <div class="card perspective-cell">
+          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag" style="margin:0">AI</span>
+          <h3>AI adoption isn't a training problem</h3>
+          <p class="desc" style="font-size:var(--text-sm)">Why DXD's AI Adoption Working Team spends more time on workflows than workshops.</p>
+          <div class="story-meta"><span>3 min read</span><span class="placeholder-badge">placeholder</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="nav-logo" style="margin-bottom:var(--space-3)">
+          <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M16 3.2 Q19.5,12.5 28.8,16 Q19.5,19.5 16,28.8 Q12.5,19.5 3.2,16 Q12.5,12.5 16,3.2 Z" fill="var(--lime)"/></svg>
+          <span>DXD</span>
+        </a>
+        <p style="max-width:320px; font-size:var(--text-sm)">Digital Excellence &amp; Products Division, Ministry of Education, Singapore.</p>
+      </div>
+      <div>
+        <p class="footer-cols-title">Explore</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Purpose</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="perspectives.html">Perspectives</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-cols-title">MOE</p>
+        <ul class="footer-links">
+          <li><a href="https://www.moe.gov.sg/about-us/organisation-structure/dxd" target="_blank" rel="noopener">DXD on moe.gov.sg</a></li>
+          <li><a href="https://www.moe.gov.sg" target="_blank" rel="noopener">moe.gov.sg</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Digital Excellence &amp; Products Division, MOE.</span>
+      <span>A Singapore Government Agency Website</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
