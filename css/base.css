@@ -30,8 +30,12 @@ a { color: inherit; text-decoration: none; }
    than the raw viewport, so separate sections read as one continuous,
    structured page instead of stacked, disconnected blocks. Off below 900px,
    where there's no room for a frame plus the container's own gutter. */
-.canvas { max-width: var(--max-content-width); margin: 0 auto; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
-@media (max-width: 900px) { .canvas { border-left: none; border-right: none; } }
+/* width:90% (rather than defaulting to 100%) guarantees a visible outer
+   gutter at every viewport width, not just above max-width — so the frame
+   never sits flush against the browser edge, regardless of exact viewport
+   px or platform-level display scaling. */
+.canvas { width: 90%; max-width: var(--max-content-width); margin: 0 auto; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+@media (max-width: 900px) { .canvas { width: 100%; border-left: none; border-right: none; } }
 
 h1, h2, h3, h4 {
   margin: 0;
