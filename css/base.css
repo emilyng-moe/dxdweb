@@ -226,8 +226,12 @@ section.tight { padding: var(--space-20) 0; }
   grid-template-columns: 1fr 1fr;
   min-height: 560px;
 }
-.hero-left { padding: var(--space-24) var(--space-10) var(--space-20) 0; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
-.hero-right { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-left { padding: var(--space-24) var(--space-10) var(--space-20) 0; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); min-width: 0; }
+/* min-width:0 overrides the flex/grid item default (min-width:auto, i.e.
+   "don't shrink below your content's natural size") — without it, a column
+   holding an SVG or long text can silently force the whole row, and the
+   .canvas frame around it, wider than the viewport on a narrower screen. */
+.hero-right { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; }
 .lede { font-size: var(--text-lg); line-height: 1.55; margin-top: var(--space-8); color: var(--muted-foreground); }
 .hero p.lede { max-width: 480px; }
 .hero-actions { display: flex; gap: var(--space-3); margin-top: var(--space-8); flex-wrap: wrap; }
@@ -249,6 +253,7 @@ section.tight { padding: var(--space-20) 0; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 .split-row .split-media {
   border-right: 1px solid var(--border);
@@ -286,6 +291,7 @@ section.tight { padding: var(--space-20) 0; }
 .divider-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .divider-grid > div {
   padding: var(--space-10);
+  min-width: 0;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   transition: background var(--duration-state) var(--ease-standard);
@@ -341,7 +347,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 
 /* ---------- Stats ---------- */
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
-.stat-row > div { padding: var(--space-8); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.stat-row > div { padding: var(--space-8); min-width: 0; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat-value { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; font-variant-numeric: tabular-nums; }
 .stat-label { font-size: var(--text-sm); color: var(--muted-foreground); margin-top: var(--space-2); }
 @media (max-width: 767px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
@@ -382,6 +388,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--border); padding: var(--space-16) 0; margin-top: var(--space-16); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--space-8); }
+.footer-grid > div { min-width: 0; }
 .footer-cols-title { font-family: var(--font-mono); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: var(--space-3); color: var(--olive); }
 .footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
 .footer-links a { font-size: var(--text-sm); color: var(--muted-foreground); }
@@ -395,6 +402,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 
 /* ---------- Utility ---------- */
 .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-10); gap: var(--space-6); flex-wrap: wrap; }
+.section-head > * { min-width: 0; }
 .section-head p { max-width: 480px; }
 
 /* ---------- Illustration animation ---------- */
