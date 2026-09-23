@@ -108,7 +108,6 @@ p + p { margin-top: var(--space-4); }
 .nav-links { position: relative; display: flex; align-items: center; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
 .nav-links a {
   position: relative;
-  z-index: 1;
   display: inline-block;
   font-size: var(--text-sm); font-weight: 500; color: var(--muted-foreground);
   transition: color var(--duration-state) var(--ease-standard);
@@ -116,27 +115,25 @@ p + p { margin-top: var(--space-4); }
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
 
-/* Sliding pill: a single element main.js glides behind whichever link is
-   hovered (or the current page, at rest) via transform + width — see
-   the "Sliding pill nav indicator" block in main.js. */
-.nav-pill {
+/* Lime underline: collapsed to the link's horizontal center at rest,
+   expands out to the text edges on hover and stays out for the current
+   page — a plain CSS left/right transition, no JS needed. */
+.nav-links a::after {
+  content: "";
   position: absolute;
-  top: 50%; left: 0;
-  height: 32px; margin-top: -16px;
+  left: 50%; right: 50%;
+  bottom: 4px;
+  height: 2px;
   background: var(--lime);
-  border-radius: var(--radius-pill);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform var(--duration-entrance) var(--ease-standard), width var(--duration-entrance) var(--ease-standard), opacity var(--duration-state) var(--ease-standard);
+  transition: left var(--duration-state) var(--ease-standard), right var(--duration-state) var(--ease-standard);
 }
-.nav-pill.visible { opacity: 1; }
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { left: var(--space-4); right: var(--space-4); }
 
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: var(--space-2); color: var(--foreground); }
 .nav-toggle svg { width: 24px; height: 24px; }
 
 @media (max-width: 767px) {
   .nav-toggle { display: block; }
-  .nav-pill { display: none; }
   .nav-links {
     position: fixed; inset: 76px 0 0 0; flex-direction: column; align-items: stretch; background: var(--background);
     padding: var(--space-6) var(--margin); gap: var(--space-2);
@@ -144,6 +141,7 @@ p + p { margin-top: var(--space-4); }
     transition: opacity var(--duration-entrance) var(--ease-standard), transform var(--duration-entrance) var(--ease-standard);
   }
   .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .nav-links a::after { display: none; }
   .nav-links a { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); width: 100%; }
 }
 

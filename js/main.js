@@ -14,34 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Sliding pill nav indicator: glides behind the hovered link, or the
-  // current page's link at rest. Desktop only — hidden on mobile via CSS.
-  if (links) {
-    const pill = document.createElement('span');
-    pill.className = 'nav-pill';
-    pill.setAttribute('aria-hidden', 'true');
-    links.insertBefore(pill, links.firstChild);
-    const navAnchors = Array.from(links.querySelectorAll('a'));
-    const movePillTo = (el) => {
-      const containerRect = links.getBoundingClientRect();
-      const rect = el.getBoundingClientRect();
-      pill.style.transform = `translateX(${rect.left - containerRect.left}px)`;
-      pill.style.width = rect.width + 'px';
-      pill.classList.add('visible');
-    };
-    const current = navAnchors.find((a) => a.getAttribute('aria-current') === 'page');
-    if (current) movePillTo(current);
-    navAnchors.forEach((a) => a.addEventListener('mouseenter', () => movePillTo(a)));
-    links.addEventListener('mouseleave', () => {
-      if (current) movePillTo(current);
-      else pill.classList.remove('visible');
-    });
-    window.addEventListener('resize', () => {
-      const hovered = links.querySelector('a:hover');
-      movePillTo(hovered || current || navAnchors[0]);
-    });
-  }
-
   // Generic tabs: click or arrow-key through [role="tab"] to show its [role="tabpanel"].
   // Deep-links via the tab's data-target matching the URL hash (e.g. products.html#platforms).
   document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
