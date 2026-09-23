@@ -19,13 +19,22 @@ a { color: inherit; text-decoration: none; }
   padding: 0 var(--margin);
 }
 
+/* ---------- Editorial canvas frame ---------- */
+/* A pair of persistent vertical hairlines framing all of <main>. Full-bleed
+   section backgrounds and the blueprint grid sit inside this canvas rather
+   than the raw viewport, so separate sections read as one continuous,
+   structured page instead of stacked, disconnected blocks. Off below 900px,
+   where there's no room for a frame plus the container's own gutter. */
+.canvas { max-width: var(--max-content-width); margin: 0 auto; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+@media (max-width: 900px) { .canvas { border-left: none; border-right: none; } }
+
 h1, h2, h3, h4 {
   margin: 0;
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   font-weight: 700;
 }
-h1 { font-size: var(--text-4xl); line-height: 0.98; }
+h1 { font-size: var(--text-4xl); line-height: 1.06; }
 h2 { font-size: var(--text-3xl); line-height: 1.05; }
 h3 { font-size: var(--text-xl); line-height: 1.2; }
 p { margin: 0; color: var(--muted-foreground); }
@@ -43,8 +52,11 @@ p + p { margin-top: var(--space-4); }
 
 /* ---------- Blueprint grid backdrop ---------- */
 /* Faint ruled grid lines, kept light so they read as texture rather than a
-   drafting grid. The overlay keeps the content zone clean and only lets the
-   lines show through toward the section's outer edges. */
+   drafting grid. The overlay keeps the content zone clean, only lets the
+   lines show through faintly toward the sides, and — since this section is
+   so often followed immediately by a bordered element (a rule, a bordered
+   grid) — fades the top and bottom edges out completely so the grid never
+   visually collides with whatever comes next. */
 .blueprint {
   position: relative;
   overflow: hidden;
@@ -59,7 +71,9 @@ p + p { margin-top: var(--space-4); }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(ellipse 70% 65% at 50% 50%, var(--background) 45%, transparent 100%);
+  background:
+    linear-gradient(to bottom, var(--background) 0%, transparent 18%, transparent 82%, var(--background) 100%),
+    radial-gradient(ellipse 70% 65% at 50% 50%, var(--background) 45%, transparent 100%);
   pointer-events: none;
 }
 .blueprint > * { position: relative; z-index: 1; }
@@ -131,7 +145,10 @@ p + p { margin-top: var(--space-4); }
    hairlines (.section-border-t/b, .divider-grid, .stat-row), which stay
    static and mark minor, same-kind divisions. */
 .rule-major {
-  height: 2px;
+  width: calc(100% - var(--margin) * 2);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  height: 1px;
   background: var(--border);
   transform: scaleX(0);
   transform-origin: left;
@@ -186,8 +203,8 @@ p + p { margin-top: var(--space-4); }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
 
 /* ---------- Sections ---------- */
-section { padding: var(--space-20) 0; }
-section.tight { padding: var(--space-16) 0; }
+section { padding: var(--space-24) 0; }
+section.tight { padding: var(--space-20) 0; }
 .section-border-t { border-top: 1px solid var(--border); }
 .section-border-b { border-bottom: 1px solid var(--border); }
 .on-surface { background: var(--surface-2); }
@@ -259,13 +276,20 @@ section.tight { padding: var(--space-16) 0; }
 }
 .divider-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .divider-grid > div {
-  padding: var(--space-8);
+  padding: var(--space-10);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   transition: background var(--duration-state) var(--ease-standard);
 }
-.divider-grid > div:hover { background: var(--surface); }
+/* A plain background swap — no transform, no border-color change, since
+   either would either break alignment with the shared hairlines its
+   neighbours still sit on, or read as a heavier "outline" effect. On a
+   white section, hover to cream; on an already-cream (.on-surface)
+   section, hover the other way, to white. */
+.divider-grid > div:hover { background: var(--cream-1); }
+.on-surface .divider-grid > div:hover { background: var(--surface); }
 html.dark .divider-grid > div:hover { background: var(--surface-2); }
+html.dark .on-surface .divider-grid > div:hover { background: var(--cream-1); }
 @media (max-width: 1024px) {
   .divider-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
 }
@@ -283,7 +307,7 @@ html.dark .divider-grid > div:hover { background: var(--surface-2); }
   color: var(--ink);
   transition: background var(--duration-state) var(--ease-standard), border-color var(--duration-state) var(--ease-standard), transform var(--duration-state) var(--ease-standard);
 }
-.divider-grid > div:hover .cell-icon { background: var(--lime); border-color: var(--ink); transform: translateY(-2px); }
+.divider-grid > div:hover .cell-icon { background: var(--lime); border-color: var(--ink); transform: translateY(-2px) scale(1.06); }
 .divider-grid h3 { margin-bottom: var(--space-2); font-size: var(--text-lg); }
 .divider-grid .desc { font-size: var(--text-sm); margin-bottom: var(--space-5); }
 .divider-grid .cell-bottom { padding-top: var(--space-5); border-top: 1px solid var(--border); }
@@ -301,7 +325,7 @@ html.dark .divider-grid > div:hover { background: var(--surface-2); }
 }
 .placeholder-badge {
   display: inline-flex; align-items: center; gap: var(--space-1); font-family: var(--font-mono);
-  font-size: var(--text-xs); font-weight: 600; color: var(--warning);
+  font-size: var(--text-xs); font-weight: 600; color: var(--warning); margin-left: var(--space-2);
   background: #FBF1E2; border: 1px solid #E9D2A2; padding: 2px var(--space-2); border-radius: var(--radius-pill);
 }
 html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
@@ -410,6 +434,49 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 .pulse-soft { animation: pulseSoft 3.2s ease-in-out infinite; animation-play-state: var(--illus-play, running); }
 @keyframes pulseSoft { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
+/* ---------- Doodle draw → react → rest (illustration accents & characters) ---------- */
+/* DRAW: .draw-line above, already staggered via --delay.
+   REACT + REST: .doodle-pop is the "lime accent lands" moment — a hand-drawn
+   circle doesn't ease smoothly into place, it overshoots and settles — then
+   continues the existing gentle opacity breathe. .doodle-react is a single
+   small, asymmetric gesture (arm nudge, head tilt) fired once after a
+   character has finished drawing in, via --react-delay ≈ the draw duration. */
+.doodle-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: doodlePop 460ms var(--ease-standard) var(--pop-delay, 0ms) both,
+    pulseSoft 3.2s ease-in-out calc(460ms + var(--pop-delay, 0ms)) infinite;
+  animation-play-state: var(--illus-play, running), var(--illus-play, running);
+}
+@keyframes doodlePop {
+  0% { transform: scale(0); }
+  55% { transform: scale(1.22); }
+  78% { transform: scale(.93); }
+  100% { transform: scale(1); }
+}
+
+.doodle-react {
+  transform-box: fill-box;
+  transform-origin: var(--react-origin, center);
+  animation: doodleReact 650ms var(--ease-standard) var(--react-delay, 1.5s) both;
+  animation-play-state: var(--illus-play, running);
+}
+@keyframes doodleReact {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-7deg); }
+  60% { transform: rotate(4deg); }
+  85% { transform: rotate(-1deg); }
+}
+
+/* Hover redraw for a small set of opted-in icons (.icon-redraw): each shape
+   needs pathLength="1" so stroke-dasharray/offset can use normalized 0–1
+   units instead of the shape's real (and here, unknown-in-advance) length. */
+.icon-redraw :is(path, circle, rect) { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.divider-grid > div:hover .icon-redraw :is(path, circle, rect) {
+  animation: iconRedraw 550ms var(--ease-standard);
+}
+@keyframes iconRedraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
 .fade-up { animation: fadeUp var(--duration-entrance) var(--ease-standard) both; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -446,7 +513,111 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 }
 .filter-chip:active { transform: scale(.96); }
 
+/* ================================================================
+   MOTION LAYER — scroll choreography built on the existing patterns
+   (illus-trigger, rule-major, stat counter, nav pill, hero tilt).
+   Everything here is transform/opacity only (no layout properties),
+   triggers once, and collapses to an immediate, static state under
+   prefers-reduced-motion — see the consolidated media query at the
+   bottom of this block. ================================================================ */
+
+/* ---------- Reusable scroll-reveal utilities ---------- */
+/* Add one of these to any element; main.js's shared IntersectionObserver
+   adds .in-view the first time it crosses the viewport threshold, then
+   stops watching it. Compose with .stagger on a parent to sequence a
+   group of children (eyebrow → heading → body → …). */
+[class*="reveal"] {
+  --stagger-i: 0;
+  transition: opacity 700ms var(--ease-standard), transform 700ms var(--ease-standard);
+  transition-delay: calc(var(--stagger-i) * var(--stagger-step, 90ms));
+}
+.reveal, .reveal-up { opacity: 0; transform: translateY(28px); }
+.reveal-left { opacity: 0; transform: translateX(-28px); }
+.reveal-right { opacity: 0; transform: translateX(28px); }
+.reveal-scale { opacity: 0; transform: scale(.92); }
+/* padding/margin pair keeps descenders clear of the mask edge, same as .hero-headline */
+.reveal-mask { overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.reveal-mask > span {
+  --stagger-i: inherit;
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 700ms var(--ease-standard);
+  transition-delay: calc(var(--stagger-i, 0) * var(--stagger-step, 90ms));
+}
+[class*="reveal"].in-view { opacity: 1; transform: none; }
+.reveal-mask.in-view > span { transform: translateY(0); }
+
+/* Stagger: sets an inherited --stagger-i index on each direct child (1, 2,
+   3, …), which the reveal transition-delay above multiplies by
+   --stagger-step. Using an inherited custom property (rather than setting
+   transition-delay on the child directly) means it still reaches
+   .reveal-mask's inner <span>, which is the element that actually animates.
+   Override the cadence with an inline `style="--stagger-step: 80ms"`. */
+.stagger > *:nth-child(1) { --stagger-i: 0; }
+.stagger > *:nth-child(2) { --stagger-i: 1; }
+.stagger > *:nth-child(3) { --stagger-i: 2; }
+.stagger > *:nth-child(4) { --stagger-i: 3; }
+.stagger > *:nth-child(5) { --stagger-i: 4; }
+.stagger > *:nth-child(6) { --stagger-i: 5; }
+
+/* ---------- Hero entrance sequence (page load) ---------- */
+/* padding-bottom keeps descenders (g, y, p) clear of the overflow:hidden
+   edge used to mask the entrance rise. */
+.hero-headline { overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.hero-headline > span {
+  display: inline-block;
+  animation: heroRise 750ms var(--ease-standard) 180ms both;
+}
+.hero-enter-eyebrow { animation: heroRise 480ms var(--ease-standard) 40ms both; }
+.hero-enter-lede { animation: heroRise 550ms var(--ease-standard) 500ms both; }
+.hero-enter-actions { animation: heroRise 450ms var(--ease-standard) 700ms both; }
+@keyframes heroRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Hero + blueprint parallax (see main.js) ---------- */
+/* Elements tagged [data-parallax="rate"] are nudged each frame based on
+   how far they sit from the viewport's vertical center — rest at 0,
+   drift as they scroll away from center. Desktop + motion-safe only. */
+[data-parallax] { will-change: transform; }
+.hero-right[data-parallax] { transition: transform 60ms linear; }
+
+/* ---------- Stats: number scale-in + label rise (see main.js) ---------- */
+.stat-value {
+  opacity: 0;
+  transform: scale(.82);
+  transition: opacity 520ms var(--ease-standard), transform 520ms var(--ease-standard);
+}
+.stat-value.in-view { opacity: 1; transform: scale(1); }
+.stat-label { opacity: 0; transform: translateY(10px); transition: opacity 480ms var(--ease-standard) 140ms, transform 480ms var(--ease-standard) 140ms; }
+.stat-row > div.in-view .stat-label { opacity: 1; transform: translateY(0); }
+
+/* ---------- Featured products: richer hover ---------- */
+.divider-grid h3 a { display: inline-block; transition: transform var(--duration-state) var(--ease-standard); }
+.divider-grid > div:hover h3 a { transform: translateX(3px); }
+.cell-magnetic { transition: transform 200ms var(--ease-standard); }
+
+/* ---------- Buttons & links: directional hover ---------- */
+.btn:hover { transform: translateY(-2px); }
+.btn-arrow { display: inline-block; margin-left: 2px; transition: transform var(--duration-state) var(--ease-standard); }
+.btn:hover .btn-arrow, a:hover .btn-arrow { transform: translateX(4px); }
+
 @media (prefers-reduced-motion: reduce) {
-  .draw-line, .float-slow, .float-slower, .spin-slow, .spin-slower, .pulse-soft, .fade-up { animation: none !important; }
+  .draw-line, .float-slow, .float-slower, .spin-slow, .spin-slower, .pulse-soft, .fade-up,
+  .hero-headline > span, .hero-enter-eyebrow, .hero-enter-lede, .hero-enter-actions,
+  .doodle-pop, .doodle-react, .icon-redraw :is(path, circle, rect) { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
   .hero-mark-wrap { transition: none !important; }
+  [class*="reveal"] { transition: none !important; opacity: 1 !important; transform: none !important; }
+  .reveal-mask > span { transition: none !important; transform: none !important; }
+  .stat-value, .stat-label { transition: none !important; opacity: 1 !important; transform: none !important; }
+  /* Excludes [data-parallax-base] — an element with a static base transform
+     (e.g. one that also needs centering) needs to keep it; JS never
+     overwrites it under reduced motion anyway since the parallax loop never starts. */
+  [data-parallax]:not([data-parallax-base]), [data-parallax-x]:not([data-parallax-base]) { transform: none !important; }
+}
+
+@media (max-width: 767px) {
+  /* Calmer on mobile: reveals still play but shorter and smaller, no
+     parallax (handled in JS), no oversized type (handled above). */
+  .reveal, .reveal-up, .reveal-left, .reveal-right { transform: translateY(14px); }
+  .reveal-scale { transform: scale(.96); }
+  [class*="reveal"] { transition-duration: 450ms; }
 }

@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
 
   <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
   <symbol id="mark-compass" viewBox="0 0 240 240">
@@ -37,7 +37,7 @@
 
     <!-- orbiting satellite dot -->
     <g class="spin-slow" style="transform-origin:120px 120px">
-      <circle cx="120" cy="46" r="4.5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+      <circle cx="120" cy="46" r="4.5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     </g>
   </symbol>
 
@@ -56,7 +56,7 @@
       <rect x="152" y="70" width="34" height="24" rx="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
       <rect x="158" y="42" width="22" height="24" rx="5" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
     </g>
-    <circle cx="34" cy="36" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    <circle cx="34" cy="36" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
   </symbol>
 
   <!-- ============ Accelerate AI adoption: lightbulb + sparks ============ -->
@@ -73,8 +73,8 @@
       <path class="draw-line" style="--len:24;--delay:150ms" d="M174 80 L160 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
       <path class="draw-line" style="--len:24;--delay:300ms" d="M46 80 L60 80" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
     </g>
-    <path d="M162 40 L167 50 L177 55 L167 60 L162 70 L157 60 L147 55 L157 50 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" class="pulse-soft"/>
-    <circle cx="50" cy="46" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    <path d="M162 40 L167 50 L177 55 L167 60 L162 70 L157 60 L147 55 L157 50 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" class="doodle-pop"/>
+    <circle cx="50" cy="46" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
   </symbol>
 
   <!-- ============ Empower users: handing a tool up a small step ============ -->
@@ -88,22 +88,24 @@
       <circle cx="58" cy="88" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
       <circle cx="53" cy="86" r="1.8" fill="var(--ink)"/>
       <circle cx="63" cy="86" r="1.8" fill="var(--ink)"/>
+      <path d="M53.5 92.5 Q58 95.5 62.5 92.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
       <path d="M42 160 L44 122 Q44 112 58 112 Q72 112 72 122 L74 160 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
       <path d="M70 118 L96 104" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
     </g>
 
     <!-- tool being passed -->
-    <rect x="92" y="92" width="18" height="18" rx="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="pulse-soft"/>
+    <rect x="92" y="92" width="18" height="18" rx="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="doodle-pop"/>
 
     <!-- figure B (taller, receiving, standing on step) -->
     <g class="float-slower">
       <circle cx="150" cy="66" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
       <circle cx="145" cy="64" r="1.8" fill="var(--ink)"/>
       <circle cx="155" cy="64" r="1.8" fill="var(--ink)"/>
+      <path d="M145.5 70.5 Q150 73.5 154.5 70.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
       <path d="M134 132 L136 100 Q136 90 150 90 Q164 90 164 100 L166 132 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M136 96 L112 100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M136 96 L112 100" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" class="doodle-react" style="--react-origin:136px 96px; --react-delay:1.7s"/>
     </g>
-    <circle cx="30" cy="40" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    <circle cx="30" cy="40" r="4" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
   </symbol>
 
   <!-- ============ People CTA: high five ============ -->
@@ -113,6 +115,7 @@
       <circle cx="58" cy="70" r="14" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
       <circle cx="53" cy="68" r="1.8" fill="var(--ink)"/>
       <circle cx="63" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M53 75 Q58 79.5 63 75" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
       <path d="M42 146 L44 108 Q44 98 58 98 Q72 98 72 108 L74 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
       <path d="M70 104 L98 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
     </g>
@@ -120,10 +123,11 @@
       <circle cx="142" cy="70" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5"/>
       <circle cx="137" cy="68" r="1.8" fill="var(--ink)"/>
       <circle cx="147" cy="68" r="1.8" fill="var(--ink)"/>
+      <path d="M137 75 Q142 79.5 147 75" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
       <path d="M126 146 L128 108 Q128 98 142 98 Q156 98 156 108 L158 146 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M130 104 L102 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M130 104 L102 74" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" class="doodle-react" style="--react-origin:130px 104px; --react-delay:1.6s"/>
     </g>
-    <g class="pulse-soft">
+    <g class="doodle-pop">
       <path class="draw-line" style="--len:14" d="M100 58 L100 46" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
       <path class="draw-line" style="--len:14;--delay:100ms" d="M88 66 L78 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
       <path class="draw-line" style="--len:14;--delay:200ms" d="M112 66 L122 58" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
@@ -144,13 +148,13 @@
       <rect x="150" y="160" width="20" height="36" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
       <rect x="178" y="112" width="20" height="84" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
     </g>
-    <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+    <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
   </symbol>
 
   <!-- ============ Generic photo placeholder (story grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
     <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
-    <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="pulse-soft"/>
+    <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   </symbol>
 
@@ -188,6 +192,7 @@
 </header>
 
 <main>
+<div class="canvas">
   <section class="blueprint" style="padding:var(--space-16) 0">
     <div class="container" style="max-width:720px">
       <p class="eyebrow">Products</p>
@@ -217,7 +222,7 @@
             <h2 style="font-size:var(--text-2xl)">Students</h2>
           </div>
         </div>
-        <p style="margin-top:var(--space-3); max-width:560px">Tools students use directly — for learning, revision, and everyday school life.</p>
+        <p style="margin-top:var(--space-4); max-width:560px">Tools students use directly — for learning, revision, and everyday school life.</p>
         <div class="divider-grid" style="margin-top:var(--space-8)">
 
           <div>
@@ -253,7 +258,7 @@
             <h2 style="font-size:var(--text-2xl)">Schools &amp; Teachers</h2>
           </div>
         </div>
-        <p style="margin-top:var(--space-3); max-width:560px">Systems that run the school day — from lesson planning to student wellbeing.</p>
+        <p style="margin-top:var(--space-4); max-width:560px">Systems that run the school day — from lesson planning to student wellbeing.</p>
         <div class="divider-grid" style="margin-top:var(--space-8)">
 
           <div>
@@ -289,7 +294,7 @@
             <h2 style="font-size:var(--text-2xl)">Parents</h2>
           </div>
         </div>
-        <p style="margin-top:var(--space-3); max-width:560px">How parents stay connected — communication, registration, and support.</p>
+        <p style="margin-top:var(--space-4); max-width:560px">How parents stay connected — communication, registration, and support.</p>
         <div class="divider-grid" style="margin-top:var(--space-8)">
 
           <div>
@@ -325,7 +330,7 @@
             <h2 style="font-size:var(--text-2xl)">HQ</h2>
           </div>
         </div>
-        <p style="margin-top:var(--space-3); max-width:560px">The systems that keep MOE running — HR, finance, and records.</p>
+        <p style="margin-top:var(--space-4); max-width:560px">The systems that keep MOE running — HR, finance, and records.</p>
         <div class="divider-grid" style="margin-top:var(--space-8)">
 
           <div>
@@ -361,7 +366,7 @@
             <h2 style="font-size:var(--text-2xl)">Platforms &amp; Infrastructure</h2>
           </div>
         </div>
-        <p style="margin-top:var(--space-3); max-width:560px">The shared foundations other products are built on — data, AI, identity, and platform engineering.</p>
+        <p style="margin-top:var(--space-4); max-width:560px">The shared foundations other products are built on — data, AI, identity, and platform engineering.</p>
         <div class="divider-grid" style="margin-top:var(--space-8)">
 
           <div>
@@ -390,6 +395,7 @@
 
     </div>
   </section>
+</div>
 </main>
 
 <footer class="site-footer">
