@@ -279,13 +279,17 @@ section.tight { padding: var(--space-20) 0; }
   padding: var(--space-10);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  transition: background var(--duration-state) var(--ease-standard), border-color var(--duration-state) var(--ease-standard);
+  transition: background var(--duration-state) var(--ease-standard);
 }
-/* Background + border tint only — no transform on the cell itself, since
-   translating it would slide it out of alignment with the shared hairlines
-   its neighbours still sit on. */
-.divider-grid > div:hover { background: var(--cream-1); border-color: var(--ink-soft); }
-html.dark .divider-grid > div:hover { background: var(--surface-2); border-color: var(--border-strong); }
+/* A plain background swap — no transform, no border-color change, since
+   either would either break alignment with the shared hairlines its
+   neighbours still sit on, or read as a heavier "outline" effect. On a
+   white section, hover to cream; on an already-cream (.on-surface)
+   section, hover the other way, to white. */
+.divider-grid > div:hover { background: var(--cream-1); }
+.on-surface .divider-grid > div:hover { background: var(--surface); }
+html.dark .divider-grid > div:hover { background: var(--surface-2); }
+html.dark .on-surface .divider-grid > div:hover { background: var(--cream-1); }
 @media (max-width: 1024px) {
   .divider-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
 }
