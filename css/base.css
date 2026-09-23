@@ -348,7 +348,23 @@ html.dark .on-surface .divider-grid > div:hover { background: var(--cream-1); }
 html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 
 /* ---------- Stats ---------- */
-.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+/* Bridges the hero's own vertical divider (.hero-left's border-right, which
+   sits at the same horizontal center) across the section-padding gap above,
+   so the two read as one continuous line rather than two disjointed
+   segments. Only makes sense at desktop widths, where the hero and stat
+   grids share the same 2/4-column center line — off below 900px, where the
+   hero stacks to one column and there's no divider above to connect to. */
+.stat-row { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.stat-row::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(-1 * var(--fluid-pad-lg));
+  width: 1px;
+  height: var(--fluid-pad-lg);
+  background: var(--border);
+}
+@media (max-width: 900px) { .stat-row::before { display: none; } }
 .stat-row > div { padding: var(--space-8); min-width: 0; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat-value { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; font-variant-numeric: tabular-nums; }
 .stat-label { font-size: var(--text-sm); color: var(--muted-foreground); margin-top: var(--space-2); }
