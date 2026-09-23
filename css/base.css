@@ -208,8 +208,8 @@ p + p { margin-top: var(--space-4); }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
 
 /* ---------- Sections ---------- */
-section { padding: var(--space-24) 0; }
-section.tight { padding: var(--space-20) 0; }
+section { padding: var(--fluid-pad-xl) 0; }
+section.tight { padding: var(--fluid-pad-lg) 0; }
 .section-border-t { border-top: 1px solid var(--border); }
 .section-border-b { border-bottom: 1px solid var(--border); }
 .on-surface { background: var(--surface-2); }
@@ -224,9 +224,9 @@ section.tight { padding: var(--space-20) 0; }
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 560px;
+  min-height: clamp(400px, 40vw, 560px);
 }
-.hero-left { padding: var(--space-24) var(--space-10) var(--space-20) 0; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); min-width: 0; }
+.hero-left { padding: var(--fluid-pad-xl) var(--space-10) var(--fluid-pad-lg) 0; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); min-width: 0; }
 /* min-width:0 overrides the flex/grid item default (min-width:auto, i.e.
    "don't shrink below your content's natural size") — without it, a column
    holding an SVG or long text can silently force the whole row, and the
@@ -249,7 +249,7 @@ section.tight { padding: var(--space-20) 0; }
   border-bottom: 1px solid var(--border);
 }
 .split-row > div {
-  padding: var(--space-16) var(--space-10);
+  padding: var(--fluid-pad-md) var(--space-10);
   display: flex;
   flex-direction: column;
   justify-content: center;

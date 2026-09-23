@@ -28,16 +28,27 @@
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 16px;
-  /* text-lg and up are fluid: they scale with viewport width between the two
-     bounds, so a ~1366-1440px laptop screen gets a genuinely smaller scale
-     than a large desktop monitor, not just the same fixed px shown smaller
-     relative to a bigger screen. Mobile has its own overrides below 767px. */
-  --text-lg: clamp(17px, 0.55vw + 14.5px, 19px);
-  --text-xl: clamp(19px, 1vw + 15px, 22px);
-  --text-2xl: clamp(24px, 2vw + 15px, 30px);
-  --text-3xl: clamp(30px, 3.4vw + 12px, 42px);
-  --text-4xl: clamp(38px, 5vw + 6px, 60px);
+  /* text-lg and up are fluid, interpolating between their min size at a
+     768px viewport and their max size at a 1600px viewport (a generous
+     "wide desktop" reference) — so a ~1024-1440px laptop screen (Windows
+     or Mac) sits partway through the ramp and gets a genuinely smaller
+     scale, not the same maxed-out size a 1600px+ monitor gets. An earlier
+     version of these formulas capped out by ~700-1080px, which is why a
+     typical laptop viewport still rendered full desktop-max type — that's
+     what this fixes. Mobile has its own overrides below 767px. */
+  --text-lg: clamp(17px, 0.24vw + 15.15px, 19px);
+  --text-xl: clamp(19px, 0.36vw + 16.23px, 22px);
+  --text-2xl: clamp(24px, 0.72vw + 18.46px, 30px);
+  --text-3xl: clamp(30px, 1.44vw + 18.92px, 42px);
+  --text-4xl: clamp(38px, 2.64vw + 17.7px, 60px);
   --leading-base: 24px;
+
+  /* Fluid section-level padding, same 768-1600px ramp as the type scale
+     above, so vertical density eases down through the laptop range instead
+     of staying at its 900px-breakpoint value all the way to 1600px+. */
+  --fluid-pad-xl: clamp(56px, 4.81vw + 19.08px, 96px); /* section default, hero-left top */
+  --fluid-pad-lg: clamp(48px, 3.85vw + 18.47px, 80px); /* .tight, hero-left bottom */
+  --fluid-pad-md: clamp(44px, 2.4vw + 25.54px, 64px);  /* split-row cell padding */
 
   /* Spacing (4px base) */
   --space-1: 4px;
