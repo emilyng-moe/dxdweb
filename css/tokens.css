@@ -28,11 +28,15 @@
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 16px;
-  --text-lg: 20px;
-  --text-xl: 24px;
-  --text-2xl: 32px;
-  --text-3xl: 48px;
-  --text-4xl: 68px;
+  /* text-lg and up are fluid: they scale with viewport width between the two
+     bounds, so a ~1366-1440px laptop screen gets a genuinely smaller scale
+     than a large desktop monitor, not just the same fixed px shown smaller
+     relative to a bigger screen. Mobile has its own overrides below 767px. */
+  --text-lg: clamp(17px, 0.55vw + 14.5px, 19px);
+  --text-xl: clamp(19px, 1vw + 15px, 22px);
+  --text-2xl: clamp(24px, 2vw + 15px, 30px);
+  --text-3xl: clamp(30px, 3.4vw + 12px, 42px);
+  --text-4xl: clamp(38px, 5vw + 6px, 60px);
   --leading-base: 24px;
 
   /* Spacing (4px base) */
@@ -52,7 +56,7 @@
   /* Layout */
   --max-content-width: 1280px;
   --gutter: var(--space-4);
-  --margin: var(--space-6);
+  --margin: var(--space-8);
   --radius: 14px;
   --radius-sm: 8px;
   --radius-pill: 999px;

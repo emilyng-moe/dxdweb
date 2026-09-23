@@ -1,5 +1,10 @@
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+/* overflow-x:hidden is a deliberate safety net, not a fix for a known cause:
+   Windows browsers reserve real layout width for a non-overlay scrollbar
+   (macOS overlays it), so a sub-pixel or font-metric overflow that's
+   invisible here can force a horizontal scrollbar — and a zoom-out — on
+   Windows. This guarantees the page never does that, whatever the source. */
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 
 body {
   font-family: var(--font-family);
@@ -255,6 +260,10 @@ section.tight { padding: var(--space-20) 0; }
 .split-row.reverse > div { direction: ltr; }
 .split-row.reverse .split-media { border-right: none; border-left: 1px solid var(--border); }
 .split-tag { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600; color: var(--olive); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-3); }
+/* A small scale bump on just the numeral — enough typographic contrast to
+   break three otherwise-identical split-rows out of pure repetition,
+   without touching the grid or proportions. */
+.split-num { font-size: 1.6em; color: var(--ink); letter-spacing: 0; }
 .split-row h3 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
 .split-row p { font-size: var(--text-base); }
 .split-row .why { margin-top: var(--space-4); }
