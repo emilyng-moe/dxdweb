@@ -227,7 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const updateGrid = () => {
         const rect = blueprintHero.getBoundingClientRect();
         const shift = -rect.top * 0.15;
-        blueprintHero.style.backgroundPosition = `50% ${shift}px, 50% ${shift}px`;
+        // x stays "50%" for the horizontal-line layer and "50% + 32px" for
+        // the vertical-line layer — matching .blueprint's own CSS rule,
+        // which offsets that layer by half a tile so a line lands exactly
+        // at center instead of the gap between two lines. Only y animates.
+        blueprintHero.style.backgroundPosition = `50% ${shift}px, calc(50% + 32px) ${shift}px`;
         bpTicking = false;
       };
       window.addEventListener('scroll', () => {

@@ -73,7 +73,19 @@ p + p { margin-top: var(--space-4); }
     linear-gradient(color-mix(in srgb, var(--border) 75%, transparent) 1px, transparent 1px),
     linear-gradient(90deg, color-mix(in srgb, var(--border) 75%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
-  background-position: center top;
+  /* The vertical-line layer's x position is deliberately NOT "center": for a
+     repeating 64px tile, background-position:center places the MIDPOINT
+     BETWEEN two grid lines at the container's center — never a line itself
+     (lines land 32px to either side). That's fine on its own, but wherever
+     a real structural divider (e.g. .hero-left's border-right) sits at the
+     true center, it used to end up next to a faint, independent grid line
+     32px away rather than merging with it — reading as one broken, offset
+     line near the edges where the grid fades. Shifting by half a tile
+     (50% + 32px, i.e. one full period off from centering the gap) puts an
+     actual grid line exactly at 50%, so it coincides with — rather than
+     shadows — any centered structural divider. Keep this offset if the
+     tile size (64px) ever changes: it must stay exactly half of it. */
+  background-position: center top, calc(50% + 32px) top;
 }
 .blueprint::before {
   content: "";
