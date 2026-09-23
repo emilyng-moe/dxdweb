@@ -70,8 +70,8 @@ p + p { margin-top: var(--space-4); }
   position: relative;
   overflow: hidden;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--border) 40%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--border) 40%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--border) 75%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 75%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
   background-position: center top;
 }
