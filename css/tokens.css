@@ -36,19 +36,19 @@
      version of these formulas capped out by ~700-1080px, which is why a
      typical laptop viewport still rendered full desktop-max type — that's
      what this fixes. Mobile has its own overrides below 767px. */
-  --text-lg: clamp(17px, 0.24vw + 15.15px, 19px);
-  --text-xl: clamp(19px, 0.36vw + 16.23px, 22px);
-  --text-2xl: clamp(24px, 0.72vw + 18.46px, 30px);
-  --text-3xl: clamp(30px, 1.44vw + 18.92px, 42px);
-  --text-4xl: clamp(38px, 2.64vw + 17.7px, 60px);
+  --text-lg: clamp(16px, 0.12vw + 15.08px, 17px);
+  --text-xl: clamp(18px, 0.24vw + 16.16px, 20px);
+  --text-2xl: clamp(22px, 0.48vw + 18.31px, 26px);
+  --text-3xl: clamp(26px, 1.2vw + 16.77px, 36px);
+  --text-4xl: clamp(34px, 2.16vw + 17.38px, 52px);
   --leading-base: 24px;
 
   /* Fluid section-level padding, same 768-1600px ramp as the type scale
      above, so vertical density eases down through the laptop range instead
      of staying at its 900px-breakpoint value all the way to 1600px+. */
-  --fluid-pad-xl: clamp(56px, 4.81vw + 19.08px, 96px); /* section default, hero-left top */
-  --fluid-pad-lg: clamp(48px, 3.85vw + 18.47px, 80px); /* .tight, hero-left bottom */
-  --fluid-pad-md: clamp(44px, 2.4vw + 25.54px, 64px);  /* split-row cell padding */
+  --fluid-pad-xl: clamp(56px, 3.61vw + 28.31px, 86px); /* section default, hero-left top */
+  --fluid-pad-lg: clamp(48px, 2.89vw + 25.85px, 72px); /* .tight, hero-left bottom */
+  --fluid-pad-md: clamp(44px, 1.68vw + 31.08px, 58px); /* split-row cell padding */
 
   /* Spacing (4px base) */
   --space-1: 4px;
@@ -65,7 +65,7 @@
   --space-24: 96px;
 
   /* Layout */
-  --max-content-width: 1280px;
+  --max-content-width: 1180px;
   --gutter: var(--space-4);
   --margin: var(--space-8);
   --radius: 14px;
