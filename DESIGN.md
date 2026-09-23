@@ -32,7 +32,7 @@ quieter option, but let the illustrations carry warmth and personality.
 - Wobble: every large illustration carries `.illus-sketchy`, which applies an SVG turbulence filter (`#sketchy-anim` in each page's sprite defs) to the whole rendered shape — uneven line weight and a gentle "boiling ink" redraw, rather than hand-plotting irregular bezier points per path. `#sketchy-still` (a frozen, unanimated version) swaps in under `prefers-reduced-motion`. Don't apply `.illus-sketchy` to small functional UI icons (cell-icon, nav toggle) — the wobble is for decorative illustration only, not interface icons, which stay crisp.
 - Character faces: figures (illus-empower, illus-people-cta) get dot eyes (`r="1.8" fill="var(--ink)"`) plus a simple curved-line mouth (`stroke-width:1.6`, no fill) — minimal, not cartoonish. No eyebrows, no detailed features.
 - Sprite: the full symbol set (plus both sketchy filters) is duplicated in every page's hidden `<svg>` block near the top of `<body>` (no build step, so no cross-file `<use>` — CSS custom properties, animation classes, and filters need same-document scope).
-- Hero mark: `mark-compass`, a 4-point astroid star (DXD's own geometric motif) inside a blueprint grid, slowly rotating. On the homepage it's joined by three small "hero-badge" doodles (pencil/spark/speech-bubble in lime circles) that pop in around it, staggered — a lightweight nod to Build/Innovate/Empower without turning the brand mark itself into a character.
+- Hero mark: `mark-compass`, a 4-point astroid star (DXD's own geometric motif) inside a blueprint grid, slowly rotating.
 - Scene illustrations: `illus-build`, `illus-ai`, `illus-empower`, `illus-people-cta`, `illus-story-featured`, `illus-photo-generic` — used in split-row features, CTA, and story/article placeholders.
 - **Draw → react → rest model**: `.draw-line` (stroke draw-in, staggered via `--delay`) is the DRAW phase. `.doodle-pop` (accent dots/highlights — overshoots on scale-in: 0 → 1.22 → 0.93 → 1 — then settles into the existing opacity-breathe loop; stagger multiple instances with `--pop-delay`) and `.doodle-react` (one small asymmetric rotate on a character's gesture arm, fired once via `--react-delay` ≈ the draw duration, `--react-origin` sets the pivot point) are the REACT moment. Ambient `.float-slow`/`.float-slower` (gentle bob) and `.spin-slow`/`.spin-slower` (slow rotation) are REST. `.illus-sketchy` (hand-drawn wobble, via SVG turbulence filter) runs underneath all of it. All respect `prefers-reduced-motion`.
 - **Hover redraw**: opt a small icon into `.icon-redraw` (needs `pathLength="1"` on each shape inside it) to replay its stroke draw-in on hover — used on the three Featured Products icons on the homepage as their "tiny action." Don't apply broadly; it's for icons that are worth a second look, not a default.
@@ -40,7 +40,17 @@ quieter option, but let the illustrations carry warmth and personality.
 ## Layout system
 - columns: 12, maxContentWidth: 1280px
 - breakpoints: [360, 767, 900, 1024]
-- Structural motifs borrowed from the reference aesthetic: `.blueprint` grid backdrop on hero/page-intro sections; `.split-row` alternating 2-col feature rows with a vertical divider; `.divider-grid` — cards without borders, just shared hairlines (used for product/people grids and stat rows).
+- **Editorial canvas frame** (`.canvas`, wraps all of `<main>` on every page): a persistent
+  pair of 1px vertical hairlines at the content max-width, off below 900px. Full-bleed
+  section backgrounds (`.on-surface`, `.blueprint`) and the blueprint grid sit *inside* this
+  frame rather than the raw viewport, so every section — hero, stats, mission, split-rows,
+  Featured Products — reads as one continuous structured canvas instead of stacked,
+  disconnected blocks. This is the main structural device: prefer extending it (a new
+  section just needs to sit inside `.canvas` and use `.container`/`.divider-grid`/
+  `.split-row` for its internal alignment) over introducing a new floating, individually
+  bordered/rounded container for homogeneous content — that reads as a "card" and breaks
+  the frame's continuity. `.card` still exists for genuinely one-off content, used sparingly.
+- Structural motifs borrowed from the reference aesthetic: `.blueprint` grid backdrop on hero/page-intro sections — faded out at the top and bottom edges (not just toward the center) so it never visually collides with a bordered element immediately below, like a `.rule-major` or a `.divider-grid`; `.split-row` alternating 2-col feature rows with a vertical divider; `.divider-grid` — cards without borders, just shared hairlines (used for product/people grids and stat rows), hover is a background/border tint only, never a transform on the cell itself (that would break alignment with the neighbouring shared hairlines).
 
 ## Components
 - manifest: none (hand-built static site, no component library)
@@ -65,12 +75,6 @@ quieter option, but let the illustrations carry warmth and personality.
   (pointer:fine)` only — fully off on touch/mobile and `prefers-reduced-motion`. A static
   base transform (e.g. centering) survives via `data-parallax-base`, composed with the
   dynamic offset rather than overwritten.
-- **background type** (`.bg-word`, needs a `.watermark-host` ancestor): oversized, ~3.5%
-  opacity Red Hat Display words sitting behind a section's content — atmospheric only,
-  never load-bearing. Hidden below 900px.
-- currently applied on index.html's Hero/Mission/Functions/Featured Products/Team sections
-  only; the utilities in base.css are reusable and can be adopted by the other pages the
-  same way.
 
 ## Voice & Tone
 Neutral, steady, quietly confident. Second person, plain language, Singapore

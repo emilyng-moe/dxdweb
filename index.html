@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/base.css" />
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
 
   <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
   <symbol id="mark-compass" viewBox="0 0 240 240">
@@ -200,8 +200,9 @@
 </header>
 
 <main>
+<div class="canvas">
 
-  <section class="blueprint section-border-b">
+  <section class="blueprint">
     <div class="container hero-grid">
       <div class="hero-left" data-parallax="-0.06">
         <p class="eyebrow hero-enter-eyebrow">Digital Excellence &amp; Products Division · MOE</p>
@@ -220,7 +221,7 @@
     </div>
   </section>
 
-  <section class="tight" style="padding:0">
+  <section class="tight">
     <div class="container" style="padding:0">
       <div class="stat-row">
         <div>
@@ -245,8 +246,7 @@
 
   <div class="rule-major" aria-hidden="true"></div>
 
-  <section id="mission" class="tight watermark-host">
-    <span class="bg-word" style="top:-0.1em; left:-0.02em;" data-parallax="0.05" aria-hidden="true">MISSION</span>
+  <section id="mission" class="tight">
     <div class="container">
       <div class="section-head stagger">
         <div class="stagger" style="--stagger-step:140ms">
@@ -298,8 +298,7 @@
 
   <div class="rule-major" aria-hidden="true"></div>
 
-  <section class="on-surface section-border-b watermark-host">
-    <span class="bg-word" style="top:-0.05em; right:-0.02em;" data-parallax="0.05" aria-hidden="true">PRODUCTS</span>
+  <section class="on-surface section-border-b">
     <div class="container">
       <div class="section-head stagger" style="--stagger-step:140ms">
         <div>
@@ -335,10 +334,9 @@
 
   <div class="rule-major" aria-hidden="true"></div>
 
-  <section id="team" class="watermark-host">
-    <span class="bg-word" style="bottom:-0.15em; left:-0.02em;" data-parallax="0.05" aria-hidden="true">PEOPLE</span>
-    <div class="container">
-      <div class="split-row" style="border:1px solid var(--border); border-radius:var(--radius)">
+  <section id="team" style="padding-bottom:0">
+    <div class="container" style="padding:0">
+      <div class="split-row" style="border-bottom:none">
         <div class="stagger" data-parallax-x="-0.03">
           <p class="eyebrow reveal-up">Our team</p>
           <h2 class="reveal-mask" style="font-size:var(--text-2xl)"><span>A diverse team, one mission.</span></h2>
@@ -355,10 +353,10 @@
     </div>
   </section>
 
+</div>
 </main>
 
-<footer class="site-footer watermark-host">
-  <span class="bg-word" style="bottom:-0.25em; left:50%; transform:translateX(-50%);" data-parallax="0.04" data-parallax-base="translateX(-50%)" aria-hidden="true">DXD</span>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>

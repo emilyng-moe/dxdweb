@@ -11,19 +11,25 @@
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
 <style>
+  /* Flush with the site's frame — a divider row, not a floating card:
+     no radius, no full perimeter border, just the shared vertical/bottom
+     hairlines the rest of the grid uses. */
   .featured-perspective {
     display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: stretch;
-    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: var(--space-16);
+    border-bottom: 1px solid var(--border);
   }
-  .featured-perspective .fp-text { padding: var(--space-10); display:flex; flex-direction:column; justify-content:center; }
-  @media (max-width: 900px) { .featured-perspective { grid-template-columns: 1fr; } }
-  .perspective-cell { display:flex; flex-direction:column; gap:var(--space-4); }
+  .featured-perspective .story-media { border: none; border-right: 1px solid var(--border); }
+  .featured-perspective .fp-text { padding: var(--space-10); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; }
+  @media (max-width: 900px) {
+    .featured-perspective { grid-template-columns: 1fr; }
+    .featured-perspective .story-media { border-right: none; border-bottom: 1px solid var(--border); }
+  }
   .segment-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
   .segment-head .cell-icon { margin-bottom: 0; flex-shrink: 0; }
 </style>
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
 
   <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
   <symbol id="mark-compass" viewBox="0 0 240 240">
@@ -199,6 +205,7 @@
 </header>
 
 <main>
+<div class="canvas">
   <section class="blueprint" style="padding:var(--space-16) 0">
     <div class="container" style="max-width:720px">
       <p class="eyebrow">Perspectives</p>
@@ -213,12 +220,11 @@
     <div class="container">
 
       <div class="featured-perspective fade-up">
-        <div class="story-media" style="aspect-ratio:auto; border-radius:0; border:none">
+        <div class="story-media" style="aspect-ratio:auto; border-radius:0">
           <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260" style="width:100%; height:100%"><use href="#illus-story-featured"/></svg>
         </div>
         <div class="fp-text">
-          <span class="tag">Product</span>
-          <span class="placeholder-badge" style="margin-left:var(--space-2)">placeholder</span>
+          <div><span class="tag">Product</span><span class="placeholder-badge">placeholder</span></div>
           <h2 style="font-size:var(--text-2xl); margin-top:var(--space-3)">Why we killed a feature two weeks before launch</h2>
           <p style="margin-top:var(--space-4)">Sometimes the right product call is the one nobody wants to hear — notes from a late call on the OnePlacement launch.</p>
           <a href="#" class="btn btn-ghost" style="margin-top:var(--space-6); width:fit-content">Read the article →</a>
@@ -240,9 +246,9 @@
           </div>
         </div>
       </div>
-      <div class="grid grid-3">
+      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">Product</span>
           <h3>Designing OnePlacement's registration flow around parents' worst week of the year</h3>
@@ -250,7 +256,7 @@
           <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">Product</span>
           <h3>How we prioritise a 30-product roadmap with one team</h3>
@@ -276,9 +282,9 @@
           </div>
         </div>
       </div>
-      <div class="grid grid-3">
+      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">Design</span>
           <h3>A design system for 30+ products, one team</h3>
@@ -286,7 +292,7 @@
           <div class="story-meta"><span>6 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">Design</span>
           <h3>Designing for teachers who are already stretched thin</h3>
@@ -312,9 +318,9 @@
           </div>
         </div>
       </div>
-      <div class="grid grid-3">
+      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">AI</span>
           <h3>What Mark.ly got wrong before it got useful</h3>
@@ -322,7 +328,7 @@
           <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
-        <div class="card perspective-cell">
+        <div>
           <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
           <span class="tag" style="margin:0">AI</span>
           <h3>AI adoption isn't a training problem</h3>
@@ -333,6 +339,7 @@
       </div>
     </div>
   </section>
+</div>
 </main>
 
 <footer class="site-footer">
