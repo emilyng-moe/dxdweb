@@ -15,21 +15,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
 
   <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
-  <symbol id="mark-compass" viewBox="0 0 240 240">
-    <circle cx="120" cy="120" r="108" fill="none" stroke="var(--border)" stroke-width="1.5"/>
-    <circle class="spin-slower" cx="120" cy="120" r="80" fill="none" stroke="var(--olive-line)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+  <symbol id="mark-compass" viewBox="0 0 1000 1000">
+    <!-- construction axes -->
+    <line class="draw-line" style="--len:450" x1="500" y1="500" x2="50" y2="500" stroke="var(--olive)" stroke-width="6"/>
+    <line class="draw-line" style="--len:450; --delay:60ms" x1="500" y1="500" x2="950" y2="500" stroke="var(--olive)" stroke-width="6"/>
+    <line class="draw-line" style="--len:450; --delay:120ms" x1="500" y1="500" x2="500" y2="50" stroke="var(--olive)" stroke-width="6"/>
+    <line class="draw-line" style="--len:450; --delay:180ms" x1="500" y1="500" x2="500" y2="950" stroke="var(--olive)" stroke-width="6"/>
 
-    <g class="spin-slow" style="transform-origin:120px 120px">
-      <!-- four-point astroid star -->
-      <path d="M120 24 Q146,94 216,120 Q146,146 120,216 Q94,146 24,120 Q94,94 120,24 Z" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
-      <!-- node circles at tips -->
-      <circle cx="120" cy="24" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
-      <circle cx="216" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
-      <circle cx="120" cy="216" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
-      <circle cx="24" cy="120" r="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
-    </g>
+    <!-- outer guide circle -->
+    <circle class="draw-line" style="--len:2828; --delay:280ms" cx="500" cy="500" r="450" fill="none" stroke="var(--olive)" stroke-width="5"/>
 
+    <!-- square guide -->
+    <path class="draw-line" style="--len:2546; --delay:480ms" d="M181.8 181.8 H818.2 V818.2 H181.8 Z" fill="none" stroke="var(--olive)" stroke-width="5"/>
 
+    <!-- diagonal guides -->
+    <line class="fade-up" style="animation-delay:680ms" x1="256.8" y1="256.8" x2="743.2" y2="743.2" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
+    <line class="fade-up" style="animation-delay:680ms" x1="743.2" y1="256.8" x2="256.8" y2="743.2" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
+
+    <!-- inner guide circle -->
+    <circle class="draw-line" style="--len:984; --delay:850ms" cx="500" cy="500" r="156.6" fill="none" stroke="var(--olive-line)" stroke-width="5"/>
+
+    <!-- inner diamond guide -->
+    <path class="fade-up" style="animation-delay:1000ms" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z" fill="none" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
+
+    <!-- final mark: fill is not gated by the stroke-draw animation at all
+         (SVG fill ignores stroke-dashoffset), so it would otherwise be fully
+         opaque from frame one, silently covering every guide line that falls
+         inside its silhouette. Split into a stroke-only outline (draws in
+         normally) and a separately fill, timed to fade in only once the
+         outline finishes drawing. -->
+    <path class="fade-up" style="animation-delay:2550ms" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8" fill="var(--lime)" stroke="none"/>
+    <path class="draw-line" style="--len:2971; --delay:1150ms" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8" fill="none" stroke="var(--ink)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- corner node dots -->
+    <circle class="doodle-pop" style="--pop-delay:2.4s" cx="181.8" cy="181.8" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
+    <circle class="doodle-pop" style="--pop-delay:2.5s" cx="818.2" cy="181.8" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
+    <circle class="doodle-pop" style="--pop-delay:2.6s" cx="818.2" cy="818.2" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
+    <circle class="doodle-pop" style="--pop-delay:2.7s" cx="181.8" cy="818.2" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
   </symbol>
 
   <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
@@ -211,8 +233,8 @@
         </div>
       </div>
       <div class="hero-right" data-parallax="0.08" data-parallax-scale="0.85">
-        <div class="hero-mark-wrap illus-trigger illus-sketchy">
-          <svg viewBox="0 0 240 240" style="width:min(370px, 72%)"><use href="#mark-compass"/></svg>
+        <div class="hero-mark-wrap illus-trigger">
+          <svg viewBox="0 0 1000 1000" style="width:min(370px, 72%)"><use href="#mark-compass"/></svg>
         </div>
       </div>
     </div>
