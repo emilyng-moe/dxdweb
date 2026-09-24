@@ -479,6 +479,21 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   100% { transform: scale(1); }
 }
 
+/* .node-in: a precise, non-bouncy alternative to .doodle-pop — for elements
+   that are part of a technical/construction diagram (the hero mark) rather
+   than a hand-drawn doodle. No overshoot, no ambient pulse afterward: it
+   appears once and stays put. */
+.node-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodeIn 320ms var(--ease-standard) var(--pop-delay, 0ms) both;
+  animation-play-state: var(--illus-play, running);
+}
+@keyframes nodeIn {
+  from { opacity: 0; transform: scale(.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .doodle-react {
   transform-box: fill-box;
   transform-origin: var(--react-origin, center);
@@ -617,7 +632,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 @media (prefers-reduced-motion: reduce) {
   .draw-line, .float-slow, .float-slower, .spin-slow, .spin-slower, .pulse-soft, .fade-up,
   .hero-headline > span, .hero-enter-eyebrow, .hero-enter-lede, .hero-enter-actions,
-  .doodle-pop, .doodle-react, .icon-redraw :is(path, circle, rect) { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
+  .doodle-pop, .doodle-react, .node-in, .icon-redraw :is(path, circle, rect) { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
   .hero-mark-wrap { transition: none !important; }
   [class*="reveal"] { transition: none !important; opacity: 1 !important; transform: none !important; }
   .reveal-mask > span { transition: none !important; transform: none !important; }
