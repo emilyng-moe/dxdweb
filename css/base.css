@@ -519,8 +519,6 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 .fade-up { animation: fadeUp var(--duration-entrance) var(--ease-standard) both; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ---------- Hero mark: cursor parallax (see main.js) ---------- */
-.hero-right { perspective: 900px; }
 .hero-mark-wrap {
   /* Explicit width so the svg's percentage-based width below has a definite
      ancestor to resolve against — without this the wrap shrink-fits its
@@ -530,9 +528,6 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 500ms var(--ease-standard);
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 .hero-mark-wrap svg {
   /* Nudges the mark to sit centered within the blueprint grid cell it
@@ -633,7 +628,6 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   .draw-line, .float-slow, .float-slower, .spin-slow, .spin-slower, .pulse-soft, .fade-up,
   .hero-headline > span, .hero-enter-eyebrow, .hero-enter-lede, .hero-enter-actions,
   .doodle-pop, .doodle-react, .node-in, .icon-redraw :is(path, circle, rect) { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
-  .hero-mark-wrap { transition: none !important; }
   [class*="reveal"] { transition: none !important; opacity: 1 !important; transform: none !important; }
   .reveal-mask > span { transition: none !important; transform: none !important; }
   /* Excludes [data-parallax-base] — an element with a static base transform

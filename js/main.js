@@ -82,21 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Hero mark tilts gently toward the cursor
-  const heroMark = document.querySelector('.hero-mark-wrap');
-  const heroRight = document.querySelector('.hero-right');
   const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (heroMark && heroRight && !reduced && fineHover) {
-    heroRight.addEventListener('mousemove', (e) => {
-      const rect = heroRight.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroMark.style.transform = `rotateY(${x * 16}deg) rotateX(${y * -16}deg)`;
-    });
-    heroRight.addEventListener('mouseleave', () => {
-      heroMark.style.transform = '';
-    });
-  }
 
   // ---------------------------------------------------------------
   // Generic scroll-reveal: any [class*="reveal"] element gets .in-view
