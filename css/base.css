@@ -494,6 +494,31 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   to { opacity: 1; transform: scale(1); }
 }
 
+/* ---------- Hero mark: faithful port of the reference construction
+   animation — its own colors, stroke weights, timing/easing and the
+   moving-mask technique that progressively reveals the dashed diagonal/
+   diamond guides, kept as designed rather than adapted to DXD's tokens.
+   Two deliberate exceptions: no background grid tile (the hero already
+   sits inside .blueprint's own grid — a second one here would double up)
+   and it plays once on scroll into view via the site's existing
+   --illus-play gate, rather than the original's own run/replay/loop
+   demo chrome, which has no equivalent on a page a visitor scrolls past. */
+.mc-c { fill: none; stroke: #7a8c55; stroke-width: 2; stroke-linecap: butt; }
+.mc-c-soft { fill: none; stroke: #a3ab8e; stroke-width: 1.6; }
+.mc-dash { fill: none; stroke: #8e9a70; stroke-width: 1.5; stroke-dasharray: 6 7; }
+.mc-mk { fill: none; stroke: #fff; stroke-width: 10; stroke-linecap: round; }
+.mc-logo { fill: none; stroke: #bce462; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+.mc-pt { fill: #fff; stroke: #6e7f48; stroke-width: 2.2; }
+
+.mc-d {
+  --mc-ease: cubic-bezier(.65, 0, .35, 1);
+  stroke-dasharray: var(--mc-len) var(--mc-len);
+  stroke-dashoffset: var(--mc-len);
+  animation: mcDraw var(--mc-dur) var(--mc-ease) var(--mc-delay) both;
+  animation-play-state: var(--illus-play, running);
+}
+@keyframes mcDraw { to { stroke-dashoffset: 0; } }
+
 .doodle-react {
   transform-box: fill-box;
   transform-origin: var(--react-origin, center);
@@ -628,6 +653,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   .draw-line, .float-slow, .float-slower, .spin-slow, .spin-slower, .pulse-soft, .fade-up,
   .hero-headline > span, .hero-enter-eyebrow, .hero-enter-lede, .hero-enter-actions,
   .doodle-pop, .doodle-react, .node-in, .icon-redraw :is(path, circle, rect) { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
+  .mc-d { animation: none !important; stroke-dashoffset: 0 !important; }
   [class*="reveal"] { transition: none !important; opacity: 1 !important; transform: none !important; }
   .reveal-mask > span { transition: none !important; transform: none !important; }
   /* Excludes [data-parallax-base] — an element with a static base transform

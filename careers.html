@@ -20,42 +20,52 @@
 
   <!-- ============ HERO MARK: compass / star, DXD's own geometric motif ============ -->
   <symbol id="mark-compass" viewBox="0 0 1000 1000">
+    <defs>
+      <mask id="mDiag" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.9s; --mc-delay:5s" x1="256.8" y1="256.8" x2="743.2" y2="743.2"/>
+        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.9s; --mc-delay:5s" x1="743.2" y1="256.8" x2="256.8" y2="743.2"/>
+      </mask>
+      <mask id="mDia" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+        <path class="mc-mk mc-d" style="--mc-len:886; --mc-dur:.9s; --mc-delay:6.7s" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z"/>
+      </mask>
+    </defs>
+
     <!-- construction axes -->
-    <line class="draw-line" style="--len:450" x1="500" y1="500" x2="50" y2="500" stroke="var(--olive)" stroke-width="6"/>
-    <line class="draw-line" style="--len:450; --delay:60ms" x1="500" y1="500" x2="950" y2="500" stroke="var(--olive)" stroke-width="6"/>
-    <line class="draw-line" style="--len:450; --delay:120ms" x1="500" y1="500" x2="500" y2="50" stroke="var(--olive)" stroke-width="6"/>
-    <line class="draw-line" style="--len:450; --delay:180ms" x1="500" y1="500" x2="500" y2="950" stroke="var(--olive)" stroke-width="6"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="50" y2="500"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="950" y2="500"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="500" y2="50"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="500" y2="950"/>
 
     <!-- outer guide circle -->
-    <circle class="draw-line" style="--len:2828; --delay:280ms" cx="500" cy="500" r="450" fill="none" stroke="var(--olive)" stroke-width="5"/>
+    <circle class="mc-c mc-d" style="--mc-len:2828; --mc-dur:1.6s; --mc-delay:1.4s" cx="500" cy="500" r="450" transform="rotate(-90 500 500)"/>
 
     <!-- square guide -->
-    <path class="draw-line" style="--len:2546; --delay:480ms" d="M181.8 181.8 H818.2 V818.2 H181.8 Z" fill="none" stroke="var(--olive)" stroke-width="5"/>
+    <path class="mc-c mc-d" style="--mc-len:2546; --mc-dur:1.5s; --mc-delay:2.9s" d="M181.8 181.8 H818.2 V818.2 H181.8 Z"/>
 
-    <!-- diagonal guides -->
-    <line class="fade-up" style="animation-delay:680ms" x1="256.8" y1="256.8" x2="743.2" y2="743.2" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
-    <line class="fade-up" style="animation-delay:680ms" x1="743.2" y1="256.8" x2="256.8" y2="743.2" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
+    <!-- diagonal guides: a moving mask (mc-mk) draws itself along the
+         diagonal, and wherever it's opaque the dashed line underneath
+         shows through — a progressive dash-reveal, not a plain fade. -->
+    <g mask="url(#mDiag)">
+      <line class="mc-dash" x1="256.8" y1="256.8" x2="743.2" y2="743.2"/>
+      <line class="mc-dash" x1="743.2" y1="256.8" x2="256.8" y2="743.2"/>
+    </g>
 
     <!-- inner guide circle -->
-    <circle class="draw-line" style="--len:984; --delay:850ms" cx="500" cy="500" r="156.6" fill="none" stroke="var(--olive-line)" stroke-width="5"/>
+    <circle class="mc-c-soft mc-d" style="--mc-len:984; --mc-dur:1s; --mc-delay:5.8s" cx="500" cy="500" r="156.6" transform="rotate(-90 500 500)"/>
 
-    <!-- inner diamond guide -->
-    <path class="fade-up" style="animation-delay:1000ms" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z" fill="none" stroke="var(--olive-line)" stroke-width="5" stroke-dasharray="12 14"/>
+    <!-- inner diamond guide: same moving-mask reveal as the diagonals -->
+    <g mask="url(#mDia)">
+      <path class="mc-dash" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z"/>
+    </g>
 
-    <!-- final mark: fill is not gated by the stroke-draw animation at all
-         (SVG fill ignores stroke-dashoffset), so it would otherwise be fully
-         opaque from frame one, silently covering every guide line that falls
-         inside its silhouette. Split into a stroke-only outline (draws in
-         normally) and a separately fill, timed to fade in only once the
-         outline finishes drawing. -->
-    <path class="fade-up" style="animation-delay:2550ms" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8" fill="var(--lime)" stroke="none"/>
-    <path class="draw-line" style="--len:2971; --delay:1150ms" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8" fill="none" stroke="var(--ink)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- final mark: stroke-only outline, no fill, as designed -->
+    <path class="mc-logo mc-d" style="--mc-len:2971; --mc-dur:3.2s; --mc-delay:7.7s; animation-timing-function:cubic-bezier(.45,0,.55,1)" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8"/>
 
     <!-- corner node dots -->
-    <circle class="node-in" style="--pop-delay:2.4s" cx="181.8" cy="181.8" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
-    <circle class="node-in" style="--pop-delay:2.5s" cx="818.2" cy="181.8" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
-    <circle class="node-in" style="--pop-delay:2.6s" cx="818.2" cy="818.2" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
-    <circle class="node-in" style="--pop-delay:2.7s" cx="181.8" cy="818.2" r="24" fill="var(--surface)" stroke="var(--ink)" stroke-width="9"/>
+    <circle class="mc-pt node-in" style="--pop-delay:4.4s" cx="181.8" cy="181.8" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:4.55s" cx="818.2" cy="181.8" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:4.7s" cx="818.2" cy="818.2" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:4.85s" cx="181.8" cy="818.2" r="12"/>
   </symbol>
 
   <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
