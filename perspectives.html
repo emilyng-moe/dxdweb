@@ -35,25 +35,25 @@
   <symbol id="mark-compass" viewBox="0 0 1000 1000">
     <defs>
       <mask id="mDiag" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
-        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.9s; --mc-delay:5s" x1="256.8" y1="256.8" x2="743.2" y2="743.2"/>
-        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.9s; --mc-delay:5s" x1="743.2" y1="256.8" x2="256.8" y2="743.2"/>
+        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.35s; --mc-delay:1s" x1="256.8" y1="256.8" x2="743.2" y2="743.2"/>
+        <line class="mc-mk mc-d" style="--mc-len:688; --mc-dur:.35s; --mc-delay:1s" x1="743.2" y1="256.8" x2="256.8" y2="743.2"/>
       </mask>
       <mask id="mDia" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
-        <path class="mc-mk mc-d" style="--mc-len:886; --mc-dur:.9s; --mc-delay:6.7s" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z"/>
+        <path class="mc-mk mc-d" style="--mc-len:886; --mc-dur:.35s; --mc-delay:1.45s" d="M500 343.4 L656.6 500 L500 656.6 L343.4 500 Z"/>
       </mask>
     </defs>
 
     <!-- construction axes -->
-    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="50" y2="500"/>
-    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="950" y2="500"/>
-    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="500" y2="50"/>
-    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:1s; --mc-delay:.5s" x1="500" y1="500" x2="500" y2="950"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:.35s; --mc-delay:0s" x1="500" y1="500" x2="50" y2="500"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:.35s; --mc-delay:0s" x1="500" y1="500" x2="950" y2="500"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:.35s; --mc-delay:0s" x1="500" y1="500" x2="500" y2="50"/>
+    <line class="mc-c mc-d" style="--mc-len:451; --mc-dur:.35s; --mc-delay:0s" x1="500" y1="500" x2="500" y2="950"/>
 
     <!-- outer guide circle -->
-    <circle class="mc-c mc-d" style="--mc-len:2828; --mc-dur:1.6s; --mc-delay:1.4s" cx="500" cy="500" r="450" transform="rotate(-90 500 500)"/>
+    <circle class="mc-c mc-d" style="--mc-len:2828; --mc-dur:.5s; --mc-delay:.25s" cx="500" cy="500" r="450" transform="rotate(-90 500 500)"/>
 
     <!-- square guide -->
-    <path class="mc-c mc-d" style="--mc-len:2546; --mc-dur:1.5s; --mc-delay:2.9s" d="M181.8 181.8 H818.2 V818.2 H181.8 Z"/>
+    <path class="mc-c mc-d" style="--mc-len:2546; --mc-dur:.5s; --mc-delay:.5s" d="M181.8 181.8 H818.2 V818.2 H181.8 Z"/>
 
     <!-- diagonal guides: a moving mask (mc-mk) draws itself along the
          diagonal, and wherever it's opaque the dashed line underneath
@@ -64,7 +64,7 @@
     </g>
 
     <!-- inner guide circle -->
-    <circle class="mc-c-soft mc-d" style="--mc-len:984; --mc-dur:1s; --mc-delay:5.8s" cx="500" cy="500" r="156.6" transform="rotate(-90 500 500)"/>
+    <circle class="mc-c-soft mc-d" style="--mc-len:984; --mc-dur:.4s; --mc-delay:1.15s" cx="500" cy="500" r="156.6" transform="rotate(-90 500 500)"/>
 
     <!-- inner diamond guide: same moving-mask reveal as the diagonals -->
     <g mask="url(#mDia)">
@@ -72,13 +72,13 @@
     </g>
 
     <!-- final mark: stroke-only outline, no fill, as designed -->
-    <path class="mc-logo mc-d" style="--mc-len:2971; --mc-dur:3.2s; --mc-delay:7.7s; animation-timing-function:cubic-bezier(.45,0,.55,1)" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8"/>
+    <path class="mc-logo mc-d" style="--mc-len:2971; --mc-dur:1.1s; --mc-delay:1.7s; animation-timing-function:cubic-bezier(.45,0,.55,1)" d="M181.8 181.8 A394.1 394.1 0 0 0 818.2 181.8 A394.1 394.1 0 0 0 818.2 818.2 A394.1 394.1 0 0 0 181.8 818.2 A394.1 394.1 0 0 0 181.8 181.8"/>
 
     <!-- corner node dots -->
-    <circle class="mc-pt node-in" style="--pop-delay:4.4s" cx="181.8" cy="181.8" r="12"/>
-    <circle class="mc-pt node-in" style="--pop-delay:4.55s" cx="818.2" cy="181.8" r="12"/>
-    <circle class="mc-pt node-in" style="--pop-delay:4.7s" cx="818.2" cy="818.2" r="12"/>
-    <circle class="mc-pt node-in" style="--pop-delay:4.85s" cx="181.8" cy="818.2" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:.75s" cx="181.8" cy="181.8" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:.8s" cx="818.2" cy="181.8" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:.85s" cx="818.2" cy="818.2" r="12"/>
+    <circle class="mc-pt node-in" style="--pop-delay:.9s" cx="181.8" cy="818.2" r="12"/>
   </symbol>
 
   <!-- ============ Build & deliver: monitor + stacked blocks ============ -->
