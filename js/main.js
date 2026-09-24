@@ -64,38 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Stat numbers count up when scrolled into view
-  const statEls = document.querySelectorAll('.stat-value');
-  if (statEls.length && !reduced && 'IntersectionObserver' in window) {
-    const animateStat = (el) => {
-      const raw = el.textContent.trim();
-      const match = raw.match(/^([\d,]+)(.*)$/);
-      if (!match) return;
-      const target = parseInt(match[1].replace(/,/g, ''), 10);
-      const suffix = match[2];
-      if (!target) return;
-      const duration = 900;
-      const start = performance.now();
-      const step = (now) => {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(eased * target) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = raw;
-      };
-      requestAnimationFrame(step);
-    };
-    const statIo = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateStat(entry.target);
-          statIo.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    statEls.forEach((el) => statIo.observe(el));
-  }
-
   // Major chapter-break rules draw in when scrolled into view
   const ruleEls = document.querySelectorAll('.rule-major');
   if (ruleEls.length) {
@@ -150,26 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
       revealEls.forEach((el) => revealIo.observe(el));
     }
   }
-
-  // Stats: scale the number in and rise the label alongside the existing
-  // count-up (extends the observer already driving animateStat above).
-  document.querySelectorAll('.stat-row > div').forEach((cell) => {
-    const value = cell.querySelector('.stat-value');
-    if (!value || reduced || !('IntersectionObserver' in window)) {
-      cell.classList.add('in-view');
-      return;
-    }
-    const cellIo = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.parentElement.classList.add('in-view');
-          entry.target.classList.add('in-view');
-          cellIo.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    cellIo.observe(value);
-  });
 
   // ---------------------------------------------------------------
   // Parallax: [data-parallax] (vertical) / [data-parallax-x] (horizontal)

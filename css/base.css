@@ -161,8 +161,8 @@ p + p { margin-top: var(--space-4); }
 /* .rule-major marks a genuine change of topic (e.g. mission → products →
    team) and draws in on scroll as a deliberate anchor point. It's used
    sparingly — most of the page's structure still comes from the plain 1px
-   hairlines (.section-border-t/b, .divider-grid, .stat-row), which stay
-   static and mark minor, same-kind divisions. */
+   hairlines (.section-border-t/b, .divider-grid), which stay static and
+   mark minor, same-kind divisions. */
 .rule-major {
   width: calc(100% - var(--margin) * 2);
   max-width: var(--max-content-width);
@@ -358,29 +358,6 @@ html.dark .on-surface .divider-grid > div:hover { background: var(--cream-1); }
   background: #FBF1E2; border: 1px solid #E9D2A2; padding: 2px var(--space-2); border-radius: var(--radius-pill);
 }
 html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
-
-/* ---------- Stats ---------- */
-/* Bridges the hero's own vertical divider (.hero-left's border-right, which
-   sits at the same horizontal center) across the section-padding gap above,
-   so the two read as one continuous line rather than two disjointed
-   segments. Only makes sense at desktop widths, where the hero and stat
-   grids share the same 2/4-column center line — off below 900px, where the
-   hero stacks to one column and there's no divider above to connect to. */
-.stat-row { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
-.stat-row::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: calc(-1 * var(--fluid-pad-lg));
-  width: 1px;
-  height: var(--fluid-pad-lg);
-  background: var(--border);
-}
-@media (max-width: 900px) { .stat-row::before { display: none; } }
-.stat-row > div { padding: var(--space-8); min-width: 0; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.stat-value { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; font-variant-numeric: tabular-nums; }
-.stat-label { font-size: var(--text-sm); color: var(--muted-foreground); margin-top: var(--space-2); }
-@media (max-width: 767px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Simple bordered card (used sparingly: products filter cards, people, stories) ---------- */
 .card {
@@ -627,16 +604,6 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 [data-parallax] { will-change: transform; }
 .hero-right[data-parallax] { transition: transform 60ms linear; }
 
-/* ---------- Stats: number scale-in + label rise (see main.js) ---------- */
-.stat-value {
-  opacity: 0;
-  transform: scale(.82);
-  transition: opacity 520ms var(--ease-standard), transform 520ms var(--ease-standard);
-}
-.stat-value.in-view { opacity: 1; transform: scale(1); }
-.stat-label { opacity: 0; transform: translateY(10px); transition: opacity 480ms var(--ease-standard) 140ms, transform 480ms var(--ease-standard) 140ms; }
-.stat-row > div.in-view .stat-label { opacity: 1; transform: translateY(0); }
-
 /* ---------- Featured products: richer hover ---------- */
 .divider-grid h3 a { display: inline-block; transition: transform var(--duration-state) var(--ease-standard); }
 .divider-grid > div:hover h3 a { transform: translateX(3px); }
@@ -654,7 +621,6 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
   .hero-mark-wrap { transition: none !important; }
   [class*="reveal"] { transition: none !important; opacity: 1 !important; transform: none !important; }
   .reveal-mask > span { transition: none !important; transform: none !important; }
-  .stat-value, .stat-label { transition: none !important; opacity: 1 !important; transform: none !important; }
   /* Excludes [data-parallax-base] — an element with a static base transform
      (e.g. one that also needs centering) needs to keep it; JS never
      overwrites it under reduced motion anyway since the parallax loop never starts. */
