@@ -10,22 +10,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
 <style>
-  /* Flush with the site's frame — a divider row, not a floating card:
-     no radius, no full perimeter border, just the shared vertical/bottom
-     hairlines the rest of the grid uses. */
-  .featured-perspective {
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: stretch;
-    border-bottom: 1px solid var(--border);
+  /* Featured article: an 8-cell grid stage beside the story, the same split
+     the homepage uses for its function stage. */
+  .featured-perspective { display: grid; gap: var(--space-8); align-items: center; }
+  .featured-perspective .story-media { margin: 0; aspect-ratio: 16 / 10; }
+  .featured-perspective h2 { font-size: var(--text-4xl); line-height: 1; letter-spacing: var(--track-tight); margin-top: var(--space-6); }
+  .fp-text p { margin-top: var(--space-6); font-size: var(--text-lg); line-height: 1.55; color: var(--ink-soft); max-width: 42ch; }
+  .fp-text .text-link { margin-top: var(--space-8); }
+  @media (min-width: 901px) {
+    .featured-perspective { grid-template-columns: calc(var(--cell) * 8) 1fr; column-gap: var(--cell); }
   }
-  .featured-perspective .story-media { border: none; border-right: 1px solid var(--border); }
-  .featured-perspective .fp-text { padding: var(--space-10); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; }
-  @media (max-width: 900px) {
-    .featured-perspective { grid-template-columns: 1fr; }
-    .featured-perspective .story-media { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-  .segment-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-2); }
-  .segment-head .cell-icon { margin-bottom: 0; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -176,7 +172,6 @@
 
   <!-- ============ Featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
-    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
     <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
     <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
@@ -193,7 +188,6 @@
 
   <!-- ============ Generic photo placeholder (article grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
-    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   </symbol>
@@ -233,28 +227,29 @@
 
 <main>
 <div class="canvas">
-  <section class="blueprint" style="padding:var(--space-16) 0">
-    <div class="container" style="max-width:720px">
-      <p class="eyebrow">Perspectives</p>
-      <h1 style="font-size:var(--text-3xl)">Ideas from the people building DXD.</h1>
-      <p class="lede">Articles from across the division — Product, Design, and AI. <span class="placeholder-badge">All articles on this page are placeholder content</span></p>
+  <section class="blueprint page-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow page-hero-label" data-reveal="left">Perspectives</p>
+      <div class="page-hero-main">
+        <h1 data-split>Ideas from the people building DXD.</h1>
+        <p class="lede" data-reveal="up" style="--d:450ms">Articles from across the division — Product, Design, and AI. <span class="placeholder-badge">All articles on this page are placeholder content</span></p>
+      </div>
+      <span class="grid-cell-lime page-hero-cell" data-cell-step aria-hidden="true"></span>
     </div>
   </section>
-
-  <div class="rule-major" aria-hidden="true"></div>
 
   <section class="tight">
     <div class="container">
 
-      <div class="featured-perspective fade-up">
-        <div class="story-media" style="aspect-ratio:auto; border-radius:0">
-          <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260" style="width:100%; height:100%"><use href="#illus-story-featured"/></svg>
+      <div class="featured-perspective">
+        <div class="story-media grid-stage" data-reveal="wipe-right">
+          <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260"><use href="#illus-story-featured"/></svg>
         </div>
         <div class="fp-text">
-          <div><span class="tag">Product</span><span class="placeholder-badge">placeholder</span></div>
-          <h2 style="font-size:var(--text-2xl); margin-top:var(--space-3)">Why we killed a feature two weeks before launch</h2>
-          <p style="margin-top:var(--space-4)">Sometimes the right product call is the one nobody wants to hear — notes from a late call on the OnePlacement launch.</p>
-          <a href="#" class="btn btn-ghost" style="margin-top:var(--space-6); width:fit-content">Read the article →</a>
+          <div class="work-tags" data-reveal="up"><span class="tag">Product</span><span class="placeholder-badge">placeholder</span></div>
+          <h2 data-split>Why we killed a feature two weeks before launch</h2>
+          <p data-reveal="up" style="--d:250ms">Sometimes the right product call is the one nobody wants to hear — notes from a late call on the OnePlacement launch.</p>
+          <a href="#" class="text-link" data-reveal="up" style="--d:400ms">Read the article <span class="btn-arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
 
@@ -264,30 +259,25 @@
   <!-- ============ Segment 1: Product ============ -->
   <section class="tight">
     <div class="container">
-      <div class="section-head">
-        <div class="segment-head">
-          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></div>
-          <div>
-            <p class="eyebrow" style="margin:0">Segment 1 of 3</p>
-            <h2 style="font-size:var(--text-2xl)">Product</h2>
-          </div>
-        </div>
+      <div class="side-head">
+        <p class="side-head-label"><span class="line-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></span><span class="eyebrow">Segment 1 of 3</span></p>
+        <h2 class="side-head-title" data-split>Product</h2>
       </div>
-      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
+      <div class="divider-grid cols-2">
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">Product</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">Product</span>
           <h3>Designing OnePlacement's registration flow around parents' worst week of the year</h3>
-          <p class="desc" style="font-size:var(--text-sm)">What we learned building a placement system for a process that's stressful no matter how good the UI is.</p>
+          <p class="desc">What we learned building a placement system for a process that's stressful no matter how good the UI is.</p>
           <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">Product</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">Product</span>
           <h3>How we prioritise a 30-product roadmap with one team</h3>
-          <p class="desc" style="font-size:var(--text-sm)">Inside DXD's approach to sequencing work across schools, officers, and parents.</p>
+          <p class="desc">Inside DXD's approach to sequencing work across schools, officers, and parents.</p>
           <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
@@ -295,35 +285,28 @@
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
   <!-- ============ Segment 2: Design ============ -->
-  <section class="tight on-surface">
+  <section class="tight">
     <div class="container">
-      <div class="section-head">
-        <div class="segment-head">
-          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <div>
-            <p class="eyebrow" style="margin:0">Segment 2 of 3</p>
-            <h2 style="font-size:var(--text-2xl)">Design</h2>
-          </div>
-        </div>
+      <div class="side-head">
+        <p class="side-head-label"><span class="line-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="eyebrow">Segment 2 of 3</span></p>
+        <h2 class="side-head-title" data-split>Design</h2>
       </div>
-      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
+      <div class="divider-grid cols-2">
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">Design</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">Design</span>
           <h3>A design system for 30+ products, one team</h3>
-          <p class="desc" style="font-size:var(--text-sm)">How DXD's design system keeps school and officer-facing products feeling like one family, not thirty.</p>
+          <p class="desc">How DXD's design system keeps school and officer-facing products feeling like one family, not thirty.</p>
           <div class="story-meta"><span>6 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">Design</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">Design</span>
           <h3>Designing for teachers who are already stretched thin</h3>
-          <p class="desc" style="font-size:var(--text-sm)">Every extra click is a tax on someone's Friday afternoon — notes from redesigning Teacher Workspace.</p>
+          <p class="desc">Every extra click is a tax on someone's Friday afternoon — notes from redesigning Teacher Workspace.</p>
           <div class="story-meta"><span>4 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
@@ -331,35 +314,28 @@
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
   <!-- ============ Segment 3: AI ============ -->
   <section class="tight">
     <div class="container">
-      <div class="section-head">
-        <div class="segment-head">
-          <div class="cell-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></div>
-          <div>
-            <p class="eyebrow" style="margin:0">Segment 3 of 3</p>
-            <h2 style="font-size:var(--text-2xl)">AI</h2>
-          </div>
-        </div>
+      <div class="side-head">
+        <p class="side-head-label"><span class="line-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></span><span class="eyebrow">Segment 3 of 3</span></p>
+        <h2 class="side-head-title" data-split>AI</h2>
       </div>
-      <div class="divider-grid" style="grid-template-columns:repeat(2,1fr); margin-top:var(--space-8)">
+      <div class="divider-grid cols-2">
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">AI</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">AI</span>
           <h3>What Mark.ly got wrong before it got useful</h3>
-          <p class="desc" style="font-size:var(--text-sm)">Early lessons from building an AI marking assistant teachers actually trust.</p>
+          <p class="desc">Early lessons from building an AI marking assistant teachers actually trust.</p>
           <div class="story-meta"><span>5 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
         <div>
-          <div class="story-media"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130" style="width:100%; height:100%"><use href="#illus-photo-generic"/></svg></div>
-          <span class="tag" style="margin:0">AI</span>
+          <div class="story-media grid-stage"><svg class="illus-trigger illus-sketchy" viewBox="0 0 200 130"><use href="#illus-photo-generic"/></svg></div>
+          <span class="tag">AI</span>
           <h3>AI adoption isn't a training problem</h3>
-          <p class="desc" style="font-size:var(--text-sm)">Why DXD's AI Adoption Working Team spends more time on workflows than workshops.</p>
+          <p class="desc">Why DXD's AI Adoption Working Team spends more time on workflows than workshops.</p>
           <div class="story-meta"><span>3 min read</span><span class="placeholder-badge">placeholder</span></div>
         </div>
 
@@ -405,5 +381,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>

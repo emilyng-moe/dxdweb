@@ -10,9 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
 <style>
-  .discipline-band { display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:0; }
-  .person-cell { display:flex; flex-direction:column; }
+  /* The disciplines: a quiet row of hairline cells, read as a list rather than as tabs. */
+  .discipline-band { display: flex; flex-wrap: wrap; list-style: none; margin: 0 0 var(--cell); padding: 1px 0 0 1px; }
+  .discipline-band li { display: flex; align-items: center; height: var(--cell); padding: 0 var(--space-6); margin: -1px 0 0 -1px; border: 1px solid var(--border); font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
 </style>
 </head>
 <body>
@@ -163,7 +165,6 @@
 
   <!-- ============ Story featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
-    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
     <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
     <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
@@ -180,7 +181,6 @@
 
   <!-- ============ Generic photo placeholder (story grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
-    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   </symbol>
@@ -220,29 +220,28 @@
 
 <main>
 <div class="canvas">
-  <section class="blueprint" style="padding:var(--space-16) 0">
-    <div class="container" style="max-width:720px">
-      <p class="eyebrow">People</p>
-      <h1 style="font-size:var(--text-3xl)">A diverse team, one mission.</h1>
-      <p class="lede">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference. <span class="placeholder-badge">All profiles on this page are placeholder content</span></p>
+  <section class="blueprint page-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow page-hero-label" data-reveal="left">People</p>
+      <div class="page-hero-main">
+        <h1 data-split>A diverse team, one mission.</h1>
+        <p class="lede" data-reveal="up" style="--d:450ms">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference. <span class="placeholder-badge">All profiles on this page are placeholder content</span></p>
+      </div>
+      <span class="grid-cell-lime page-hero-cell" data-cell-step aria-hidden="true"></span>
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="tight" style="padding-bottom:0">
+  <section class="tight">
     <div class="container">
-      <div class="discipline-band">
-        <span class="pill-mono">Product</span>
-        <span class="pill-mono">Engineering</span>
-        <span class="pill-mono">Design</span>
-        <span class="pill-mono">Data &amp; AI</span>
-        <span class="pill-mono">Education</span>
-        <span class="pill-mono">Operations</span>
-      </div>
-    </div>
+      <ul class="discipline-band" data-reveal="up">
+        <li>Product</li>
+        <li>Engineering</li>
+        <li>Design</li>
+        <li>Data &amp; AI</li>
+        <li>Education</li>
+        <li>Operations</li>
+      </ul>
 
-    <div class="container" style="padding:0; margin-top:var(--space-10)">
       <div class="divider-grid cols-4">
 
         <div class="person-cell">
@@ -305,15 +304,18 @@
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="on-surface">
-    <div class="container" style="text-align:center; max-width:560px">
-      <svg class="illus-trigger illus-sketchy" viewBox="0 0 200 160" style="width:180px; margin:0 auto var(--space-6)"><use href="#illus-people-cta"/></svg>
-      <h2 style="font-size:var(--text-2xl)">Want to join us?</h2>
-      <p style="margin-top:var(--space-4)">We're always looking for people who care about building useful, reliable technology for Singapore's education system.</p>
-      <div class="hero-actions" style="justify-content:center; margin-top:var(--space-6)">
-        <a href="careers.html" class="btn btn-primary">See open roles</a>
+  <section class="lime-cta" data-lime-grow>
+    <div class="lime-cta-bg" data-lime-bg aria-hidden="true"></div>
+    <div class="container lime-cta-inner">
+      <div>
+        <h2 data-split>Want to join us?</h2>
+        <p class="lime-cta-text" data-reveal="up" style="--d:250ms">We're always looking for people who care about building useful, reliable technology for Singapore's education system.</p>
+        <div class="lime-cta-actions" data-reveal="up" style="--d:400ms">
+          <a href="careers.html" class="btn btn-ink">See open roles</a>
+        </div>
+      </div>
+      <div class="lime-cta-visual illus-gate" data-reveal="scale" style="--d:150ms" aria-hidden="true">
+        <svg class="illus-sketchy" viewBox="0 0 200 160"><use href="#illus-people-cta"/></svg>
       </div>
     </div>
   </section>
@@ -356,5 +358,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
@@ -159,7 +161,6 @@
 
   <!-- ============ Story featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
-    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
     <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
     <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
@@ -176,7 +177,6 @@
 
   <!-- ============ Generic photo placeholder (story grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
-    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   </symbol>
@@ -229,129 +229,130 @@
 <main>
 <div class="canvas">
 
-  <section class="blueprint" style="padding:0">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <div data-parallax="-0.06">
-          <p class="eyebrow hero-enter-eyebrow">Digital Excellence &amp; Products Division · MOE</p>
-          <h1 class="hero-headline"><span>Moulding our nation's future through technology.</span></h1>
-          <p class="lede hero-enter-lede">DXD builds and delivers the digital products, services, and AI capabilities that empower schools, educators, students, parents, and MOE officers — enabling MOE's digital transformation from the ground up.</p>
-          <div class="hero-actions hero-enter-actions">
-            <a href="products.html" class="btn btn-primary">See our products</a>
-            <a href="careers.html" class="btn btn-ghost">Join the team</a>
+  <!-- ============ Hero: the statement, set on the grid ============ -->
+  <section class="blueprint hero" data-hero>
+    <div class="container hero-inner">
+      <p class="hero-kicker" data-reveal="up">Digital Excellence &amp; Products Division, MOE</p>
+      <h1 class="hero-title" aria-label="Moulding our nation's future through technology.">
+        <span class="hero-line" data-drift="-1"><span data-split>Moulding our</span></span>
+        <span class="hero-line hero-line--indent" data-drift="1"><span data-split style="--split-delay:110ms">nation's future</span></span>
+        <span class="hero-line" data-drift="-0.6"><span data-split style="--split-delay:220ms">through technology.</span></span>
+      </h1>
+      <div class="hero-mark illus-trigger" data-hero-mark aria-hidden="true">
+        <svg viewBox="0 0 1000 1000"><use href="#mark-compass"/></svg>
+      </div>
+      <div class="hero-foot">
+        <div class="hero-actions" data-reveal="up" style="--d:800ms">
+          <a href="products.html" class="btn btn-primary">See our products</a>
+          <a href="careers.html" class="text-link">Join the team <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <span class="grid-cell-lime hero-cell" data-hero-cell aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ============ Mission: one sentence, filled in by scrolling ============ -->
+  <section class="statement" id="mission" data-statement>
+    <div class="statement-sticky">
+      <div class="container statement-inner">
+        <h2 class="statement-label" data-reveal="left">What we're here to do.</h2>
+        <p class="statement-text" data-fill>DXD builds and delivers the digital products, services, and AI capabilities that empower schools, educators, students, parents, and MOE officers — enabling MOE's digital transformation from the ground up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Functions: a pinned stage whose visual changes as each function passes ============ -->
+  <section class="functions" data-functions>
+    <div class="container fn-grid">
+      <div class="fn-stage" aria-hidden="true">
+        <div class="fn-stage-inner">
+          <span class="fn-counter"><span class="fn-counter-track"><span>01</span><span>02</span><span>03</span></span></span>
+          <div class="fn-visual illus-gate is-active" data-fn-visual="0"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-build"/></svg></div>
+          <div class="fn-visual illus-gate" data-fn-visual="1"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-ai"/></svg></div>
+          <div class="fn-visual illus-gate" data-fn-visual="2"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-empower"/></svg></div>
+          <span class="grid-cell-lime fn-cell"></span>
+          <span class="fn-progress"><span class="fn-progress-bar"></span></span>
+        </div>
+      </div>
+
+      <ol class="fn-list">
+        <li class="fn-item is-active" data-fn-item="0">
+          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-build"/></svg></div>
+          <span class="fn-num">01</span>
+          <h3 data-split>Build &amp; deliver impactful digital solutions</h3>
+          <p data-reveal="up" style="--d:200ms">We develop and maintain digital products, systems, and infrastructure that create value for MOE and schools.</p>
+          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Secure, reliable, easy-to-use services are the foundation everything else stands on.</p>
+        </li>
+        <li class="fn-item" data-fn-item="1">
+          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-ai"/></svg></div>
+          <span class="fn-num">02</span>
+          <h3 data-split>Accelerate digital innovation &amp; AI adoption</h3>
+          <p data-reveal="up" style="--d:200ms">We co-create solutions with users to meet evolving needs, and drive AI adoption across MOE.</p>
+          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Partnering teams to experiment, build skills, and apply AI meaningfully to teaching, learning, and work.</p>
+        </li>
+        <li class="fn-item" data-fn-item="2">
+          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-empower"/></svg></div>
+          <span class="fn-num">03</span>
+          <h3 data-split>Empower users &amp; grow digital capabilities</h3>
+          <p data-reveal="up" style="--d:200ms">We provide responsive, user-focused support to ensure smooth and effective use of technology.</p>
+          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Building digital awareness and skills so people can apply emerging technologies in their work.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ Featured products: tiles occupying irregular runs of grid cells ============ -->
+  <section class="work" id="products">
+    <div class="container cq">
+      <div class="work-head">
+        <h2 class="work-title" data-split>What we've built.</h2>
+        <a href="products.html" class="text-link" data-reveal="right" style="--d:250ms">View all products <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="work-grid" data-reveal="grid">
+        <a class="work-tile work-tile--lg" href="products.html#students" data-reveal="wipe-right" style="--d:150ms">
+          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M12 7v5l3 3" pathLength="1"/></svg></span>
+          <div class="work-body">
+            <h3>SLS</h3>
+            <span class="work-desc">The Student Learning Space — where students access curriculum resources, assignments, and track their own learning.</span>
+            <span class="pill-mono">Students</span>
+          </div>
+        </a>
+        <a class="work-tile work-tile--a" href="products.html#schools-teachers" data-reveal="wipe-down" style="--d:300ms">
+          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7z" pathLength="1"/></svg></span>
+          <div class="work-body">
+            <h3>Teacher Workspace</h3>
+            <span class="work-desc">Calm, reliable tools that give teachers back time — marks, attendance, and lesson planning.</span>
+            <span class="pill-mono">Schools &amp; Teachers</span>
+          </div>
+        </a>
+        <a class="work-tile work-tile--b" href="products.html#platforms" data-reveal="wipe-up" style="--d:420ms">
+          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M9 12l2 2 4-4" pathLength="1"/></svg></span>
+          <div class="work-body">
+            <h3>Mark.ly</h3>
+            <span class="work-desc">An AI-assisted marking tool that helps teachers grade faster and more consistently.</span>
+            <span class="pill-mono">Platforms &amp; Infrastructure</span>
+          </div>
+        </a>
+        <span class="grid-cell-lime work-cell" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Team: the lime cell grows into the whole section ============ -->
+  <section class="team" id="team" data-team>
+    <div class="team-sticky">
+      <div class="team-lime" data-team-lime aria-hidden="true"></div>
+      <div class="container team-inner">
+        <div class="team-copy">
+          <h2 data-split>A diverse team, one mission.</h2>
+          <p class="team-text" data-reveal="up" style="--d:250ms">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference.</p>
+          <div class="team-actions" data-reveal="up" style="--d:400ms">
+            <a href="people.html" class="btn btn-ink">Meet our people</a>
+            <a href="perspectives.html" class="text-link">Read our perspectives <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
-      </div>
-      <div class="hero-right" data-parallax="0.08" data-parallax-scale="0.85">
-        <div class="hero-mark-wrap illus-trigger">
-          <svg viewBox="0 0 1000 1000" style="width:min(370px, 72%)"><use href="#mark-compass"/></svg>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="mission" class="tight">
-    <div class="container">
-      <div class="section-head stagger">
-        <div class="stagger" style="--stagger-step:140ms">
-          <p class="eyebrow reveal-up">Mission</p>
-          <h2 class="reveal-mask"><span>What we're here to do.</span></h2>
-        </div>
-        <p class="reveal-up">We work closely with stakeholders to create better experiences for schools, educators, students, parents, and MOE officers through technology.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="container" style="padding:0">
-    <div class="split-row">
-      <div class="split-media reveal-scale">
-        <svg class="illus-trigger illus-sketchy" viewBox="0 0 220 180" style="width:min(190px, 82%)" data-parallax="0.035"><use href="#illus-build"/></svg>
-      </div>
-      <div class="stagger">
-        <p class="split-tag reveal-up"><span class="split-num">01</span></p>
-        <h3 class="reveal-mask"><span>Build &amp; deliver impactful digital solutions</span></h3>
-        <p class="reveal-up">We develop and maintain digital products, systems, and infrastructure that create value for MOE and schools.</p>
-        <p class="why reveal-up"><b>Why it matters</b> — Secure, reliable, easy-to-use services are the foundation everything else stands on.</p>
-      </div>
-    </div>
-
-    <div class="split-row reverse">
-      <div class="split-media reveal-scale">
-        <svg class="illus-trigger illus-sketchy" viewBox="0 0 220 180" style="width:min(190px, 82%)" data-parallax="0.035"><use href="#illus-ai"/></svg>
-      </div>
-      <div class="stagger">
-        <p class="split-tag reveal-up"><span class="split-num">02</span></p>
-        <h3 class="reveal-mask"><span>Accelerate digital innovation &amp; AI adoption</span></h3>
-        <p class="reveal-up">We co-create solutions with users to meet evolving needs, and drive AI adoption across MOE.</p>
-        <p class="why reveal-up"><b>Why it matters</b> — Partnering teams to experiment, build skills, and apply AI meaningfully to teaching, learning, and work.</p>
-      </div>
-    </div>
-
-    <div class="split-row" style="border-bottom:none">
-      <div class="split-media reveal-scale">
-        <svg class="illus-trigger illus-sketchy" viewBox="0 0 220 180" style="width:min(190px, 82%)" data-parallax="0.035"><use href="#illus-empower"/></svg>
-      </div>
-      <div class="stagger">
-        <p class="split-tag reveal-up"><span class="split-num">03</span></p>
-        <h3 class="reveal-mask"><span>Empower users &amp; grow digital capabilities</span></h3>
-        <p class="reveal-up">We provide responsive, user-focused support to ensure smooth and effective use of technology.</p>
-        <p class="why reveal-up"><b>Why it matters</b> — Building digital awareness and skills so people can apply emerging technologies in their work.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="on-surface section-border-b">
-    <div class="container">
-      <div class="section-head stagger" style="--stagger-step:140ms">
-        <div>
-          <p class="eyebrow reveal-up">Featured products</p>
-          <h2 class="reveal-mask"><span>What we've built.</span></h2>
-        </div>
-        <a href="products.html" class="btn btn-ghost reveal-up">View all products <span class="btn-arrow">→</span></a>
-      </div>
-    </div>
-    <div class="container" style="padding:0">
-      <div class="divider-grid stagger" style="--stagger-step:80ms">
-        <div class="reveal-up cell-magnetic">
-          <div class="cell-icon"><svg width="20" height="20" class="illus-sketchy-sm icon-redraw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M12 7v5l3 3" pathLength="1"/></svg></div>
-          <h3><a href="products.html#students">SLS</a></h3>
-          <p class="desc">The Student Learning Space — where students access curriculum resources, assignments, and track their own learning.</p>
-          <div class="cell-bottom"><span class="pill-mono">Students</span></div>
-        </div>
-        <div class="reveal-up cell-magnetic">
-          <div class="cell-icon"><svg width="20" height="20" class="illus-sketchy-sm icon-redraw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z" pathLength="1"/></svg></div>
-          <h3><a href="products.html#schools-teachers">Teacher Workspace</a></h3>
-          <p class="desc">Calm, reliable tools that give teachers back time — marks, attendance, and lesson planning.</p>
-          <div class="cell-bottom"><span class="pill-mono">Schools &amp; Teachers</span></div>
-        </div>
-        <div class="reveal-up cell-magnetic">
-          <div class="cell-icon"><svg width="20" height="20" class="illus-sketchy-sm icon-redraw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M9 12l2 2 4-4" pathLength="1"/></svg></div>
-          <h3><a href="products.html#platforms">Mark.ly</a></h3>
-          <p class="desc">An AI-assisted marking tool that helps teachers grade faster and more consistently.</p>
-          <div class="cell-bottom"><span class="pill-mono">Platforms &amp; Infrastructure</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section id="team" style="padding-bottom:0">
-    <div class="container" style="padding:0">
-      <div class="split-row" style="border-bottom:none">
-        <div class="stagger" data-parallax-x="-0.03">
-          <p class="eyebrow reveal-up">Our team</p>
-          <h2 class="reveal-mask" style="font-size:var(--text-2xl)"><span>A diverse team, one mission.</span></h2>
-          <p class="reveal-up" style="margin-top:var(--space-4)">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference.</p>
-          <div class="hero-actions reveal-up">
-            <a href="people.html" class="btn btn-primary">Meet our people</a>
-            <a href="perspectives.html" class="btn btn-ghost">Read our perspectives</a>
-          </div>
-        </div>
-        <div class="split-media reveal-scale" style="border:none; border-left:1px solid var(--border)">
-          <svg class="illus-trigger illus-sketchy" viewBox="0 0 200 160" style="width:min(185px, 78%)" data-parallax-x="0.04"><use href="#illus-people-cta"/></svg>
+        <div class="team-visual illus-gate" data-reveal="scale" style="--d:150ms" aria-hidden="true">
+          <svg class="illus-sketchy" viewBox="0 0 200 160"><use href="#illus-people-cta"/></svg>
         </div>
       </div>
     </div>
@@ -396,5 +397,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>

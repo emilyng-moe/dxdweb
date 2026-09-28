@@ -1,0 +1,151 @@
+/* ============================================================================
+   Shared compositions — used on the homepage and every subpage so the whole
+   site speaks one grid language: 64px cells, hairline tiles that fill from
+   the bottom edge, a side label beside each heading, and the lime cell.
+   ========================================================================== */
+
+.grid-cell-lime { display: block; width: var(--cell); height: var(--cell); background: var(--lime); }
+
+/* Illustration playback gated on a reveal/activation class rather than the
+   illustration's own viewport entry. */
+.illus-gate { --illus-play: paused; }
+.illus-gate.is-active, .illus-gate.was-active, .illus-gate.is-in { --illus-play: running; }
+
+/* Container-query scope for grids whose column count depends on the
+   grid-snapped container width (12 / 14 / 16 / 18 cells). No fixed or
+   absolutely positioned UI may live inside one: container-type adds layout
+   containment, which would become their containing block. */
+.cq { container-type: inline-size; }
+
+/* ---------- Side head: small label beside a large heading ---------- */
+.side-head { display: grid; gap: var(--space-4); margin-bottom: var(--cell); }
+.tab-panel > .side-head { margin-top: calc(var(--cell) * 1.5); }
+.side-head-label { display: flex; align-items: center; gap: var(--space-3); margin: 0; }
+.side-head-label .eyebrow { margin: 0; }
+.side-head-title { font-size: var(--text-5xl); line-height: 0.95; letter-spacing: var(--track-display); }
+.side-head-text { margin-top: var(--space-6); font-size: var(--text-lg); line-height: 1.55; color: var(--ink-soft); max-width: 46ch; }
+.line-icon { display: inline-flex; width: 28px; height: 28px; color: var(--ink); flex-shrink: 0; }
+.line-icon svg { width: 100%; height: 100%; stroke-width: 1.6; }
+@media (min-width: 901px) {
+  .side-head { grid-template-columns: calc(var(--cell) * 4) 1fr; column-gap: var(--cell); align-items: start; }
+  .side-head-label { padding-top: 0.55em; align-items: flex-start; flex-direction: column; gap: var(--space-4); }
+}
+
+/* ---------- Tiles on runs of grid cells ---------- */
+.work-head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-6); flex-wrap: wrap;
+  margin-bottom: var(--cell);
+}
+.work-title { font-size: var(--text-5xl); line-height: 0.95; letter-spacing: var(--track-display); }
+
+.work-grid { display: flex; flex-direction: column; gap: var(--space-4); }
+.work-tile {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-8);
+  min-height: 240px;
+  padding: var(--space-6);
+  background: var(--background);
+  box-shadow: inset 0 0 0 1px var(--border);
+  color: var(--ink);
+  transition: box-shadow var(--dur-micro) var(--ease-standard);
+}
+/* Hover fills the tile from its bottom edge — lime where the tile is a
+   link, a light lime tint where it's only information. */
+.work-tile::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--lime);
+  transform: translateY(101%);
+  transition: transform var(--dur-ui) var(--ease-standard);
+}
+.work-tile:hover::before, .work-tile:focus-visible::before { transform: translateY(0); }
+a.work-tile:hover, a.work-tile:focus-visible { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.work-tile--static::before { background: var(--lime-tint); }
+.work-tile:focus-visible { outline-offset: -4px; }
+.work-icon { display: block; width: var(--cell); height: var(--cell); color: var(--ink); }
+.work-icon svg { width: 100%; height: 100%; }
+/* Stroke width in viewBox units, set per icon size so every icon draws a
+   ~2px line (non-scaling-stroke would break the pathLength-based redraw). */
+.work-icon svg * { stroke-width: 0.75; stroke-dasharray: 1.02 1; stroke-dashoffset: 0; }
+.work-tile--lg .work-icon svg * { stroke-width: 0.3; }
+.work-tile:hover .work-icon svg * { animation: iconRedraw 700ms var(--ease-standard); }
+.work-body { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+.work-body h3 { font-size: var(--text-2xl); letter-spacing: var(--track-tight); }
+.work-desc { font-size: var(--text-sm); line-height: 1.55; color: var(--ink-soft); max-width: 40ch; }
+.work-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.work-tags .placeholder-badge { margin-left: 0; }
+.work-tile--lg .work-icon { width: calc(var(--cell) * 3); height: calc(var(--cell) * 3); }
+.work-tile--lg .work-body h3 { font-size: var(--text-4xl); }
+.work-tile--lg .work-desc { font-size: var(--text-base); }
+.work-cell { align-self: flex-end; }
+
+@media (min-width: 901px) {
+  /* Columns are exactly one cell wide, so every tile edge is a grid line;
+     the grid's own background shows the empty cells between them. */
+  .work-grid {
+    --lg: 6; --sm: 5;
+    display: grid; gap: 0;
+    grid-template-columns: repeat(auto-fill, var(--cell));
+    grid-template-rows: repeat(8, var(--cell));
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: var(--cell) var(--cell);
+    box-shadow: inset -1px -1px 0 var(--border);
+  }
+  .work-tile { min-height: 0; }
+  .work-tile--lg { grid-column: 1 / span var(--lg); grid-row: 1 / span 8; padding: var(--space-8); }
+  .work-tile--a { grid-column: auto / span var(--sm); grid-row: 1 / span 4; }
+  .work-tile--b { grid-column: auto / span var(--sm); grid-row: 5 / span 4; }
+  .work-cell { grid-column: -2 / -1; grid-row: 8; align-self: auto; }
+}
+/* Taller variant for longer tile content: small tiles get 5 rows, not 4. */
+@media (min-width: 901px) {
+  .work-grid--tall { grid-template-rows: repeat(10, var(--cell)); }
+  .work-grid--tall .work-tile--lg { grid-row: 1 / span 10; }
+  .work-grid--tall .work-tile--a { grid-row: 1 / span 5; }
+  .work-grid--tall .work-tile--b { grid-row: 6 / span 5; }
+  .work-grid--tall .work-cell { grid-row: 10; }
+}
+@container (min-width: 896px) { .work-grid { --lg: 7; --sm: 6; } }
+@container (min-width: 1024px) { .work-grid { --lg: 8; --sm: 6; } }
+
+/* ---------- Grid stage: a cream surface ruled with the page grid ---------- */
+.grid-stage {
+  position: relative; overflow: hidden;
+  background-color: var(--cream-1);
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: calc(var(--cell) / 2) calc(var(--cell) / 2);
+  box-shadow: inset 0 0 0 1px var(--border);
+  display: grid; place-items: center;
+}
+.grid-stage svg { width: 78%; height: auto; transition: transform var(--dur-ui) var(--ease-standard); }
+
+/* ---------- Page hero lime cell: steps down the free right-hand column ---------- */
+.page-hero-cell { position: absolute; top: 0; right: 0; transition: transform var(--dur-ui) var(--ease-in-out); }
+@media (min-width: 901px) { .page-hero-main { padding-right: calc(var(--cell) * 2); } }
+@media (max-width: 900px) { .page-hero-cell { width: 32px; height: 32px; } }
+
+/* ---------- Lime CTA: grows out of a single grid cell ---------- */
+.lime-cta { position: relative; padding: calc(var(--cell) * 2) 0; }
+.lime-cta-bg { position: absolute; inset: 0; background: var(--lime); }
+.lime-cta-inner { position: relative; z-index: 1; display: grid; gap: var(--space-10); align-items: center; }
+.lime-cta h2 {
+  font-size: clamp(44px, 5.6vw + 4px, 108px);
+  line-height: 0.92; letter-spacing: var(--track-display); color: var(--ink);
+}
+.lime-cta-text { margin-top: var(--space-8); font-size: var(--text-lg); line-height: 1.55; color: var(--ink); max-width: 40ch; }
+.lime-cta-actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); }
+.lime-cta-actions .placeholder-badge { margin-left: var(--space-2); }
+.lime-cta-visual { width: min(320px, 75%); }
+.lime-cta-visual svg { width: 100%; height: auto; }
+@media (min-width: 901px) {
+  .lime-cta-inner { grid-template-columns: 1fr calc(var(--cell) * 6); column-gap: var(--cell); }
+  .lime-cta-visual { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-tile::before, .page-hero-cell, .grid-stage svg { transition: none !important; }
+  .work-tile:hover .work-icon svg * { animation: none; }
+}

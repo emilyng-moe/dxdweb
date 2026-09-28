@@ -10,10 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css" />
 <link rel="stylesheet" href="css/base.css" />
-<style>
-  .role-cell { display: flex; flex-direction: column; }
-  .role-cell .cell-bottom { display: flex; align-items: center; justify-content: space-between; }
-</style>
+<link rel="stylesheet" href="css/components.css" />
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
@@ -163,7 +160,6 @@
 
   <!-- ============ Story featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
-    <rect x="0" y="0" width="400" height="260" fill="var(--cream-1)"/>
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
     <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
     <rect x="70" y="70" width="220" height="150" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
@@ -180,7 +176,6 @@
 
   <!-- ============ Generic photo placeholder ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
-    <rect x="0" y="0" width="200" height="130" fill="var(--cream-1)"/>
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   </symbol>
@@ -220,27 +215,24 @@
 
 <main>
 <div class="canvas">
-  <section class="blueprint" style="padding:var(--space-16) 0">
-    <div class="container" style="max-width:720px">
-      <p class="eyebrow">Careers</p>
-      <h1 style="font-size:var(--text-3xl)">Build what Singapore's education system runs on.</h1>
-      <p class="lede">Join a team of product managers, engineers, designers, education officers, and data &amp; AI scientists working on tools used by every school in Singapore. <span class="placeholder-badge">Roles below are placeholder content</span></p>
+  <section class="blueprint page-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow page-hero-label" data-reveal="left">Careers</p>
+      <div class="page-hero-main">
+        <h1 data-split>Build what Singapore's education system runs on.</h1>
+        <p class="lede" data-reveal="up" style="--d:450ms">Join a team of product managers, engineers, designers, education officers, and data &amp; AI scientists working on tools used by every school in Singapore. <span class="placeholder-badge">Roles below are placeholder content</span></p>
+      </div>
+      <span class="grid-cell-lime page-hero-cell" data-cell-step aria-hidden="true"></span>
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="tight" style="padding-bottom:0">
+  <section class="tight">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Why DXD</p>
-          <h2>What you'd be walking into.</h2>
-        </div>
+      <div class="side-head">
+        <p class="side-head-label"><span class="eyebrow">Why DXD</span></p>
+        <h2 class="side-head-title" data-split>What you'd be walking into.</h2>
       </div>
-    </div>
-    <div class="container" style="padding:0; margin-top:var(--space-10)">
-      <div class="divider-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="divider-grid">
 
         <div>
           <div class="cell-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
@@ -264,26 +256,20 @@
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="tight on-surface">
+  <section class="tight">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Open roles</p>
-          <h2>Where we're hiring.</h2>
-        </div>
+      <div class="side-head">
+        <p class="side-head-label"><span class="eyebrow">Open roles</span></p>
+        <h2 class="side-head-title" data-split>Where we're hiring.</h2>
       </div>
-    </div>
-    <div class="container" style="padding:0; margin-top:var(--space-10)">
-      <div class="divider-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="divider-grid">
 
         <div class="role-cell">
           <h3>Product Manager</h3>
           <p class="desc">Schools &amp; Teachers mission space — own the roadmap for a school-facing product.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Product</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -292,7 +278,7 @@
           <p class="desc">Platforms &amp; Infrastructure — build the identity and data layers other products depend on.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Engineering</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -301,7 +287,7 @@
           <p class="desc">Parents mission space — design registration and communication flows people actually trust.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Design</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -310,7 +296,7 @@
           <p class="desc">Help ship the AI programme's next marking and analytics tools.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Data &amp; AI</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -319,7 +305,7 @@
           <p class="desc">Bring classroom experience into how DXD's student-facing products are built.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Education</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -328,7 +314,7 @@
           <p class="desc">Keep DXD's programmes and vendor partnerships running smoothly day to day.</p>
           <div class="cell-bottom">
             <span class="pill-mono">Operations</span>
-            <a href="#" class="btn btn-ghost" style="padding:var(--space-2) var(--space-4)">View role</a>
+            <a href="#" class="text-link">View role <span class="btn-arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -336,15 +322,18 @@
     </div>
   </section>
 
-  <div class="rule-major" aria-hidden="true"></div>
-
-  <section class="tight">
-    <div class="container" style="text-align:center; max-width:560px">
-      <svg class="illus-trigger illus-sketchy" viewBox="0 0 200 160" style="width:180px; margin:0 auto var(--space-6)"><use href="#illus-people-cta"/></svg>
-      <h2 style="font-size:var(--text-2xl)">Don't see a role that fits?</h2>
-      <p style="margin-top:var(--space-4)">We're always keen to hear from people who care about this work. Reach out anyway.</p>
-      <div class="hero-actions" style="justify-content:center; margin-top:var(--space-6)">
-        <a href="#" class="btn btn-primary">Get in touch <span class="placeholder-badge">placeholder</span></a>
+  <section class="lime-cta" data-lime-grow>
+    <div class="lime-cta-bg" data-lime-bg aria-hidden="true"></div>
+    <div class="container lime-cta-inner">
+      <div>
+        <h2 data-split>Don't see a role that fits?</h2>
+        <p class="lime-cta-text" data-reveal="up" style="--d:250ms">We're always keen to hear from people who care about this work. Reach out anyway.</p>
+        <div class="lime-cta-actions" data-reveal="up" style="--d:400ms">
+          <a href="#" class="btn btn-ink">Get in touch</a><span class="placeholder-badge">placeholder</span>
+        </div>
+      </div>
+      <div class="lime-cta-visual illus-gate" data-reveal="scale" style="--d:150ms" aria-hidden="true">
+        <svg class="illus-sketchy" viewBox="0 0 200 160"><use href="#illus-people-cta"/></svg>
       </div>
     </div>
   </section>
@@ -387,5 +376,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/motion.js"></script>
 </body>
 </html>

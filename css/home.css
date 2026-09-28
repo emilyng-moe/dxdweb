@@ -1,0 +1,216 @@
+/* ============================================================================
+   Homepage compositions. Everything is placed on the 64px blueprint grid
+   (--cell): the grid-snapped .container puts both content edges on real grid
+   lines, so cell-sized objects (the compass square, the lime cells, the
+   product tiles) sit exactly on the page grid rather than near it.
+   Scroll-linked values (--grid-y, clip-paths, transforms) come from
+   js/motion.js; without it, or under reduced motion, every section renders
+   in its finished state.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: var(--cell) 0;
+  /* A whole number of cells tall, so bottom-anchored grid objects land on a
+     horizontal grid line too. */
+  min-height: calc(100svh - var(--header-h));
+  min-height: round(down, calc(100svh - var(--header-h)), var(--cell));
+  display: flex; flex-direction: column;
+}
+.hero-inner {
+  position: relative;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.hero-kicker {
+  font-family: var(--font-mono); font-size: 13px; color: var(--olive);
+  margin: 0;
+}
+.hero-title {
+  position: relative; z-index: 2;
+  margin-top: var(--cell);
+  font-size: var(--text-display);
+  line-height: 0.9;
+  letter-spacing: var(--track-display);
+  color: var(--ink);
+}
+.hero-line { display: block; will-change: transform; }
+.hero-line--indent { padding-left: calc(var(--cell) * 2); }
+
+/* The compass is sized so its construction square is exactly 4 x 4 cells
+   (the square spans 63.64% of the mark's viewBox), then offset so that
+   square's top-right corner sits on a grid intersection at the container's
+   right edge — the outer circle deliberately spills past the grid. */
+.hero-mark {
+  --sq: calc(var(--cell) * 4);
+  --mw: calc(var(--sq) / 0.636364);
+  --mo: calc(var(--mw) * 0.181818);
+  position: absolute; z-index: 1;
+  top: calc(var(--cell) * 2 - var(--mo));
+  right: calc(-1 * var(--mo));
+  width: var(--mw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  will-change: transform;
+}
+.hero-mark svg { width: 100%; height: 100%; }
+
+.hero-foot {
+  margin-top: auto;
+  padding-top: var(--cell);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.hero-actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-right: var(--cell); }
+.hero-cell { position: absolute; right: 0; bottom: calc(-1 * var(--cell)); transition: transform var(--dur-ui) var(--ease-in-out); }
+
+@media (max-width: 900px) {
+  .hero { padding: var(--space-10) 0 var(--space-16); min-height: 0; }
+  .hero-title { margin-top: var(--space-6); }
+  .hero-line--indent { padding-left: 0; }
+  .hero-mark { --sq: 140px; top: 0; right: calc(-1 * var(--mo) - 16px); opacity: .5; z-index: 0; }
+  .hero-foot { padding-top: var(--space-10); }
+  .hero-actions { margin-right: 0; }
+  .hero-cell { width: 40px; height: 40px; bottom: calc(-1 * var(--space-16)); }
+}
+
+/* ---------- Mission statement: words fill in with scroll ---------- */
+.statement { padding: var(--fluid-pad-xl) 0; }
+.statement-inner { display: grid; gap: var(--space-6); }
+.statement-label { font-size: var(--text-xl); letter-spacing: var(--track-tight); color: var(--ink); }
+.statement-text {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--text-statement); line-height: 1.12; letter-spacing: var(--track-tight);
+  color: var(--ink);
+  max-width: 24em;
+}
+.fill-word { color: color-mix(in srgb, var(--ink) 14%, var(--background)); transition: color 260ms var(--ease-standard); }
+.fill-word.on { color: var(--ink); }
+
+@media (min-width: 901px) {
+  .statement-inner { grid-template-columns: calc(var(--cell) * 4) 1fr; column-gap: var(--cell); align-items: start; }
+  .statement-label { padding-top: 0.35em; }
+}
+/* Pinned only when the fill actually animates; otherwise it's a normal
+   section, so reduced-motion visitors don't scroll through dead space. */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .statement { padding: 0; height: 230vh; }
+  .statement-sticky { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; }
+}
+
+/* ---------- Functions: pinned stage + scrolling list ---------- */
+.functions { padding: var(--cell) 0 calc(var(--cell) * 2); }
+.fn-list { list-style: none; margin: 0; padding: 0; }
+.fn-item { padding: var(--space-12) 0; }
+.fn-num { display: block; font-family: var(--font-mono); font-size: 13px; color: var(--olive); margin-bottom: var(--space-4); }
+.fn-item h3 {
+  font-size: var(--text-4xl); line-height: 1.02; letter-spacing: var(--track-tight);
+  margin-bottom: var(--space-6);
+}
+.fn-item p { font-size: var(--text-lg); line-height: 1.55; max-width: 44ch; }
+.fn-item .why { margin-top: var(--space-4); }
+.fn-item .why b { color: var(--ink); }
+.fn-inline-visual { width: min(240px, 70%); margin-bottom: var(--space-6); }
+.fn-stage { display: none; }
+@media (max-width: 900px) { .functions { padding-top: 0; } }
+
+@media (min-width: 901px) {
+  .fn-grid { display: grid; grid-template-columns: calc(var(--cell) * 8) 1fr; column-gap: var(--cell); align-items: start; }
+  .fn-inline-visual { display: none; }
+  .fn-stage {
+    display: block;
+    position: sticky;
+    top: max(calc(var(--header-h) + var(--space-6)), calc(var(--header-h) + (100svh - var(--header-h) - var(--cell) * 8) / 2));
+    height: calc(var(--cell) * 8);
+  }
+  .fn-item {
+    min-height: 78svh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: var(--cell) 0;
+    transition: opacity var(--dur-ui) var(--ease-standard);
+  }
+  .fn-item:not(.is-active) { opacity: 0.22; }
+}
+
+.fn-stage-inner {
+  position: relative; width: 100%; height: 100%;
+  background-color: var(--cream-1);
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+  box-shadow: inset -1px -1px 0 var(--border);
+}
+.fn-counter {
+  position: absolute; left: 0; top: 0; z-index: 2;
+  width: calc(var(--cell) * 2); height: var(--cell);
+  overflow: hidden;
+  background: var(--background);
+  box-shadow: inset 0 0 0 1px var(--border);
+  font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: var(--track-tight);
+}
+.fn-counter-track {
+  display: flex; flex-direction: column;
+  transform: translateY(calc(var(--fn-i, 0) * -1 * var(--cell)));
+  transition: transform var(--dur-ui) var(--ease-in-out);
+}
+.fn-counter-track span { display: flex; align-items: center; justify-content: center; height: var(--cell); }
+.fn-visual {
+  position: absolute; inset: var(--cell);
+  display: grid; place-items: center;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 800ms var(--ease-in-out);
+}
+.fn-visual svg { width: 100%; height: auto; }
+.fn-visual.is-active { clip-path: inset(0 0 0 0); }
+.fn-visual.is-past { clip-path: inset(0 0 100% 0); }
+
+/* The lime cell steps to a different grid cell for each function. */
+.fn-cell {
+  position: absolute; left: 0; top: 0; z-index: 1;
+  transform: translate(calc(var(--cx, 7) * var(--cell)), calc(var(--cy, 7) * var(--cell)));
+  transition: transform 700ms var(--ease-in-out);
+}
+.fn-stage-inner[data-active="1"] .fn-cell { --cx: 7; --cy: 0; }
+.fn-stage-inner[data-active="2"] .fn-cell { --cx: 0; --cy: 7; }
+
+/* A grid line that extends down the stage's right edge as the list is read. */
+.fn-progress { position: absolute; top: 0; bottom: 0; right: -1px; width: 2px; z-index: 2; }
+.fn-progress-bar { display: block; height: 100%; background: var(--ink); transform-origin: top; transform: scaleY(var(--fn-p, 0)); }
+
+/* ---------- Featured products: tiles on irregular runs of cells ---------- */
+.work { padding: calc(var(--cell) * 2) 0 0; }
+
+/* ---------- Team: the lime cell grows into the section ---------- */
+.team { padding: 0; position: relative; }
+.team-sticky { position: relative; padding: var(--fluid-pad-xl) 0; }
+.team-lime { position: absolute; inset: 0; background: var(--lime); }
+.team-inner { position: relative; z-index: 1; display: grid; gap: var(--space-10); align-items: center; }
+.team-copy h2 {
+  font-size: clamp(44px, 5.6vw + 4px, 108px);
+  line-height: 0.92; letter-spacing: var(--track-display); color: var(--ink);
+}
+.team-text { margin-top: var(--space-8); font-size: var(--text-lg); line-height: 1.55; color: var(--ink); max-width: 40ch; }
+.team-actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); }
+.team-visual { width: min(360px, 80%); }
+.team-visual svg { width: 100%; height: auto; }
+
+@media (min-width: 901px) {
+  .team-inner { grid-template-columns: 1fr calc(var(--cell) * 6); column-gap: var(--cell); }
+  .team-visual { width: 100%; }
+}
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  /* Pinned so the lime expansion plays against a still viewport; motion.js
+     drives the clip-path and adds .is-open once it has filled the screen. */
+  .team.is-pinned { height: 260vh; }
+  .team.is-pinned .team-sticky {
+    position: sticky; top: 0; height: 100svh; padding: 0;
+    display: flex; align-items: center; overflow: hidden;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .fn-visual, .fn-counter-track, .fn-cell, .fn-item, .fn-progress-bar,
+  .hero-cell, .fill-word { transition: none !important; }
+}
