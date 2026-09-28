@@ -24,6 +24,8 @@ body {
 
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
+/* In-page anchors (e.g. people.html#careers) land clear of the sticky header. */
+section[id] { scroll-margin-top: var(--header-h); }
 
 .container {
   max-width: calc(var(--max-content-width) + 2 * var(--margin));
@@ -365,7 +367,7 @@ html.dark .placeholder-badge { background: #2A2110; border-color: #4A3A16; }
 .page-hero { padding: calc(var(--cell) * 2) 0 calc(var(--cell) * 1.5); }
 .page-hero-inner { display: grid; gap: var(--space-4); }
 .page-hero-label { margin: 0; }
-.page-hero h1 { font-size: var(--text-5xl); line-height: 0.95; letter-spacing: var(--track-display); max-width: 14em; }
+.page-hero :is(h1, h2) { font-size: var(--text-5xl); line-height: 0.95; letter-spacing: var(--track-display); max-width: 14em; }
 .page-hero .lede { margin-top: var(--space-8); max-width: 46ch; color: var(--ink-soft); }
 .page-hero .lede .placeholder-badge { display: flex; width: fit-content; margin: var(--space-4) 0 0; border-radius: var(--radius-sm); }
 @media (min-width: 901px) {

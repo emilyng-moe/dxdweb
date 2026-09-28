@@ -122,6 +122,66 @@ a.work-tile:hover, a.work-tile:focus-visible { box-shadow: inset 0 0 0 1.5px var
 }
 .grid-stage svg { width: 78%; height: auto; transition: transform var(--dur-ui) var(--ease-standard); }
 
+/* ---------- Featured split: an 8-cell grid stage beside a story ---------- */
+/* Same split the homepage uses for its function stage; used for the
+   featured article on Perspectives and the featured coverage on Media. */
+.featured-split { display: grid; gap: var(--space-8); align-items: center; }
+.featured-split .story-media { margin: 0; aspect-ratio: 16 / 10; }
+.featured-split h2 { font-size: var(--text-4xl); line-height: 1; letter-spacing: var(--track-tight); margin-top: var(--space-6); }
+.fp-text p { margin-top: var(--space-6); font-size: var(--text-lg); line-height: 1.55; color: var(--ink-soft); max-width: 42ch; }
+.fp-text .text-link { margin-top: var(--space-8); }
+@media (min-width: 901px) {
+  .featured-split { grid-template-columns: calc(var(--cell) * 8) 1fr; column-gap: var(--cell); }
+}
+
+/* ---------- Press list: one hairline row per piece of coverage ---------- */
+.press-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.press-list > li { border-bottom: 1px solid var(--border); }
+.press-row {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; align-items: center; gap: var(--space-3) var(--space-6);
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "date arrow" "source source" "title title" "type type";
+  padding: var(--space-6) var(--space-4);
+  color: var(--ink);
+}
+.press-row::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--lime);
+  transform: translateY(101%);
+  transition: transform var(--dur-ui) var(--ease-standard);
+}
+.press-row:hover::before, .press-row:focus-visible::before { transform: translateY(0); }
+.press-row:focus-visible { outline-offset: -4px; }
+.press-date { grid-area: date; font-family: var(--font-mono); font-size: 13px; color: var(--olive); }
+.press-source { grid-area: source; font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
+.press-title { grid-area: title; font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); line-height: 1.15; letter-spacing: var(--track-tight); }
+.press-type { grid-area: type; justify-self: start; }
+.press-row .btn-arrow { grid-area: arrow; font-size: var(--text-xl); }
+@media (min-width: 901px) {
+  .press-row {
+    grid-template-columns: calc(var(--cell) * 3) 1fr calc(var(--cell) * 2) var(--cell);
+    grid-template-areas: "date title type arrow" "source title type arrow";
+    row-gap: var(--space-1);
+    min-height: calc(var(--cell) * 1.5);
+  }
+  .press-date { align-self: end; }
+  .press-source { align-self: start; }
+  .press-row .btn-arrow { justify-self: end; }
+}
+/* Rows share hairlines, so the row itself never moves; its content rises in. */
+.press-list > [data-reveal] { opacity: 1; transform: none; }
+.press-list > [data-reveal] .press-row > * {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity var(--dur-reveal) var(--ease-standard), transform var(--dur-reveal) var(--ease-standard);
+  transition-delay: var(--d, 0ms);
+}
+.press-list > [data-reveal].is-in .press-row > * { opacity: 1; transform: none; }
+/* The arrow fades in with its row but keeps a quick hover nudge. */
+.press-list > [data-reveal] .press-row > .btn-arrow {
+  transition: opacity var(--dur-reveal) var(--ease-standard) var(--d, 0ms), transform var(--dur-micro) var(--ease-standard) 0ms;
+}
+
 /* ---------- Page hero lime cell: steps down the free right-hand column ---------- */
 .page-hero-cell { position: absolute; top: 0; right: 0; transition: transform var(--dur-ui) var(--ease-in-out); }
 @media (min-width: 901px) { .page-hero-main { padding-right: calc(var(--cell) * 2); } }
@@ -146,6 +206,7 @@ a.work-tile:hover, a.work-tile:focus-visible { box-shadow: inset 0 0 0 1.5px var
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work-tile::before, .page-hero-cell, .grid-stage svg { transition: none !important; }
+  .work-tile::before, .page-hero-cell, .grid-stage svg, .press-row::before { transition: none !important; }
+  .press-list > [data-reveal] .press-row > * { transition: none !important; opacity: 1 !important; transform: none !important; }
   .work-tile:hover .work-icon svg * { animation: none; }
 }

@@ -8,21 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/tokens.css?v=20260928" />
-<link rel="stylesheet" href="css/base.css?v=20260928" />
-<link rel="stylesheet" href="css/components.css?v=20260928" />
-<style>
-  /* Featured article: an 8-cell grid stage beside the story, the same split
-     the homepage uses for its function stage. */
-  .featured-perspective { display: grid; gap: var(--space-8); align-items: center; }
-  .featured-perspective .story-media { margin: 0; aspect-ratio: 16 / 10; }
-  .featured-perspective h2 { font-size: var(--text-4xl); line-height: 1; letter-spacing: var(--track-tight); margin-top: var(--space-6); }
-  .fp-text p { margin-top: var(--space-6); font-size: var(--text-lg); line-height: 1.55; color: var(--ink-soft); max-width: 42ch; }
-  .fp-text .text-link { margin-top: var(--space-8); }
-  @media (min-width: 901px) {
-    .featured-perspective { grid-template-columns: calc(var(--cell) * 8) 1fr; column-gap: var(--cell); }
-  }
-</style>
+<link rel="stylesheet" href="css/tokens.css?v=20260928b" />
+<link rel="stylesheet" href="css/base.css?v=20260928b" />
+<link rel="stylesheet" href="css/components.css?v=20260928b" />
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
@@ -217,7 +205,7 @@
       <li><a href="products.html">Products</a></li>
       <li><a href="people.html">People</a></li>
       <li><a href="perspectives.html" aria-current="page">Perspectives</a></li>
-      <li><a href="careers.html">Careers</a></li>
+      <li><a href="media.html">Media</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -241,7 +229,7 @@
   <section class="tight">
     <div class="container">
 
-      <div class="featured-perspective">
+      <div class="featured-split">
         <div class="story-media grid-stage" data-reveal="wipe-right">
           <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260"><use href="#illus-story-featured"/></svg>
         </div>
@@ -362,7 +350,8 @@
           <li><a href="products.html">Products</a></li>
           <li><a href="people.html">People</a></li>
           <li><a href="perspectives.html">Perspectives</a></li>
-          <li><a href="careers.html">Careers</a></li>
+          <li><a href="people.html#careers">Careers</a></li>
+          <li><a href="media.html">Media</a></li>
         </ul>
       </div>
       <div>
@@ -380,7 +369,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20260928"></script>
-<script src="js/motion.js?v=20260928"></script>
+<script src="js/main.js?v=20260928b"></script>
+<script src="js/motion.js?v=20260928b"></script>
 </body>
 </html>

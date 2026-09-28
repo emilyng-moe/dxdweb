@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DXD — Digital Excellence & Products Division, MOE</title>
-<meta name="description" content="DXD builds and delivers digital products for schools, educators, students, parents, and MOE officers, and drives AI adoption across the Ministry of Education." />
+<title>Media — DXD</title>
+<meta name="description" content="News coverage, interviews, and press about DXD, the Digital Excellence and Products Division at MOE." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css?v=20260928b" />
 <link rel="stylesheet" href="css/base.css?v=20260928b" />
 <link rel="stylesheet" href="css/components.css?v=20260928b" />
-<link rel="stylesheet" href="css/home.css?v=20260928b" />
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
@@ -159,7 +158,7 @@
     </g>
   </symbol>
 
-  <!-- ============ Story featured scene: results board ============ -->
+  <!-- ============ Featured scene: results board ============ -->
   <symbol id="illus-story-featured" viewBox="0 0 400 260">
     <line x1="0" y1="220" x2="400" y2="220" stroke="var(--border)" stroke-width="1.5"/>
     <circle cx="340" cy="46" r="26" fill="var(--lime)" stroke="var(--ink)" stroke-width="2.5" class="float-slow"/>
@@ -175,7 +174,7 @@
     <circle cx="52" cy="188" r="5" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
   </symbol>
 
-  <!-- ============ Generic photo placeholder (story grid) ============ -->
+  <!-- ============ Generic photo placeholder (article grid) ============ -->
   <symbol id="illus-photo-generic" viewBox="0 0 200 130">
     <circle cx="158" cy="30" r="14" fill="var(--lime)" stroke="var(--ink)" stroke-width="2" class="doodle-pop"/>
     <path d="M10 110 L60 66 L92 92 L128 54 L190 110 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
@@ -193,18 +192,6 @@
     <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
 
-  <!-- Small-icon variant: same wobble character, scaled down so ~20px icons don't dissolve -->
-  <filter id="sketchy-anim-sm" x="-30%" y="-30%" width="160%" height="160%">
-    <feTurbulence type="turbulence" baseFrequency="0.06" numOctaves="2" seed="4" result="noise">
-      <animate attributeName="seed" values="2;5;9;3;7;2" dur="1.8s" calcMode="discrete" repeatCount="indefinite"/>
-    </feTurbulence>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-  <filter id="sketchy-still-sm" x="-30%" y="-30%" width="160%" height="160%">
-    <feTurbulence type="turbulence" baseFrequency="0.06" numOctaves="2" seed="4" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-
 </svg>
 
 <header class="site-header">
@@ -214,11 +201,11 @@
       <span>DXD</span>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Purpose</a></li>
+      <li><a href="index.html">Purpose</a></li>
       <li><a href="products.html">Products</a></li>
       <li><a href="people.html">People</a></li>
       <li><a href="perspectives.html">Perspectives</a></li>
-      <li><a href="media.html">Media</a></li>
+      <li><a href="media.html" aria-current="page">Media</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -228,136 +215,113 @@
 
 <main>
 <div class="canvas">
-
-  <!-- ============ Hero: the statement, set on the grid ============ -->
-  <section class="blueprint hero" data-hero>
-    <div class="container hero-inner">
-      <p class="hero-kicker" data-reveal="up">Digital Excellence &amp; Products Division, MOE</p>
-      <h1 class="hero-title" aria-label="Moulding our nation's future through technology.">
-        <span class="hero-line" data-drift="-1"><span data-split>Moulding our</span></span>
-        <span class="hero-line hero-line--indent" data-drift="1"><span data-split style="--split-delay:110ms">nation's future</span></span>
-        <span class="hero-line" data-drift="-0.6"><span data-split style="--split-delay:220ms">through technology.</span></span>
-      </h1>
-      <div class="hero-mark illus-trigger" data-hero-mark aria-hidden="true">
-        <svg viewBox="0 0 1000 1000"><use href="#mark-compass"/></svg>
+  <section class="blueprint page-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow page-hero-label" data-reveal="left">Media</p>
+      <div class="page-hero-main">
+        <h1 data-split>DXD in the news.</h1>
+        <p class="lede" data-reveal="up" style="--d:450ms">Coverage of DXD's products, people, and work across MOE — from news features to interviews and industry press. <span class="placeholder-badge">All coverage on this page is placeholder content</span></p>
       </div>
-      <div class="hero-foot">
-        <div class="hero-actions" data-reveal="up" style="--d:800ms">
-          <a href="products.html" class="btn btn-primary">See our products</a>
-          <a href="people.html#careers" class="text-link">Join the team <span class="btn-arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-      <span class="grid-cell-lime hero-cell" data-hero-cell aria-hidden="true"></span>
+      <span class="grid-cell-lime page-hero-cell" data-cell-step aria-hidden="true"></span>
     </div>
   </section>
 
-  <!-- ============ Mission: one sentence, filled in by scrolling ============ -->
-  <section class="statement" id="mission" data-statement>
-    <div class="statement-sticky">
-      <div class="container statement-inner">
-        <h2 class="statement-label" data-reveal="left">What we're here to do.</h2>
-        <p class="statement-text" data-fill>DXD builds and delivers the digital products, services, and AI capabilities that empower schools, educators, students, parents, and MOE officers — enabling MOE's digital transformation from the ground up.</p>
+  <section class="tight">
+    <div class="container">
+      <div class="featured-split">
+        <div class="story-media grid-stage" data-reveal="wipe-right">
+          <svg class="illus-trigger illus-sketchy" viewBox="0 0 400 260"><use href="#illus-story-featured"/></svg>
+        </div>
+        <div class="fp-text">
+          <div class="work-tags" data-reveal="up"><span class="tag">Feature</span><span class="placeholder-badge">placeholder</span></div>
+          <h2 data-split>How a small MOE team ships the tools every school runs on</h2>
+          <p data-reveal="up" style="--d:250ms">Publication name, Sep 2026. A look at how DXD builds, maintains, and scales the digital products that schools and officers rely on every day.</p>
+          <a href="#" class="text-link" data-reveal="up" style="--d:400ms">Read the article <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Functions: a pinned stage whose visual changes as each function passes ============ -->
-  <section class="functions" data-functions>
-    <div class="container fn-grid">
-      <div class="fn-stage" aria-hidden="true">
-        <div class="fn-stage-inner">
-          <span class="fn-counter"><span class="fn-counter-track"><span>01</span><span>02</span><span>03</span></span></span>
-          <div class="fn-visual illus-gate is-active" data-fn-visual="0"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-build"/></svg></div>
-          <div class="fn-visual illus-gate" data-fn-visual="1"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-ai"/></svg></div>
-          <div class="fn-visual illus-gate" data-fn-visual="2"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-empower"/></svg></div>
-          <span class="grid-cell-lime fn-cell"></span>
-          <span class="fn-progress"><span class="fn-progress-bar"></span></span>
-        </div>
+  <section class="tight">
+    <div class="container">
+      <div class="side-head">
+        <p class="side-head-label"><span class="eyebrow">All coverage</span></p>
+        <h2 class="side-head-title" data-split>In the press.</h2>
       </div>
-
-      <ol class="fn-list">
-        <li class="fn-item is-active" data-fn-item="0">
-          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-build"/></svg></div>
-          <span class="fn-num">01</span>
-          <h3 data-split>Build &amp; deliver impactful digital solutions</h3>
-          <p data-reveal="up" style="--d:200ms">We develop and maintain digital products, systems, and infrastructure that create value for MOE and schools.</p>
-          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Secure, reliable, easy-to-use services are the foundation everything else stands on.</p>
+      <ul class="press-list">
+        <li data-reveal="up" style="--d:0ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Aug 2026</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">Inside the team building MOE's Student Learning Space</span>
+            <span class="press-type pill-mono">Feature</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
         </li>
-        <li class="fn-item" data-fn-item="1">
-          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-ai"/></svg></div>
-          <span class="fn-num">02</span>
-          <h3 data-split>Accelerate digital innovation &amp; AI adoption</h3>
-          <p data-reveal="up" style="--d:200ms">We co-create solutions with users to meet evolving needs, and drive AI adoption across MOE.</p>
-          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Partnering teams to experiment, build skills, and apply AI meaningfully to teaching, learning, and work.</p>
+        <li data-reveal="up" style="--d:80ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Jun 2026</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">How schools are putting AI marking assistants to the test</span>
+            <span class="press-type pill-mono">News</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
         </li>
-        <li class="fn-item" data-fn-item="2">
-          <div class="fn-inline-visual" aria-hidden="true"><svg class="illus-sketchy" viewBox="0 0 220 180"><use href="#illus-empower"/></svg></div>
-          <span class="fn-num">03</span>
-          <h3 data-split>Empower users &amp; grow digital capabilities</h3>
-          <p data-reveal="up" style="--d:200ms">We provide responsive, user-focused support to ensure smooth and effective use of technology.</p>
-          <p class="why" data-reveal="up" style="--d:320ms"><b>Why it matters</b> — Building digital awareness and skills so people can apply emerging technologies in their work.</p>
+        <li data-reveal="up" style="--d:160ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Apr 2026</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">Designing government services that parents actually trust</span>
+            <span class="press-type pill-mono">Interview</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
         </li>
-      </ol>
+        <li data-reveal="up" style="--d:0ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Feb 2026</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">The quiet infrastructure behind Singapore's school systems</span>
+            <span class="press-type pill-mono">Feature</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li data-reveal="up" style="--d:80ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Nov 2025</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">What it takes to ship software to every school in Singapore</span>
+            <span class="press-type pill-mono">Podcast</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li data-reveal="up" style="--d:160ms">
+          <a class="press-row" href="#">
+            <span class="press-date">Sep 2025</span>
+            <span class="press-source">Publication name</span>
+            <span class="press-title">A closer look at MOE's approach to AI in the classroom</span>
+            <span class="press-type pill-mono">News</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- ============ Featured products: tiles occupying irregular runs of grid cells ============ -->
-  <section class="work" id="products">
-    <div class="container cq">
-      <div class="work-head">
-        <h2 class="work-title" data-split>What we've built.</h2>
-        <a href="products.html" class="text-link" data-reveal="right" style="--d:250ms">View all products <span class="btn-arrow" aria-hidden="true">→</span></a>
-      </div>
-      <div class="work-grid" data-reveal="grid">
-        <a class="work-tile work-tile--lg" href="products.html#students" data-reveal="wipe-right" style="--d:150ms">
-          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M12 7v5l3 3" pathLength="1"/></svg></span>
-          <div class="work-body">
-            <h3>SLS</h3>
-            <span class="work-desc">The Student Learning Space — where students access curriculum resources, assignments, and track their own learning.</span>
-            <span class="pill-mono">Students</span>
-          </div>
-        </a>
-        <a class="work-tile work-tile--a" href="products.html#schools-teachers" data-reveal="wipe-down" style="--d:300ms">
-          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7z" pathLength="1"/></svg></span>
-          <div class="work-body">
-            <h3>Teacher Workspace</h3>
-            <span class="work-desc">Calm, reliable tools that give teachers back time — marks, attendance, and lesson planning.</span>
-            <span class="pill-mono">Schools &amp; Teachers</span>
-          </div>
-        </a>
-        <a class="work-tile work-tile--b" href="products.html#platforms" data-reveal="wipe-up" style="--d:420ms">
-          <span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9" pathLength="1"/><path d="M9 12l2 2 4-4" pathLength="1"/></svg></span>
-          <div class="work-body">
-            <h3>Mark.ly</h3>
-            <span class="work-desc">An AI-assisted marking tool that helps teachers grade faster and more consistently.</span>
-            <span class="pill-mono">Platforms &amp; Infrastructure</span>
-          </div>
-        </a>
-        <span class="grid-cell-lime work-cell" aria-hidden="true"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Team: the lime cell grows into the whole section ============ -->
-  <section class="team" id="team" data-team>
-    <div class="team-sticky">
-      <div class="team-lime" data-team-lime aria-hidden="true"></div>
-      <div class="container team-inner">
-        <div class="team-copy">
-          <h2 data-split>A diverse team, one mission.</h2>
-          <p class="team-text" data-reveal="up" style="--d:250ms">DXD brings together product managers, engineers, designers, data and AI scientists, education officers, and operations specialists — working closely with MOE stakeholders and schools to build products that make a meaningful difference.</p>
-          <div class="team-actions" data-reveal="up" style="--d:400ms">
-            <a href="people.html" class="btn btn-ink">Meet our people</a>
-            <a href="perspectives.html" class="text-link">Read our perspectives <span class="btn-arrow" aria-hidden="true">→</span></a>
-          </div>
-        </div>
-        <div class="team-visual illus-gate" data-reveal="scale" style="--d:150ms" aria-hidden="true">
-          <svg class="illus-sketchy" viewBox="0 0 200 160"><use href="#illus-people-cta"/></svg>
+  <section class="lime-cta" data-lime-grow>
+    <div class="lime-cta-bg" data-lime-bg aria-hidden="true"></div>
+    <div class="container lime-cta-inner">
+      <div>
+        <h2 data-split>Writing about DXD?</h2>
+        <p class="lime-cta-text" data-reveal="up" style="--d:250ms">For interviews, comments, or background on our work, get in touch with the team.</p>
+        <div class="lime-cta-actions" data-reveal="up" style="--d:400ms">
+          <a href="#" class="btn btn-ink">Contact the team</a><span class="placeholder-badge">placeholder</span>
         </div>
       </div>
+      <div class="lime-cta-visual illus-gate" data-reveal="scale" style="--d:150ms" aria-hidden="true">
+        <svg class="illus-sketchy" viewBox="0 0 200 160"><use href="#illus-people-cta"/></svg>
+      </div>
     </div>
   </section>
-
 </div>
 </main>
 
